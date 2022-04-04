@@ -17,17 +17,21 @@ function Login() {
             event.stopPropagation()
             if (!form.checkValidity()) {
                 form.classList.add('was-validated')
-                return
+                return;
             }
 
             if (db[username.value]) {
                 if (db[username.value] === password.value) {
-                    // everything is right, direct user to chats window
+                    // TODO: some code here to direct user to chats window
+                    return;
                 } else {
                     alert("Wrong password!");
+                    return;
+
                 }
             } else {
                 alert("Wrong username!")
+                return;
             }
 
         }, false)

@@ -21,18 +21,22 @@ function Register() {
             event.stopPropagation()
             if (!form.checkValidity()) {
                 form.classList.add('was-validated')
-                return
+                return;
             }
             else {
 
                 if (password.value != password2.value) {
                     alert("Passwords are not matching!");
+                    return;
                 }
                 else if (db[username.value]) {
                     alert("Selected username is already exist!")
+                    return;
                 }
                 else {
-                    // now we can register new user to db!
+                    db[username.value] = password.value;
+                    // TODO: we need also save nickname, picture, etc...
+                    return;
                 }
             }
 
@@ -77,7 +81,7 @@ function Register() {
                                         </div>
                                         <div className="mb-3">
                                             <div className="mb-2 w-100">
-                                                <label className="text-muted" htmlFor="password">Password confirmation</label>
+                                                <label className="text-muted" htmlFor="password2">Password confirmation</label>
                                             </div>
                                             <Form.Control id="password2" type="password" className="form-control" placeholder="Confirm password" name="password" required></Form.Control>
                                             <Form.Control.Feedback type="invalid">
@@ -86,7 +90,7 @@ function Register() {
                                         </div>
                                         <div className="mb-3">
                                             <div className="mb-2 w-100">
-                                                <label className="text-muted" htmlFor="password">Profile picture</label>
+                                                <label className="text-muted" htmlFor="img">Profile picture</label>
                                             </div>
                                             <Form.Control id="img" type="file" className="form-control" placeholder="Select image" name="img" required></Form.Control>
                                             <Form.Control.Feedback type="invalid">
