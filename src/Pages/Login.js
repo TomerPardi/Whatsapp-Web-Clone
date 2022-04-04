@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link} from "react-router-dom";
 import db from '../Data';
 
 
+
 function Login(props) {
+    
+
     useEffect(() => {
         const form = document.getElementById("form");
         const username = document.getElementById("uname");
@@ -23,7 +26,7 @@ function Login(props) {
                 if (db[username.value] === password.value) {
                     event.preventDefault()
                     event.stopPropagation();
-                    props.handleAuth(true);
+                    localStorage.setItem("auth", "true");
                     window.location.href = "/home";
                     return;
                 } else {
@@ -41,6 +44,7 @@ function Login(props) {
 
         }, false)
     }, []);
+
 
     return (
         <>
