@@ -13,31 +13,21 @@ function Login() {
         const password = document.getElementById("password");
         // on each time the user submits the form
         form.addEventListener('submit', function (event) {
+            event.preventDefault()
+            event.stopPropagation()
             if (!form.checkValidity()) {
-                console.log("here!")
-                event.preventDefault()
-                event.stopPropagation()
                 form.classList.add('was-validated')
                 return
             }
 
-            if (db.hasOwnProperty(username.value)) {
+            if (db[username.value]) {
                 if (db[username.value] === password.value) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                    window.location.href = "home.html"
-                    return;
+                    // everything is right, direct user to chats window
                 } else {
-                    alert("password is wrong");
-                    event.preventDefault()
-                    event.stopPropagation()
-                    return;
+                    alert("Wrong password!");
                 }
             } else {
-                alert("wrong username")
-                event.preventDefault()
-                event.stopPropagation()
-                return
+                alert("Wrong username!")
             }
 
         }, false)
@@ -58,7 +48,7 @@ function Login() {
                                             <label className="mb-2 text-muted" htmlFor="uname">Username</label>
                                             <Form.Control id="uname" type="text" className="form-control" placeholder="Username" name="uname" required autoFocus></Form.Control>
                                             <Form.Control.Feedback type="invalid">
-                                                Username is invalid
+                                                Username is required!
                                             </Form.Control.Feedback>
                                         </div>
 
@@ -66,9 +56,9 @@ function Login() {
                                             <div className="mb-2 w-100">
                                                 <label className="text-muted" htmlFor="password">Password</label>
                                             </div>
-                                            <Form.Control id="password" type="password" className="form-control" placeholder="Password" name="password" pattern="^[a-zA-Z0-9]+$" required></Form.Control>
+                                            <Form.Control id="password" type="password" className="form-control" placeholder="Password" name="password" required></Form.Control>
                                             <Form.Control.Feedback type="invalid">
-                                                Password is required and should contain alphanumeric characters only!
+                                                Password is required!
                                             </Form.Control.Feedback>
                                         </div>
 
