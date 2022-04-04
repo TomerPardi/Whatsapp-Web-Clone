@@ -1,14 +1,15 @@
 import React, { useEffect,useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Link, Navigate} from "react-router-dom";
+import { Link, Navigate,useNavigate} from "react-router-dom";
 import db from '../Data';
 
 
 
 function Login(props) {
-    
+    let navigate = useNavigate();
 
     useEffect(() => {
+        
         const form = document.getElementById("form");
         const username = document.getElementById("uname");
         const password = document.getElementById("password");
@@ -27,8 +28,8 @@ function Login(props) {
                     event.preventDefault()
                     event.stopPropagation();
                     localStorage.setItem("user", username.value);
-                    window.location.href = "/home";
-                    return;
+                    //window.location.href = "/home";
+                    navigate("../home", { replace: true });
                 } else {
                     alert("password is wrong");
                     event.preventDefault()
@@ -72,6 +73,9 @@ function Login(props) {
                                             <Form.Control id="password" type="password" className="form-control" placeholder="Password" name="password" pattern="^[a-zA-Z0-9]+$" required></Form.Control>
                                             <Form.Control.Feedback type="invalid">
                                                 Password is required and should contain alphanumeric characters only!
+                                            </Form.Control.Feedback>
+                                            <Form.Control.Feedback type="valid">
+                                               LOGIN
                                             </Form.Control.Feedback>
                                         </div>
 
