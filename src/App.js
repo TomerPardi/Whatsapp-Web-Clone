@@ -13,10 +13,10 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route element={<ProtectedRoutes />}>
+      <Route element={<ProtectedRoutes />}>
           <Route path="home" element={<Home />} />
         </Route>
+        <Route path="/" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Routes>
     </BrowserRouter>
