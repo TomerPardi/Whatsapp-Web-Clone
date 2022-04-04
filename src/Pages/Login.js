@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Link} from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import db from '../Data';
 
 
@@ -26,7 +26,7 @@ function Login(props) {
                 if (db[username.value] === password.value) {
                     event.preventDefault()
                     event.stopPropagation();
-                    localStorage.setItem("auth", "true");
+                    localStorage.setItem("user", username.value);
                     window.location.href = "/home";
                     return;
                 } else {

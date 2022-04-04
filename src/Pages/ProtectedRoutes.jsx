@@ -1,14 +1,14 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import Login from './Login';
 
 function isAuth(){
-    if(localStorage.getItem("auth")==="true"){
+    if(localStorage.getItem("user")){
         return true;
     }
     return false;
 }
 
 export const ProtectedRoutes = () => {
-    return isAuth()? <Outlet/> :<Login/>
+    return isAuth()? <Outlet user={localStorage.getItem("user")}/> :<Navigate to="/"/>
 }
