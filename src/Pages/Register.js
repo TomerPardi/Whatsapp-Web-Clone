@@ -58,7 +58,7 @@ function Register() {
                                             <Form.Control.Feedback type="invalid">
                                                 Username is invalid
                                             </Form.Control.Feedback>
-                                            <input type="file" onChange={handleFileInput}/>
+                                            <input type="file"/>
                                         </div>
                                         <div className="mb-3">
                                             <div className="mb-2 w-100">

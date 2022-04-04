@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import Register from "./Register"
-import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import db from '../Data';
 
 
-function Login() {
-
+function Login(props) {
     useEffect(() => {
         const form = document.getElementById("form");
         const username = document.getElementById("uname");
@@ -24,8 +22,9 @@ function Login() {
             if (db.hasOwnProperty(username.value)) {
                 if (db[username.value] === password.value) {
                     event.preventDefault()
-                    event.stopPropagation()
-                    window.location.href = "home.html"
+                    event.stopPropagation();
+                    props.handleAuth(true);
+                    window.location.href = "/home";
                     return;
                 } else {
                     alert("password is wrong");
