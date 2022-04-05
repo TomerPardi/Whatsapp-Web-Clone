@@ -10,7 +10,7 @@ export default class MessageInput extends Component {
 
     render() {
         return (
-            <Container style={{display:'flex'}}>
+            <div class="position-absolute bottom-50">
                     <InputGroup className="mb-3">
                         {/* Set title as link to the icon (link from https://icons.getbootstrap.com/#usage) */}
                         <DropdownButton
@@ -55,7 +55,7 @@ export default class MessageInput extends Component {
                             </svg>
                         </Button>
                     </InputGroup>
-            </Container>
+            </div>
         )
     }
 }
