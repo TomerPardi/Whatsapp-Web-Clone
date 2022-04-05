@@ -1,38 +1,44 @@
 import React, { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import db from '../Data';
 
 
 
 function Register() {
 
-
-
     useEffect(() => {
         const form = document.getElementById("form");
         const username = document.getElementById("uname");
         const password = document.getElementById("password");
+        const nickname = document.getElementById("nick");
+        const password2 = document.getElementById("password2");
+        const img = document.getElementById("img");
 
-        // on each time the user submits the form
+        // each time the user submits the form
         form.addEventListener('submit', function (event) {
+            event.preventDefault()
+            event.stopPropagation()
             if (!form.checkValidity()) {
-                console.log("here!")
-                event.preventDefault()
-                event.stopPropagation()
                 form.classList.add('was-validated')
-                return
+                return;
             }
-            //console.log("test")
             else {
-                event.preventDefault()
-                event.stopPropagation()
-                let uname = username.value;
-                let pswd = password.value;
-                db[uname]=pswd;
+
+                if (password.value != password2.value) {
+                    alert("Passwords are not matching!");
+                    return;
+                }
+                else if (db[username.value]) {
+                    alert("Selected username is already exist!")
+                    return;
+                }
+                else {
+                    db[username.value] = password.value;
+                    // TODO: we need also save nickname, picture, etc...
+                    return;
+                }
             }
-
-
 
         }, false)
     }, []);
@@ -50,15 +56,19 @@ function Register() {
                                     <Form id="form" className="needs-validation" noValidate validated="" autoComplete="off">
                                         <div className="mb-3">
                                             <label className="mb-2 text-muted" htmlFor="uname">Username</label>
-                                            <Form.Control id="uname" type="text" className="form-control" placeholder="Username" name="uname" required autoFocus></Form.Control>
+                                            <Form.Control id="uname" type="text" className="form-control" placeholder="Username" name="uname" pattern="^[a-zA-Z0-9]+$" required autoFocus></Form.Control>
                                             <Form.Control.Feedback type="invalid">
-                                                Username is invalid
+                                                Username is required and should contain alphanumeric characters only!
                                             </Form.Control.Feedback>
-                                            <Form.Control id="nick" type="text" className="form-control" placeholder="Nickname" name="nick" autoFocus></Form.Control>
+
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="mb-2 text-muted" htmlFor="nick">Nickname</label>
+                                            <Form.Control id="nick" type="text" className="form-control" placeholder="Nickname" name="nick" pattern="^[a-zA-Z0-9]+$" required autoFocus></Form.Control>
                                             <Form.Control.Feedback type="invalid">
-                                                Username is invalid
+                                                Nickname is required and should contain alphanumeric characters only!
                                             </Form.Control.Feedback>
-                                            <input type="file"/>
+
                                         </div>
                                         <div className="mb-3">
                                             <div className="mb-2 w-100">
@@ -67,6 +77,24 @@ function Register() {
                                             <Form.Control id="password" type="password" className="form-control" placeholder="Password" name="password" pattern="^[a-zA-Z0-9]+$" required></Form.Control>
                                             <Form.Control.Feedback type="invalid">
                                                 Password is required and should contain alphanumeric characters only!
+                                            </Form.Control.Feedback>
+                                        </div>
+                                        <div className="mb-3">
+                                            <div className="mb-2 w-100">
+                                                <label className="text-muted" htmlFor="password2">Password confirmation</label>
+                                            </div>
+                                            <Form.Control id="password2" type="password" className="form-control" placeholder="Confirm password" name="password" required></Form.Control>
+                                            <Form.Control.Feedback type="invalid">
+                                                Password confirmation is required!
+                                            </Form.Control.Feedback>
+                                        </div>
+                                        <div className="mb-3">
+                                            <div className="mb-2 w-100">
+                                                <label className="text-muted" htmlFor="img">Profile picture</label>
+                                            </div>
+                                            <Form.Control id="img" type="file" className="form-control" placeholder="Select image" name="img" required></Form.Control>
+                                            <Form.Control.Feedback type="invalid">
+                                                Profile picture is required!
                                             </Form.Control.Feedback>
                                         </div>
 
@@ -80,7 +108,7 @@ function Register() {
                                 </div>
                                 <div className="card-footer py-3 border-0">
                                     <div className="text-center">
-                                    Already registered? <Link to='/'>Click here</Link> to login.
+                                        Already registered? <Link to='/'>Click here</Link> to login.
                                     </div>
                                 </div>
                             </div>

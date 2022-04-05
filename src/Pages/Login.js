@@ -1,6 +1,6 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Link, Navigate,useNavigate} from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import db from '../Data';
 
 
@@ -9,37 +9,29 @@ function Login(props) {
     let navigate = useNavigate();
 
     useEffect(() => {
-        
+
         const form = document.getElementById("form");
         const username = document.getElementById("uname");
         const password = document.getElementById("password");
         // on each time the user submits the form
         form.addEventListener('submit', function (event) {
+            event.preventDefault()
+            event.stopPropagation()
             if (!form.checkValidity()) {
-                console.log("here!")
-                event.preventDefault()
-                event.stopPropagation()
                 form.classList.add('was-validated')
                 return
             }
 
-            if (db.hasOwnProperty(username.value)) {
+            if (db[username.value]) {
                 if (db[username.value] === password.value) {
-                    event.preventDefault()
-                    event.stopPropagation();
                     localStorage.setItem("user", username.value);
-                    //window.location.href = "/home";
                     navigate("../home", { replace: true });
                 } else {
-                    alert("password is wrong");
-                    event.preventDefault()
-                    event.stopPropagation()
+                    alert("Wrong password!");
                     return;
                 }
             } else {
-                alert("wrong username")
-                event.preventDefault()
-                event.stopPropagation()
+                alert("Wrong username")
                 return
             }
 
@@ -62,7 +54,7 @@ function Login(props) {
                                             <label className="mb-2 text-muted" htmlFor="uname">Username</label>
                                             <Form.Control id="uname" type="text" className="form-control" placeholder="Username" name="uname" required autoFocus></Form.Control>
                                             <Form.Control.Feedback type="invalid">
-                                                Username is invalid
+                                                Username is required!
                                             </Form.Control.Feedback>
                                         </div>
 
@@ -70,12 +62,9 @@ function Login(props) {
                                             <div className="mb-2 w-100">
                                                 <label className="text-muted" htmlFor="password">Password</label>
                                             </div>
-                                            <Form.Control id="password" type="password" className="form-control" placeholder="Password" name="password" pattern="^[a-zA-Z0-9]+$" required></Form.Control>
+                                            <Form.Control id="password" type="password" className="form-control" placeholder="Password" name="password" required></Form.Control>
                                             <Form.Control.Feedback type="invalid">
-                                                Password is required and should contain alphanumeric characters only!
-                                            </Form.Control.Feedback>
-                                            <Form.Control.Feedback type="valid">
-                                               LOGIN
+                                                Password is required!
                                             </Form.Control.Feedback>
                                         </div>
 
