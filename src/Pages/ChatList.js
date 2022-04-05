@@ -4,7 +4,7 @@ import MessageBox from './MessageBox'
 
 export default function ChatList() {
   return (
-    <div className="container">
+    <div className="container overflow-auto">
         <div>
             <header>
                 User info

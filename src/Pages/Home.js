@@ -4,6 +4,7 @@ import MessageInput from "./MessageInput";
 import ChatList from "./ChatList";
 import Chat from "./Chat";
 import { useEffect } from "react";
+import ChatList_v2 from "./ChatList_v2";
 
 export default function Home() {
     useEffect(() => {
@@ -20,13 +21,9 @@ export default function Home() {
     }
 
     return (
-        <section className="row w-100 g-0">
-            <div className="col-4">
-                <ChatList />
-            </div>
-            <div className="col">
-                <Chat />
-            </div>
-        </section>
+        <div>
+            <ChatList_v2 />
+        </div>
+        
     )
 }
