@@ -6,7 +6,7 @@ function MessageBox({ messageText, Sender, time,photo=require("./default.jpg") }
     {/* Pass arguments when calling message box to print them out */ }
     return (
         <Card className='shadow rounded mb-3 '>
-            <div className='row g-0'>
+            <div className='row g-1'>
             <Card.Title>{Sender}</Card.Title>
                 <div class="col-md-4">
                         <Image src={photo} roundedCircle fluid style={{

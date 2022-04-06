@@ -5,9 +5,9 @@ import { Card } from "react-bootstrap";
 
 export default function Chat() {
     return (
-        <div className="container h-100 bg-light rounded">
-            <div>
-                content of card
+        <div className="container h-100 rounded">
+            <div class="row h-75">
+                content of Chat
             </div>
         </div>
     )
