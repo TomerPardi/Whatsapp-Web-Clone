@@ -78,7 +78,7 @@ function Login(props) {
                                 </div>
                                 <div className="card-footer py-3 border-0">
                                     <div className="text-center">
-                                        Don't have an account? <Link to='/register'>get one!</Link>
+                                        Don't have an account? <Link to='/register'>Register now!</Link>
                                     </div>
                                 </div>
                             </div>

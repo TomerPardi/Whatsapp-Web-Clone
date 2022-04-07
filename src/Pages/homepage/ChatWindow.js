@@ -5,10 +5,34 @@ const Chatwindow = () => {
         <div className="wrap-chat">
             <div className="chat">
                 <div className="chat-bubble you">
-                    tomer
+                    Hey!
                 </div>
                 <div className="chat-bubble me">
-                    tomer
+                    Hello!
+                </div>
+                <div className="chat-bubble you">
+                    Hey!
+                </div>
+                <div className="chat-bubble me">
+                    Hello!
+                </div>
+                <div className="chat-bubble you">
+                    Hey!
+                </div>
+                <div className="chat-bubble me">
+                    Hello!
+                </div>
+                <div className="chat-bubble you">
+                    Hey!
+                </div>
+                <div className="chat-bubble me">
+                    Hello!
+                </div>
+                <div className="chat-bubble you">
+                    Hey!
+                </div>
+                <div className="chat-bubble me">
+                    Hello!
                 </div>
             </div>
         </div>

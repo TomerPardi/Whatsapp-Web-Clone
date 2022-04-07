@@ -15,6 +15,7 @@ const Contactslist = () => {
                     <Contact contactName={"Elinoy"} />
                     <Contact contactName={"Yafim"} />
                     <Contact contactName={"Diana"} />
+                    
                 </div>
             </div>
         </>

@@ -9,9 +9,17 @@ body {
     background: #dbdbdb;
 } */
 
+button {
+    border: none;
+}
+
 i {
     width: 60px;
     margin: auto;
+}
+
+.chat-icons {
+    width: 60px;
 }
 
 /* ------ FONTS ------ */
