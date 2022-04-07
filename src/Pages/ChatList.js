@@ -28,5 +28,6 @@ export default function ChatList() {
             </ListGroupItem>
         </ListGroup>
     </div>
+
   )
 }
