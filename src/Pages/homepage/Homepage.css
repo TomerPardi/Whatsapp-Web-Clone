@@ -9,6 +9,9 @@ body {
     background: #dbdbdb;
 } */
 
+.dropdown-menu {
+    background-color: #f1f1f1;
+}
 
 button {
     border: none;
