@@ -64,7 +64,8 @@ i {
     background: #eeeeee;
     border-right: 1px solid #dbdbdb;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: center;
 }
 
 .profile img {
