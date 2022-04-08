@@ -6,10 +6,18 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import { Row, Col } from 'react-bootstrap';
 import useRecorder from '../useRecorder'
+import { useContext } from 'react';
+import AppContext from '../AppContext';
+import { setMessages } from './homepage/ChatWindow';
 
-export default function MessageInput() {
+export default function MessageInput(props) {
     let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
     const [existingRecord, setRecorded] = useState(false);
+    const [changed,setChanged] = useState(false);
+    let context = useContext(AppContext)
+    //TODO : dynamically get contact in question
+    const user = context.currentUser;
+    const messages = props.messages
 
     function handleRecord(e) {
 
@@ -25,14 +33,11 @@ export default function MessageInput() {
     }
 
     function handleSubmit(event){
-
         const message = document.getElementById("messageIn");
         // on each time the user submits the form
-        alert("Sumbit pressed! the message is this: "+ message.value );
+        messages.push({'text':message.value,'isSelf':true})
+        props.setter(true)
         message.value = ''
-        event.preventDefault()
-        event.stopPropagation()
-        
     };
 
     return (

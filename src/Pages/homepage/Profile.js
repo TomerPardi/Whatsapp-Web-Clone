@@ -2,12 +2,19 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import image1 from "./download.jpg"
 import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import AppContext from '../../AppContext';
+import { toBeRequired } from '@testing-library/jest-dom/dist/matchers';
 
 const Profile = () => {
+    const userData = useContext(AppContext).userData
+    const user = useContext(AppContext).currentUser
+    const photo = userData[user].photo
     return (
         <div className="profile d-flex justify-content-between">
-            <img src={image1}></img>
-            <h1 className="font-name float-left">Tomer Pardilov</h1>
+            <img src={require(`${photo}`)}>
+            </img>
+            <h1 className="font-name float-left">{userData[user].nickname}</h1>
             <Button className='floatRight' variant='light' onClick={() => {
                 localStorage.removeItem("user");
                 window.location.replace("/");

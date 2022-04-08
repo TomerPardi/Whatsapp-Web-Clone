@@ -1,5 +1,5 @@
 import React from 'react';
-import image1 from "./daniel.png"
+import image1 from "./daniel.jpg"
 
 const Chathead = () => {
     return (

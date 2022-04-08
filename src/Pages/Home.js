@@ -6,6 +6,8 @@ import Chat from "./Chat";
 import { useEffect } from "react";
 import ChatList_v2 from "./ChatList_v2";
 import Homepage from "./homepage/Homepage";
+import AppContext from "../AppContext";
+
 
 export default function Home() {
     useEffect(() => {
@@ -18,12 +20,14 @@ export default function Home() {
     })
 
     const handleTabClosing = () => {
+        AppContext.currentUser = 'none';
         localStorage.removeItem("user");
+
     }
 
     return (
         <div>
-            <Homepage />
+            <Homepage/>
         </div>
         
     )

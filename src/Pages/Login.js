@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link,useNavigate } from "react-router-dom";
-import db from '../Data';
+import { useContext } from 'react/cjs/react.development';
+import AppContext from '../AppContext';
+
+
+    
 
 
 
 function Login(props) {
     let navigate = useNavigate();
+    const sharedContext = useContext(AppContext)
+    var db = sharedContext.credentialsDB
 
     useEffect(() => {
 
@@ -24,14 +30,16 @@ function Login(props) {
 
             if (db[username.value]) {
                 if (db[username.value] === password.value) {
+                    // TODO: remove local storage access
+                    sharedContext.currentUser = username.value;
                     localStorage.setItem("user", username.value);
                     navigate("../home", { replace: true });
                 } else {
-                    alert("Wrong password!");
+                    alert("Wrong username or password!");
                     return;
                 }
             } else {
-                alert("Wrong username")
+                alert("Wrong username or password!")
                 return
             }
 
