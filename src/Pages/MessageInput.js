@@ -33,7 +33,11 @@ export default function MessageInput(props) {
     }
 
     function handleSubmit(event){
+        event.preventDefault();
         const message = document.getElementById("messageIn");
+        if(message.value===''){
+            return;
+        }
         // on each time the user submits the form
         messages.push({'text':message.value,'isSelf':true})
         props.setter(true)
@@ -103,7 +107,7 @@ export default function MessageInput(props) {
                 {
                     !existingRecord &&
                     <div className='messageForm' >
-                        <FormControl className='col align-self-stretch' placeholder='Enter message here' id='messageIn' />
+                        <FormControl className='col align-self-stretch' placeholder='Enter message here' id='messageIn' required/>
                     </div>
                 }
 
