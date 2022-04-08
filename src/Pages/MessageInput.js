@@ -24,12 +24,22 @@ export default function MessageInput() {
         }
     }
 
+    function handleSubmit(event){
+
+        const message = document.getElementById("messageIn");
+        // on each time the user submits the form
+        alert("Sumbit pressed! the message is this: "+ message.value );
+        message.value = ''
+        event.preventDefault()
+        event.stopPropagation()
+        
+    };
+
     return (
 
-        <div class="position-absolute bottom-50">
-            <InputGroup className="mb-3">
+        <div className="wrap-message">
+            <InputGroup className="d-flex justify-content-center" style={{flexWrap:'nowrap'}} >
                 {/* Set title as link to the icon (link from https://icons.getbootstrap.com/#usage) */}
-
                 {
                      !existingRecord &&
                     <DropdownButton
@@ -80,18 +90,19 @@ export default function MessageInput() {
 
                 {
                     existingRecord &&
-                    <div className='row-justify-center'>
-                        <audio src={audioURL} controls />
+                    <div className='recorderForm'>
+                        <audio className='recorderForm col align-self-stretch' src={audioURL} controls id='player'>
+                        </audio>
                     </div>
                 }
                 {
                     !existingRecord &&
-                    <div>
-                        <FormControl placeholder='Enter message here' />
+                    <div className='messageForm' >
+                        <FormControl className='col align-self-stretch' placeholder='Enter message here' id='messageIn' />
                     </div>
                 }
 
-                <Button type='primary'>
+                <Button type='submit' onClick={handleSubmit}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
                         <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
                     </svg>

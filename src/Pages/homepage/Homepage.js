@@ -1,4 +1,5 @@
 import React from 'react'
+import MessageInput from '../MessageInput'
 import Chathead from './ChatHead'
 import Chatwindow from './ChatWindow'
 import Contactslist from './ContactsList'
@@ -21,10 +22,10 @@ export default function Homepage() {
                     {/* Current contact's info we talking with, will be here
                     like profile image, name, etc.*/}
                     <Chathead />
-                    {/* the ,essages will be displayed here */}
+                    {/* the Messages will be displayed here */}
                     <Chatwindow />
                     {/* input for new messages will be here */}
-                    <Msginput />
+                    <MessageInput />
                 </section>
             </div>
 
