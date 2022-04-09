@@ -1,10 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import image1 from "./download.jpg"
-import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import AppContext from '../../AppContext';
-import { toBeRequired } from '@testing-library/jest-dom/dist/matchers';
 
 const Profile = () => {
     const userData = useContext(AppContext).userData

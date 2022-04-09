@@ -1,6 +1,5 @@
-import React, { Component, useState, useEffect, useContext } from 'react';
-import { Form } from 'react-bootstrap';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";

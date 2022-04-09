@@ -1,14 +1,12 @@
-import React, { Component, useState } from 'react';
-import { Container, FormControl } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { FormControl } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
-import { Row, Col } from 'react-bootstrap';
 import useRecorder from '../useRecorder'
 import { useContext } from 'react';
 import AppContext from '../AppContext';
-import { setMessages } from './homepage/ChatWindow';
 
 export default function MessageInput(props) {
     let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();

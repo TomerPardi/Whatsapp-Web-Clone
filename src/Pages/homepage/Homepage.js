@@ -4,7 +4,6 @@ import Chathead from './ChatHead'
 import Chatwindow from './ChatWindow'
 import Contactslist from './ContactsList'
 import "./Homepage.css"
-import Msginput from './MsgInput'
 import Profile from './Profile'
 import AppContext from '../../AppContext'
 

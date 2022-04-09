@@ -1,7 +1,6 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
 import AppContext from '../AppContext';
-import Login from './Login';
 
 function isAuth(){
     const context = React.useContext(AppContext)

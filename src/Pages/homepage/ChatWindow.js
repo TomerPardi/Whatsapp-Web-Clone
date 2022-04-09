@@ -1,8 +1,7 @@
 import React from 'react';
 import AppContext from '../../AppContext';
-import MessageBox from '../MessageBox';
 import ChatBubble from './ChatBubble';
-import { useContext,useState } from 'react';
+import { useContext} from 'react';
 
 
 
