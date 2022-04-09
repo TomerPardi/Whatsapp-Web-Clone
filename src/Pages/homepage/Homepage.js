@@ -16,7 +16,9 @@ export default function Homepage(props) {
     const [messages,setMessages] = useState(context.userData[user].contacts.daniel)
     // a state change to trigger a re-render of the page
     const [changed,setChanged] = useState(false)
-    useEffect(() => {  setChanged(false);  });
+    useEffect(() => {
+        setChanged(false);
+      });
 
     return (
         <>
@@ -39,6 +41,6 @@ export default function Homepage(props) {
                 </section>
             </div>
         </>
-        
+
     )
 }

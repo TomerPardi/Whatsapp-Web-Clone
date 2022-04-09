@@ -2,16 +2,21 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useContext } from "react";
 import AppContext from '../../AppContext';
+import defaultImage from './default.jpg';
+
+
 
 const Profile = () => {
     const userData = useContext(AppContext).userData
     const user = useContext(AppContext).currentUser
-    const photo = userData[user].photo
+    const photo = userData[user].photo;
+    console.log(photo)
+
+
     return (
         <div className="profile d-flex justify-content-between">
-            <img src={require(`${photo}`)}>
-            </img>
-            <h1 className="font-name float-left">{userData[user].nickname}</h1>
+            <img src={photo.includes('blob')? photo : require(`${photo}`)} alt={defaultImage}></img>
+            <h1 className="font-name float-left"> {userData[user].nickname}</h1>
             <Button className='floatRight' variant='light' onClick={() => {
                 localStorage.removeItem("user");
                 window.location.replace("/");

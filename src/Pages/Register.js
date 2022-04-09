@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-import db from '../Data';
+import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
+import AppContext from '../AppContext';
 
 
 
 function Register() {
+    const [file, setFile] = useState()
+    let navigate = useNavigate()
+    let sharedContext = useContext(AppContext);
+    let db = sharedContext.credentialsDB;
+    let data = sharedContext.userData;
+
 
     useEffect(() => {
         const form = document.getElementById("form");
@@ -13,7 +19,8 @@ function Register() {
         const password = document.getElementById("password");
         const nickname = document.getElementById("nick");
         const password2 = document.getElementById("password2");
-        const img = document.getElementById("img");
+        const image = document.getElementById("img");
+
 
         // each time the user submits the form
         form.addEventListener('submit', function (event) {
@@ -30,11 +37,25 @@ function Register() {
                     return;
                 }
                 else if (db[username.value]) {
-                    alert("Selected username is already exist!")
+                    alert("Selected username already exists!")
                     return;
                 }
                 else {
+
                     db[username.value] = password.value;
+                    sharedContext.credentialsDB = db;
+                    data[username.value] = {
+                        "photo": window.webkitURL.createObjectURL(image.files[0]),
+                        "nickname": nickname.value,
+                        "contacts": {
+                            "alice": [],
+                            "bob": [],
+                            "daniel": []
+                        }
+                    }
+                    console.log(data[username.value])
+                    sharedContext.userData = data;
+                    navigate("../home", { replace: true });
                     // TODO: we need also save nickname, picture, etc...
                     return;
                 }
@@ -92,15 +113,14 @@ function Register() {
                                             <div className="mb-2 w-100">
                                                 <label className="text-muted" htmlFor="img">Profile picture</label>
                                             </div>
-                                            <Form.Control id="img" type="file" className="form-control" placeholder="Select image" name="img" required></Form.Control>
+                                            <Form.Control id="img" type="file" accept='image/*' className="form-control" placeholder="Select image" name="img" required></Form.Control>
                                             <Form.Control.Feedback type="invalid">
                                                 Profile picture is required!
                                             </Form.Control.Feedback>
                                         </div>
 
                                         <div className="d-flex align-items-center">
-                                            <footer>&copy; Copyright 2022</footer>
-                                            <button type="submit" className="btn btn-primary ms-auto">
+                                            <button type="submit" className="btn btn-primary ms-auto" >
                                                 Register
                                             </button>
                                         </div>

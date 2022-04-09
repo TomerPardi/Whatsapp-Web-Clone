@@ -1,7 +1,7 @@
 import React from 'react';
 import AppContext from '../../AppContext';
 import ChatBubble from './ChatBubble';
-import { useContext} from 'react';
+import { useContext,useRef,useEffect} from 'react';
 
 
 
@@ -14,12 +14,23 @@ const Chatwindow = (props) => {
         arr = props.messages;
     }
 
+    const lastMessage = useRef(null)
+
+    const executeScroll = () => lastMessage.current.scrollIntoView()
+
+    useEffect(() => {
+        executeScroll();
+      });
+
+      
     return (
         <div className="wrap-chat">
             <div className="chat">
                 {/* turn the array into a map, and pass the message to it, thus rendering the messages from the array */}
                {arr.map(msg => <ChatBubble key={msg} message={msg} />)}
+                <div ref={lastMessage}></div>
                 </div>
+
         </div>
     );
 }

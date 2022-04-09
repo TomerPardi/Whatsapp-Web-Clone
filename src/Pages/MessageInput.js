@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import useRecorder from '../useRecorder'
 import { useContext } from 'react';
 import AppContext from '../AppContext';
+import CameraModal from './CameraModal';
 
 export default function MessageInput(props) {
     let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
@@ -39,6 +40,7 @@ export default function MessageInput(props) {
         event.preventDefault();
         if (existingRecord) {
             messages.push({ 'audio': audioURL, 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'type': 'audio' })
+            setRecorded(false);
             props.setter(true);
             return;
         }
@@ -73,7 +75,7 @@ export default function MessageInput(props) {
                                 <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
                             </svg>
                             <div>
-                                Take Picture
+                                <CameraModal/>
                             </div>
                         </Dropdown.Item>
                         <Dropdown.Item eventKey="2" align="center" >

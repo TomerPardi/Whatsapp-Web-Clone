@@ -1,9 +1,9 @@
 
 
 import React, { useContext, useEffect } from 'react';
+import AppContext from '../AppContext';
 import { Form } from 'react-bootstrap';
 import { Link,useNavigate } from "react-router-dom";
-import AppContext from '../AppContext';
 
 
 function Login() {
@@ -74,7 +74,6 @@ function Login() {
                                         </div>
 
                                         <div className="d-flex align-items-center">
-                                            <footer>&copy; Copyright 2022</footer>
                                             <button type="submit" className="btn btn-primary ms-auto">
                                                 Login
                                             </button>
