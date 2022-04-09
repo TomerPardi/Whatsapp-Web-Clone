@@ -1,11 +1,11 @@
 import React from 'react';
-import Contactsearch from './ContactSearch';
 import Contact from './Contact';
+import utilsButtons from './Utilsbuttons';
 
 const Contactslist = () => {
     return (
         <>
-            <Contactsearch />
+
 
             <div className="contact-list">
                 <div className="list-group">
@@ -15,7 +15,7 @@ const Contactslist = () => {
                     <Contact contactName={"Elinoy"} />
                     <Contact contactName={"Yafim"} />
                     <Contact contactName={"Diana"} />
-                    
+
                 </div>
             </div>
         </>

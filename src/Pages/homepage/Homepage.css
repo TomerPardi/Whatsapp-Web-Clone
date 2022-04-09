@@ -9,6 +9,13 @@ body {
     background: #dbdbdb;
 } */
 
+.utilsBtn {
+    background-color: transparent;
+}
+.utilsBtn:hover {
+    
+}
+
 .dropdown-menu {
     background-color: #f1f1f1;
 }
@@ -255,7 +262,7 @@ i {
     padding: 0px 10%;
     padding-top: 7px;
     overflow-y: auto;
-    
+
 }
 
 .information {
@@ -398,6 +405,7 @@ i {
     border-radius: 5px;
     display: flex;
 }
+
 .recorderForm {
     width: 95%;
     height: 58px;
