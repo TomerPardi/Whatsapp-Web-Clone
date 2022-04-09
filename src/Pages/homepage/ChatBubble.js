@@ -11,7 +11,7 @@ export default function ChatBubble(props) {
                 <br>
                 </br>
                 {text}
-                {time}
+                <h6 class="text-muted" style={{"justifySelf":'right'}}>{time}</h6>
             </div>
         )
     }
@@ -20,7 +20,7 @@ export default function ChatBubble(props) {
             <div
                 className={`chat-bubble ${isSelf ? "me" : "you"} `}>
                 {text}
-                {time}
+                <h6 class="text-muted" style={{"justifySelf":'right'}}>{time}</h6>
             </div>
         )
 
@@ -31,7 +31,7 @@ export default function ChatBubble(props) {
             <div
                 className={`chat-bubble ${isSelf ? "me" : "you"} `}>
                 {text}
-                {time}
+                <h6 class="text-muted" style={{"justifySelf":'right'}}>{time}</h6>
             </div>
         )
     }

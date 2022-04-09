@@ -30,7 +30,7 @@
         "contacts": {
           "alice": ["chat_history_w_alice"],
           "bob": ["chat_history_w_bob"],
-          "daniel":[{"text":"Hi from bubble!","isSelf":false},{"text":"look, a guitar!","isSelf":false,"type":"photo","photo":"./gibson_500.bmp"}]
+          "daniel":[{"text":"Hi from bubble!","isSelf":false,"time":"13:27"},{"text":"look, a guitar!","isSelf":false,"type":"photo","photo":"./gibson_500.bmp","time":"13:28"}]
         }
       }
         ,

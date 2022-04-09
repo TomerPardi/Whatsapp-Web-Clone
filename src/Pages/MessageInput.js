@@ -42,7 +42,7 @@ export default function MessageInput(props) {
             return;
         }
         // on each time the user submits the form
-        messages.push({'text':message.value,'isSelf':true})
+        messages.push({'text':message.value,'isSelf':true,'time':new Date().toTimeString().split(' ')[0].slice(0,-3)})
         props.setter(true)
         message.value = ''
     };
