@@ -4,7 +4,7 @@ import AppContext from '../AppContext';
 
 function isAuth(){
     const context = React.useContext(AppContext)
-    if(context.currentUser!='none'){
+    if(context.currentUser!=='none'){
         return true;
     }
     return false;

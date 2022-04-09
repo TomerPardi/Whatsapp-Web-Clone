@@ -13,8 +13,9 @@ export default function Homepage(props) {
     let context = React.useContext(AppContext)
     const user = context.currentUser
     const [messages,setMessages] = useState(context.userData[user].contacts.daniel)
+    // a state change to trigger a re-render of the page
     const [changed,setChanged] = useState(false)
-    useEffect(() => {    setChanged(false);  });
+    useEffect(() => {  setChanged(false);  });
 
     return (
         <>

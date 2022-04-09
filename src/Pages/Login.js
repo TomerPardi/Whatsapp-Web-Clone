@@ -9,7 +9,7 @@ import AppContext from '../AppContext';
 
 
 
-function Login(props) {
+function Login() {
     let navigate = useNavigate();
     const sharedContext = useContext(AppContext)
     var db = sharedContext.credentialsDB

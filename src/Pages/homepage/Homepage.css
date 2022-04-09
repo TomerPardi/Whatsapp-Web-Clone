@@ -47,6 +47,8 @@ i {
 }
 
 .green-background {
+    background: url('pattern.png');
+    opacity: 0.06;
     background: #009688;
     height: 130px;
     width: 100%;
@@ -247,11 +249,13 @@ i {
 }
 
 .chat {
+
     background-color: #99eda1;
     width: 100%;
     padding: 0px 10%;
     padding-top: 7px;
     overflow-y: auto;
+    
 }
 
 .information {

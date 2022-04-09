@@ -17,8 +17,13 @@ export default function MessageInput(props) {
     const user = context.currentUser;
     const messages = props.messages
 
-    function handleRecord(e) {
+    function handleKeyPress(event){
+        if(event.key === 'Enter'){
+            handleSubmit(event);
+        }
+      }
 
+    function handleRecord(e) {
         e.preventDefault();
         console.log("Recording pressed");
         if (isRecording) {
@@ -45,7 +50,7 @@ export default function MessageInput(props) {
     return (
 
         <div className="wrap-message">
-            <InputGroup className="d-flex justify-content-center" style={{flexWrap:'nowrap'}} >
+            <InputGroup className="d-flex justify-content-center" style={{flexWrap:'nowrap'}} onKeyPress={handleKeyPress} >
                 {/* Set title as link to the icon (link from https://icons.getbootstrap.com/#usage) */}
                 {
                      !existingRecord &&
@@ -109,7 +114,7 @@ export default function MessageInput(props) {
                     </div>
                 }
 
-                <Button type='submit' onClick={handleSubmit}>
+                <Button type='submit' onClick={handleSubmit} >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
                         <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
                     </svg>

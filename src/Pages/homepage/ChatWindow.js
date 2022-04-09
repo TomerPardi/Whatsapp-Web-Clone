@@ -9,14 +9,17 @@ const Chatwindow = (props) => {
 // create an array with the messages, push the default messages
     let context = useContext(AppContext)
     const user = context.currentUser
-    //messages.push({'text':'Hi from bubble!','isSelf':false},{'text':'Hi right back at ya!','isSelf':true})
+    let arr = []
 
+    if(props.messages){
+        arr = props.messages;
+    }
 
     return (
         <div className="wrap-chat">
             <div className="chat">
                 {/* turn the array into a map, and pass the message to it, thus rendering the messages from the array */}
-               {props.messages.map(msg => <ChatBubble key={msg} message={msg} />)}
+               {arr.map(msg => <ChatBubble key={msg} message={msg} />)}
                 </div>
         </div>
     );
