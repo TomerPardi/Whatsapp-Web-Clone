@@ -18,7 +18,6 @@ export default function Home() {
     const handleTabClosing = () => {
         AppContext.currentUser = 'none';
         localStorage.removeItem("user");
-
     }
 
     return (

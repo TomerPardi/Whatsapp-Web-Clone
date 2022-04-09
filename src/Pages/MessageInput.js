@@ -37,6 +37,10 @@ export default function MessageInput(props) {
 
     function handleSubmit(event){
         event.preventDefault();
+        if(existingRecord){
+            messages.push({'audio':{audioURL},'isSelf':true,'time':new Date().toTimeString().split(' ')[0].slice(0,-3),'type':'audio'})
+            return;
+        }
         const message = document.getElementById("messageIn");
         if(message.value===''){
             return;
@@ -53,7 +57,7 @@ export default function MessageInput(props) {
             <InputGroup className="d-flex justify-content-center" style={{flexWrap:'nowrap'}} onKeyPress={handleKeyPress} >
                 {/* Set title as link to the icon (link from https://icons.getbootstrap.com/#usage) */}
                 {
-                     !existingRecord &&
+                    !existingRecord &&
                     <DropdownButton
                     id={'dropdown-button-drop-up'}
                     drop='up'

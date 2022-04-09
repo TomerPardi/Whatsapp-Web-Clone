@@ -10,7 +10,6 @@ const Chatwindow = (props) => {
     let context = useContext(AppContext)
     const user = context.currentUser
     let arr = []
-
     if(props.messages){
         arr = props.messages;
     }

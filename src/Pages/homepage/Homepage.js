@@ -12,6 +12,7 @@ import AppContext from '../../AppContext'
 export default function Homepage(props) {
     let context = React.useContext(AppContext)
     const user = context.currentUser
+    //TODO: apply change in array to context
     const [messages,setMessages] = useState(context.userData[user].contacts.daniel)
     // a state change to trigger a re-render of the page
     const [changed,setChanged] = useState(false)
@@ -32,7 +33,7 @@ export default function Homepage(props) {
                     like profile image, name, etc.*/}
                     <Chathead />
                     {/* the Messages will be displayed here */}
-                    <Chatwindow messages={messages} setter={setMessages} trigger={{}}/>
+                    <Chatwindow messages={messages} setter={setMessages} />
                     {/* input for new messages will be here */}
                     <MessageInput messages={messages} setter={setChanged}/>
                 </section>

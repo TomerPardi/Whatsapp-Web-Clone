@@ -19,6 +19,7 @@ export default function ChatBubble(props) {
         return (
             <div
                 className={`chat-bubble ${isSelf ? "me" : "you"} `}>
+                <audio src={audio}></audio>
                 {text}
                 <h6 class="text-muted" style={{"justifySelf":'right'}}>{time}</h6>
             </div>
