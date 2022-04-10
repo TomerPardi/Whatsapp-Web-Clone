@@ -27,7 +27,6 @@ const useRecorder = () => {
       recorder.stream.getTracks().forEach((track) => {
         track.stop();
       });
-
     };
 
     recorder.addEventListener("dataavailable", handleData);
