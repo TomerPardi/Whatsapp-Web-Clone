@@ -1,15 +1,16 @@
 import React from 'react'
+import context from 'react-bootstrap/esm/AccordionContext';
 import { Navigate, Outlet } from 'react-router-dom';
 import AppContext from '../AppContext';
 
-function isAuth(){
+function IsAuth() {
     const context = React.useContext(AppContext)
-    if(context.currentUser!=='none'){
+    if (context.currentUser !== 'none') {
         return true;
     }
     return false;
 }
 
 export const ProtectedRoutes = () => {
-    return isAuth()? <Outlet user={localStorage.getItem("user")}/> :<Navigate to="/"/>
+    return IsAuth() ? <Outlet user={context.currentUser} /> : <Navigate to="/" />
 }
