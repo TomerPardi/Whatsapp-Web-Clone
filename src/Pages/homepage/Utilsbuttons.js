@@ -1,16 +1,20 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { useContext } from 'react';
+import AppContext from '../../AppContext';
+
 
 
 
 const Utilsbuttons = () => {
+    const sharedContext = useContext(AppContext)
+
     return (
         <div className="wrap-search d-flex justify-content-around">
-            {/* <i className="fa fa-search fa" aria-hidden="true"></i>
-                <input type="text" className="input-search" placeholder="Search contacts"></input> */}
 
             <Button className='utilsBtn' variant='light' onClick={() => {
-                localStorage.removeItem("user");
+                sharedContext.currentUser = 'none'
+                // localStorage.removeItem("user");
                 window.location.replace("/");
             }}>
                 <i class="bi bi-box-arrow-left"></i>&nbsp;
