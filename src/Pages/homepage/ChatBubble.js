@@ -8,7 +8,7 @@ export default function ChatBubble(props) {
         return (
             <div
                 className={`chat-bubble ${isSelf ? "me" : "you"} `}>
-                <img src={require(`${photo}`)} style={{ maxWidth: '200px' }} />
+                <img src={photo.includes('64')? photo : require(`${photo}`)} style={{ maxWidth: '200px' }} />
                 <br>
                 </br>
                 {text}
@@ -19,8 +19,8 @@ export default function ChatBubble(props) {
     else if (type === 'audio') {
         console.log(audio);
         return (
-            <div className={`chat-bubble ${isSelf ? "me" : "you"} `}>
-                <audio controls src= {audio} id='player'></audio>
+            <div className={`chat-bubble ${isSelf ? "me" : "you"} player`}>
+                <audio controls src= {audio} id='player' style={{ maxHeight: '50px' }}></audio>
                 {text}
                 <h6 class="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
             </div>

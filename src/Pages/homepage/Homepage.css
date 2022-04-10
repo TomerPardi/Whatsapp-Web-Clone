@@ -330,6 +330,16 @@ i {
     margin: 0px 0px 10px auto;
 }
 
+.player{
+    max-height: min-content;
+    border-radius: 5px;
+}
+
+.dropdown-menu{
+    width: fit-content;
+    min-width: 0;
+}
+
 .your-mouth {
     width: 0;
     height: 0;
