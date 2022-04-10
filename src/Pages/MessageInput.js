@@ -9,11 +9,13 @@ import { useContext } from 'react';
 import AppContext from '../AppContext';
 import CameraModal from './homepage/CameraModal';
 import { render } from '@testing-library/react';
+import wave from './homepage/wave.gif'
 
 export default function MessageInput(props) {
     let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
     const [existingRecord, setRecorded] = useState(false);
     const [changed, setChanged] = useState(false);
+    const [isLive, setLive] = useState(false);
     let context = useContext(AppContext)
     //TODO : dynamically get contact in question
     const user = context.currentUser;
@@ -49,10 +51,12 @@ export default function MessageInput(props) {
             stopRecording();
             console.log("recording stopped")
             setRecorded(true)
+            setLive(false)
         }
         else {
             console.log("started record")
             startRecording();
+            setLive(true)
         }
     }
 
@@ -131,16 +135,25 @@ export default function MessageInput(props) {
                 }
 
                 {
-                    existingRecord &&
+                    existingRecord && 
                     <div className='recorderForm'>
                         <audio className='recorderForm col align-self-stretch' src={audioURL} controls id='player'>
                         </audio>
                     </div>
                 }
+                 {
+                    !existingRecord && isLive &&
+                    <div className='recorderForm'>
+                        <img className='recorderForm col align-self-stretch' src={wave}  id='gif'>
+                        </img>
+                    </div>
+                }
                 {
-                    !existingRecord &&
+                    !existingRecord &&  !isLive &&
                     <div className='messageForm' >
-                        <FormControl className='col align-self-stretch' placeholder='Enter message here' id='messageIn' required />
+                        <FormControl className='col align-self-stretch' 
+                        placeholder={isLive? "Recording in progress" :'Enter message here'}
+                        disabled={isLive? 'true':'false'} id='messageIn' required />
                     </div>
                 }
 
