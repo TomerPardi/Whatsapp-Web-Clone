@@ -8,14 +8,14 @@ function MessageBox({ messageText, Sender, time,photo=require("./default.jpg") }
         <Card className='shadow rounded mb-3 '>
             <div className='row g-1'>
             <Card.Title>{Sender}</Card.Title>
-                <div class="col-md-4">
+                <div className="col-md-4">
                         <Image src={photo} roundedCircle fluid style={{
                             height: 75,
                             width: 75,
                             background: "white"
                         }} />
                 </div>
-                <div class="col-md-8">
+                <div className="col-md-8">
                 <Card.Body>
                     <Card text='muted' border='0' >
                         <Card.Subtitle >

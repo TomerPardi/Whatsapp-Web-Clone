@@ -12,7 +12,7 @@ export default function ChatBubble(props) {
                 <br>
                 </br>
                 {text}
-                <h6 class="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
+                <h6 className="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
             </div>
         )
     }
@@ -22,7 +22,7 @@ export default function ChatBubble(props) {
             <div className={`chat-bubble ${isSelf ? "me" : "you"} player`}>
                 <audio controls src= {audio} id='player' style={{ maxHeight: '50px' }}></audio>
                 {text}
-                <h6 class="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
+                <h6 className="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
             </div>
         )
 
@@ -33,7 +33,7 @@ export default function ChatBubble(props) {
             <div
                 className={`chat-bubble ${isSelf ? "me" : "you"} `}>
                 {text}
-                <h6 class="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
+                <h6 className="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
             </div>
         )
     }

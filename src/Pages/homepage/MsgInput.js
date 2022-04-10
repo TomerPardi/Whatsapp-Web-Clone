@@ -4,21 +4,21 @@ const Msginput = () => {
     return (
         <div className="wrap-message">
 
-            <div class="btn-group dropup">
+            <div className="btn-group dropup">
                 <button className="chat-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-paperclip"></i>
+                    <i className="bi bi-paperclip"></i>
                 </button>
 
-                <div class="dropdown-menu">
-                    <div class="d-flex justify-content-around">
+                <div className="dropdown-menu">
+                    <div className="d-flex justify-content-around">
                         <button>
-                            <i class="bi bi-card-image"></i>
+                            <i className="bi bi-card-image"></i>
                         </button>
                         <button>
-                            <i class="bi bi-camera-reels"></i>
+                            <i className="bi bi-camera-reels"></i>
                         </button>
                         <button>
-                            <i class="bi bi-mic"></i>
+                            <i className="bi bi-mic"></i>
                         </button>
                     </div>
                 </div>

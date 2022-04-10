@@ -54,7 +54,7 @@ function Login() {
                             <div className="card shadow-lg">
                                 <div className="card-body p-5">
                                     <h1 className="fs-4 card-title fw-bold mb-4">Login</h1>
-                                    <Form id="form" className="needs-validation" noValidate validated="" autoComplete="off">
+                                    <Form id="form" className="needs-validation" noValidate  autoComplete="off">
                                         <div className="mb-3">
                                             <label className="mb-2 text-muted" htmlFor="uname">Username</label>
                                             <Form.Control id="uname" type="text" className="form-control" placeholder="Username" name="uname" required autoFocus></Form.Control>

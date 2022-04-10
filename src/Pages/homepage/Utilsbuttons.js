@@ -19,7 +19,7 @@ const Utilsbuttons = (props) => {
                 // localStorage.removeItem("user");
                 window.location.replace("/");
             }}>
-                <i class="bi bi-box-arrow-left"></i>&nbsp;
+                <i className="bi bi-box-arrow-left"></i>&nbsp;
                 Logout
 
             </Button>
@@ -28,7 +28,7 @@ const Utilsbuttons = (props) => {
                 console.log(sharedContext.userData[sharedContext.currentUser])
             }}>
 
-                <i class="bi bi-person-plus"></i>&nbsp;
+                <i className="bi bi-person-plus"></i>&nbsp;
 
                 Add Contact
             </Button>
