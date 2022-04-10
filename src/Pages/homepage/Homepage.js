@@ -7,7 +7,9 @@ import "./Homepage.css"
 import Profile from './Profile'
 import AppContext from '../../AppContext'
 
-
+const handleTabClosing = () => {
+    AppContext.currentUser = 'none';
+}
 
 export default function Homepage(props) {
     let context = React.useContext(AppContext)
@@ -18,6 +20,10 @@ export default function Homepage(props) {
     const [changed,setChanged] = useState(false)
     useEffect(() => {
         setChanged(false);
+        window.addEventListener('unload', handleTabClosing)
+        return () => {
+            window.removeEventListener('unload', handleTabClosing)
+        }
       });
 
     return (
