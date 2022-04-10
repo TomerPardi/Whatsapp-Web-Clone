@@ -29,7 +29,7 @@ function Login() {
                 if (db[username.value] === password.value) {
                     // TODO: remove local storage access
                     sharedContext.currentUser = username.value;
-                    localStorage.setItem("user", username.value);
+                    // localStorage.setItem("user", username.value);
                     navigate("../home", { replace: true });
                 } else {
                     alert("Wrong username or password!");
