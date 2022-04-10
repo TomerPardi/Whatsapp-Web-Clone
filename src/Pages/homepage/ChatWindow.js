@@ -27,7 +27,7 @@ const Chatwindow = (props) => {
         <div className="wrap-chat">
             <div className="chat">
                 {/* turn the array into a map, and pass the message to it, thus rendering the messages from the array */}
-               {arr.map(msg => <ChatBubble key={msg} message={msg} />)}
+               {arr.map(msg => <ChatBubble key={msg.value} message={msg} />)}
                 <div ref={lastMessage}></div>
                 </div>
 
