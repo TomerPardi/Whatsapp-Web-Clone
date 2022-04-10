@@ -1,20 +1,28 @@
 import React from 'react';
 import Contact from './Contact';
-import utilsButtons from './Utilsbuttons';
+import Utilsbuttons from './Utilsbuttons';
+import { useContext, useState } from 'react';
+import AppContext from '../../AppContext';
+
 
 const Contactslist = () => {
+    const sharedContext = useContext(AppContext)
+    const [currUser, setcurrUser] = useState(sharedContext.currentUser);
+
     return (
         <>
-
-
+            <Utilsbuttons />
             <div className="contact-list">
                 <div className="list-group">
-                    <Contact contactName={"Tomer Pardilov"} />
+                    {Object.keys(sharedContext.userData[currUser].contacts).map((item, i) => (
+                        <Contact key={i} contactName={item} />
+                    ))}
+                    {/* <Contact contactName={"Tomer Pardilov"} />
                     <Contact contactName={"Daniel Bronfman"} />
                     <Contact contactName={"Valeria"} />
                     <Contact contactName={"Elinoy"} />
                     <Contact contactName={"Yafim"} />
-                    <Contact contactName={"Diana"} />
+                    <Contact contactName={"Diana"} /> */}
 
                 </div>
             </div>

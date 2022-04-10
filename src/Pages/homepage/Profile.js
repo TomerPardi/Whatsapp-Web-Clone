@@ -21,7 +21,7 @@ const Profile = () => {
             <h1 className="font-name"> {userData[user].nickname}</h1>
 
         </div>
-        <Utilsbuttons />
+        
         </>
 
     );
