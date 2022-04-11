@@ -1,12 +1,12 @@
 import React from 'react';
-import avatar from './avatar.jpg';
+import defaultImage from './default.jpg';
 
-const Contact = ({ contactName }) => {
+
+const Contact = ({ contactName,photo }) => {
     return (
         <div className="contact d-flex justify-content-start">
-            <img src={avatar}></img>
+            <img src={photo.includes('blob')? photo : require(`${photo}`)} alt={defaultImage}></img>
             <div className="font-name">{contactName}</div>
-
         </div>
 
     );

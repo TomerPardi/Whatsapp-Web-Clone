@@ -24,7 +24,7 @@ const Contactslist = (props) => {
                             props.setActive(item);
                             sharedContext.ActiveContact = item;
                             props.setter(true);}}>
-                                <Contact key={i} contactName={item} />
+                                <Contact key={i} contactName={item} photo={sharedContext.userData[item].photo} />
                             </ListGroup.Item>
                         ))}
                     </ListGroup>
