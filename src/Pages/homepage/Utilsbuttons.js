@@ -25,7 +25,7 @@ const Utilsbuttons = (props) => {
     }
     const handleChange = (event) => {
         setContactInput(event.target.value);
-        if (contactInput !== "") {
+        if (contactInput) {
             setDisabled(false);
         }
     }
