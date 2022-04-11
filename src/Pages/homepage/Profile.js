@@ -11,8 +11,6 @@ const Profile = () => {
     const userData = useContext(AppContext).userData
     const user = useContext(AppContext).currentUser
     const photo = userData[user].photo;
-    console.log(photo)
-
 
     return (
         <>

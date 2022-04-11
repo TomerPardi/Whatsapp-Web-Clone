@@ -7,8 +7,9 @@ export default function CameraModal(props) {
     const [show, setShow] = useState(props.show);
     const [photo,setPhoto] = useState();
 
-    const handleClose = () => {setShow(false);
+    const handleClose = () => {
         setPhoto();
+        setShow(false);
     }
     const handleShow = () => setShow(true);
 
@@ -53,21 +54,24 @@ export default function CameraModal(props) {
                 stream.getTracks().forEach(function(track) {
                     track.stop();
                   });
+                
                 handleClose();
             };
             button3.onclick = function () {
+                props.handler(photo);
                 stream.getTracks().forEach(function(track) {
                     track.stop();
                   });
                 handleClose();
-                props.handler(photo);
             };
+            
         }, function (err) { alert("there was an error " + err) });
     }
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            
+            <Button variant="primary" onClick={handleShow} style={{display:'none'}}>
             </Button>
 
             <Modal

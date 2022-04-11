@@ -83,7 +83,7 @@ export default function MessageInput(props) {
         props.setter(true)
     }
 
-    return (
+    if(context.ActiveUser!='none'){return (
 
         <div className="wrap-message">
             <InputGroup className="d-flex justify-content-center" style={{ flexWrap: 'nowrap' }} onKeyPress={handleKeyPress} >
@@ -177,6 +177,6 @@ export default function MessageInput(props) {
 
             </InputGroup>
         </div>
-    )
+    )}
 }
 

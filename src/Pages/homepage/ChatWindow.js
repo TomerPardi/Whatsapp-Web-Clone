@@ -22,7 +22,6 @@ const Chatwindow = (props) => {
         executeScroll();
     });
 
-
     return (
         <div className="wrap-chat">
             <div className="chat">

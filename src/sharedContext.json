@@ -1,5 +1,6 @@
 {
   "currentUser": "none",
+  "ActiveContact" : "none",
   "credentialsDB": {
     "alice": "12345",
     "bob": "foo123",
@@ -7,6 +8,12 @@
     "daniel": "12345"
   },
   "userData": {
+    "none": {
+      "photo": "./default.jpg",
+      "nickname": "void",
+      "contacts": {
+      }
+    },
     "alice": {
       "photo": "./alice.jpg",
       "nickname": "alli",
@@ -16,14 +23,12 @@
       }
     },
     "bob": {
-      "photo": "bob_photo_path",
+      "photo": "./bobbyB.jpg",
       "nickname": "bobby B",
       "contacts": {
         "alice": [
-          "chat_history_w_alice"
         ],
         "Tomer": [
-          "chat_history_w_tomer"
         ]
       }
     },
@@ -33,16 +38,46 @@
       "contacts": {
         "alice": [
           {
-            "text": "Hi from bubble!",
+            "text": "Would you tell me, please, which way I ought to go from here?",
             "isSelf": false,
-            "time": "13:27"
+            "time": "02:15"
+          },
+          {
+            "text": "That depends a good deal on\n where you want to get to",
+            "isSelf": true,
+            "time": "02:16"
+          },
+          {
+            "text": "I don’t much care where—",
+            "isSelf": false,
+            "time": "02:16"
+          },
+          {
+            "text": "Then it doesn’t matter which way you go",
+            "isSelf": true,
+            "time": "02:20"
+          },
+          {
+            "text": "...so long as I get somewhere,",
+            "isSelf": false,
+            "time": "02:22"
+          },
+          {
+            "text": "Oh, you’re sure to do that,if you only walk long enough.",
+            "isSelf": true,
+            "time": "02:23"
           }
         ],
         "bob": [
           {
-            "text": "Hi from bubble!",
-            "isSelf": false,
+            "text": "what does Bobby B think?",
+            "isSelf": true,
             "time": "13:27"
+          },
+          {
+            "text": "DO YOU THINK IT'S HONOR THAT'S KEEPING THE PEACE?! IT'S FEAR! FEAR AND BLOOD!",
+            "isSelf": false,
+            "time": "13:29"
           }
         ],
         "daniel": [
@@ -66,10 +101,8 @@
       "nickname": "danny BOI",
       "contacts": {
         "alice": [
-          "chat_history_w_alice"
         ],
         "Tomer": [
-          "chat_history_w_tomer"
         ]
       }
     }
