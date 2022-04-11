@@ -3,7 +3,7 @@ import Contact from './Contact';
 import Utilsbuttons from './Utilsbuttons';
 import { useContext, useState } from 'react';
 import AppContext from '../../AppContext';
-import { ListGroup,Badge } from 'react-bootstrap';
+import { ListGroup, Badge } from 'react-bootstrap';
 
 
 const Contactslist = (props) => {
@@ -17,14 +17,17 @@ const Contactslist = (props) => {
                 <div className="list-group">
                     <ListGroup >
                         {Object.keys(sharedContext.userData[currUser].contacts).map((item, i) => (
-                            <ListGroup.Item active style={{ display: 'contents' }} 
-                            onClick={()=>
-                            {
-                            console.log(item);
-                            props.setActive(item);
-                            sharedContext.ActiveContact = item;
-                            props.setter(true);}}>
-                                <Contact key={i} contactName={item} photo={sharedContext.userData[item].photo} />
+                            <ListGroup.Item active style={{ display: 'contents' }}
+                                onClick={() => {
+                                    console.log(item);
+                                    props.setActive(item);
+                                    sharedContext.ActiveContact = item;
+                                    props.setter(true);
+                                }}>
+                                <Contact key={i} contactName={item} photo={sharedContext.userData[item].photo}
+                                    lastMessage={sharedContext.userData[currUser].contacts[item].at(-1).text}
+                                />
+
                             </ListGroup.Item>
                         ))}
                     </ListGroup>

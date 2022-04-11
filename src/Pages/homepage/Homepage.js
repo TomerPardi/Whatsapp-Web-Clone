@@ -35,9 +35,11 @@ export default function Homepage(props) {
         console.log(active)
         if (active === 'none') {
             return (
-                <div className='d-flex align-items-center flex-column' style={{ height: '100%', background: '#99eda1' }}>
-                    <img src={planeGIF}></img>
-                    <div className='fs-5'><em>A new way to communicate with your friends!</em></div>
+                <div style={{ height: '100%', background: '#99eda1' }}>
+                    <div className='d-flex align-items-center flex-column'>
+                        <img src={planeGIF}></img>
+                        <div className='fs-5'><em>A new way to communicate with your friends!</em></div>
+                    </div>
                 </div>
             )
         }
