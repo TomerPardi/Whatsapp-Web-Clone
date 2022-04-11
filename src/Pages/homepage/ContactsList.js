@@ -5,13 +5,13 @@ import { useContext, useState } from 'react';
 import AppContext from '../../AppContext';
 
 
-const Contactslist = () => {
+const Contactslist = (props) => {
     const sharedContext = useContext(AppContext)
     const [currUser, setcurrUser] = useState(sharedContext.currentUser);
 
     return (
         <>
-            <Utilsbuttons />
+            <Utilsbuttons setter={props.setter}/>
             <div className="contact-list">
                 <div className="list-group">
                     {Object.keys(sharedContext.userData[currUser].contacts).map((item, i) => (

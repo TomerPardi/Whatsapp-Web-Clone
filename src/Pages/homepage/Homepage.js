@@ -15,16 +15,16 @@ export default function Homepage(props) {
     let context = React.useContext(AppContext)
     const user = context.currentUser
     //TODO: apply change in array to context
-    const [messages,setMessages] = useState(context.userData[user].contacts.daniel)
+    const [messages, setMessages] = useState(context.userData[user].contacts.daniel)
     // a state change to trigger a re-render of the page
-    const [changed,setChanged] = useState(false)
+    const [changed, setChanged] = useState(false)
     useEffect(() => {
         setChanged(false);
         window.addEventListener('unload', handleTabClosing)
         return () => {
             window.removeEventListener('unload', handleTabClosing)
         }
-      });
+    });
 
     return (
         <>
@@ -33,7 +33,7 @@ export default function Homepage(props) {
                     {/* nickname and user's image will be here */}
                     <Profile />
                     {/* contacts list and search bar for contacts will be here */}
-                    <Contactslist />
+                    <Contactslist setter={setChanged} />
                 </section>
 
                 <section className="right">
@@ -43,7 +43,7 @@ export default function Homepage(props) {
                     {/* the Messages will be displayed here */}
                     <Chatwindow messages={messages} setter={setMessages} />
                     {/* input for new messages will be here */}
-                    <MessageInput messages={messages} setter={setChanged}/>
+                    <MessageInput messages={messages} setter={setChanged} />
                 </section>
             </div>
         </>
