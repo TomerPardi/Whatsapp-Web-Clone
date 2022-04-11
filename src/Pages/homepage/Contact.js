@@ -1,11 +1,14 @@
 import React from 'react';
+import avatar from './avatar.jpg';
 
-const Contact = ({contactName}) => {
+const Contact = ({ contactName }) => {
     return (
-        
-        <a href="#" className="list-group-item list-group-item-action">
-            {contactName}
-        </a>
+        <div className="contact d-flex justify-content-start">
+            <img src={avatar}></img>
+            <div className="font-name">{contactName}</div>
+
+        </div>
+
     );
 }
 

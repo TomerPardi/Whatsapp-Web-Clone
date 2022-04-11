@@ -31,7 +31,7 @@ export default function ChatBubble(props) {
     else {
         return (
             <div
-                className={`chat-bubble ${isSelf ? "me" : "you"} `}>
+                className={`chat-bubble ${isSelf ? "me" : "you"}`}>
                 {text}
                 <h6 className="text-muted" style={{ "justifySelf": 'right' }}>{time}</h6>
             </div>
