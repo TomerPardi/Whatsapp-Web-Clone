@@ -17,7 +17,10 @@ const Utilsbuttons = (props) => {
         setContactInput("")
         setDisabled(true)
     }
-    const handleShow = () => setShow(true);
+    const handleShow = () =>{
+        setShow(true);
+        
+    } 
     const handleAdd = () => {
 
         if(contactInput in sharedContext.userData){
@@ -36,10 +39,17 @@ const Utilsbuttons = (props) => {
         }
     }
 
+    const handleKey = (event) => {
+        if(event.key==='Enter'){
+            handleAdd();
+        }
+    }
+
     return (
         <div className="wrap-search d-flex justify-content-around">
 
             <Button className='utilsBtn' variant='light' onClick={() => {
+                console.log("pressed button")
                 //console.log(sharedContext.userData.tomer.contacts)
                 sharedContext.currentUser = 'none'
                 // localStorage.removeItem("user");
@@ -62,7 +72,7 @@ const Utilsbuttons = (props) => {
                     <Form>
                         <Form.Group className="mb-3" controlId="newContact">
                             <Form.Label>Contact</Form.Label>
-                            <Form.Control placeholder="Contact's name" onChange={handleChange} />
+                            <Form.Control id='input' placeholder="Contact's name" onChange={handleChange} onKeyDown={handleKey} autoFocus/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
