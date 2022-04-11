@@ -6,6 +6,7 @@ import Contactslist from './ContactsList'
 import "./Homepage.css"
 import Profile from './Profile'
 import AppContext from '../../AppContext'
+import planeGIF from './giphy.gif'
 
 const handleTabClosing = () => {
     AppContext.currentUser = 'none';
@@ -33,15 +34,14 @@ export default function Homepage(props) {
     function conditionalRight() {
         console.log(active)
         if (active === 'none') {
-           return(
-               <div className='d-flex justify-content-center' style={{height:'100%',background:'#99eda1'}}>
-                   <div>
-                    im a placeholder
-                   </div>
-               </div>
-           )
+            return (
+                <div className='d-flex align-items-center flex-column' style={{ height: '100%', background: '#99eda1' }}>
+                    <img src={planeGIF}></img>
+                    <div className='fs-5'><em>A new way to communicate with your friends!</em></div>
+                </div>
+            )
         }
-        else{
+        else {
             return (
                 <>
                     <Chathead ActiveContact={active} />
@@ -50,7 +50,7 @@ export default function Homepage(props) {
                 </>
             )
         }
-    
+
     };
 
     return (
@@ -65,9 +65,9 @@ export default function Homepage(props) {
 
                 <section className="right">
                     {
-                         conditionalRight()
+                        conditionalRight()
                     }
-                   
+
                 </section>
             </div>
         </>
