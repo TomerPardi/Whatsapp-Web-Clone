@@ -19,8 +19,14 @@ const Utilsbuttons = (props) => {
     }
     const handleShow = () => setShow(true);
     const handleAdd = () => {
-        sharedContext.userData[sharedContext.currentUser].contacts[contactInput] = [];
+
+        if(contactInput in sharedContext.userData){
+            sharedContext.userData[sharedContext.currentUser].contacts[contactInput] = [];
         props.setter(true)
+        }
+        else{
+            alert('User doesn\'t exist!')
+        }
         handleClose();
     }
     const handleChange = (event) => {

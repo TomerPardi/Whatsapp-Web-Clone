@@ -48,12 +48,10 @@ function Register() {
                         "photo": window.webkitURL.createObjectURL(image.files[0]),
                         "nickname": nickname.value,
                         "contacts": {
-                            "alice": [],
-                            "bob": [],
-                            "daniel": []
                         }
                     }
                     console.log(data[username.value])
+                    alert("Registration successful, proceeding to login page.");
                     sharedContext.userData = data;
                     navigate("../home", { replace: true });
                     // TODO: we need also save nickname, picture, etc...
