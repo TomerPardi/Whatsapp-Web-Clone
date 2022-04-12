@@ -8,6 +8,7 @@ import useRecorder from '../useRecorder'
 import { useContext } from 'react';
 import AppContext from '../AppContext';
 import CameraModal from './homepage/CameraModal';
+import UploadModal from './homepage/UploadModal';
 import { render } from '@testing-library/react';
 import wave from './homepage/wave.gif'
 
@@ -35,6 +36,13 @@ export default function MessageInput(props) {
                 )
                 break
             case '3': handleRecord();
+                break
+            case '4':
+                render(
+                    <div>
+                        <UploadModal show={true} />
+                    </div>
+                )
                 break
             default: return
         }
@@ -123,6 +131,13 @@ export default function MessageInput(props) {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-mic-fill" viewBox="0 0 16 16">
                                     <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
                                     <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
+                                </svg>
+
+                            </Dropdown.Item>
+                            <Dropdown.Item eventKey="4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                                    <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                    <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z" />
                                 </svg>
 
                             </Dropdown.Item>

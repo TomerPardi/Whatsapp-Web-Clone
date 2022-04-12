@@ -9,10 +9,18 @@ body {
     background: #dbdbdb;
 } */
 
+#contact-time {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    ;
+}
+
 .form-control:focus {
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
+
 .utilsBtn {
     background-color: transparent;
 }
@@ -332,12 +340,12 @@ i {
     margin: 0px 0px 10px auto;
 }
 
-.player{
+.player {
     max-height: min-content;
     border-radius: 5px;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     width: fit-content;
     min-width: 0;
 }

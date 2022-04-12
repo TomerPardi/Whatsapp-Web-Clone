@@ -27,14 +27,18 @@ const Contact = ({ contactName, photo, lastMessage, isSelf }) => {
         </svg>
     }
     return (
-        <div className="contact d-flex justify-content-start align-items-center">
-            <img src={photo.includes('blob') ? photo : require(`${photo}`)} alt={defaultImage}></img>
-            <div className="font-name">
-                <div className='fw-bolder'>{contactName}</div>
-                <div><small> {isSelf ? "Me: " : ""}{message()}</small></div>
+        <>
+            <div className="contact d-flex justify-content-start align-items-center position-relative">
+                <img src={photo.includes('blob') ? photo : require(`${photo}`)} alt={defaultImage}></img>
+                <div className="font-name">
+                    <div className='fw-bolder'>{contactName}</div>
+                    <div><small> {isSelf ? "Me: " : ""}{message()}</small></div>
+                </div>
+                <p id="contact-time" className="text-muted align-self-start"><small>{lastMessage.time}</small></p>
             </div>
 
-        </div>
+        </>
+
 
     );
 }
