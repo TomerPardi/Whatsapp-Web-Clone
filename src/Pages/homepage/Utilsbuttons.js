@@ -19,8 +19,8 @@ const Utilsbuttons = (props) => {
     }
     const handleShow = () =>{
         setShow(true);
-        
-    } 
+
+    }
     const handleAdd = () => {
 
         if(contactInput in sharedContext.userData){
@@ -80,7 +80,7 @@ const Utilsbuttons = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button id="butt" variant="primary" onClick={handleAdd} disabled={disabled}>
+                    <Button id="butt" variant="success" onClick={handleAdd} disabled={disabled}>
                         Add Contact
                     </Button>
                 </Modal.Footer>
