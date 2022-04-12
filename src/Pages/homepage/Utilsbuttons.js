@@ -17,17 +17,17 @@ const Utilsbuttons = (props) => {
         setContactInput("")
         setDisabled(true)
     }
-    const handleShow = () =>{
+    const handleShow = () => {
         setShow(true);
 
     }
-    const handleAdd = () => {
-
-        if(contactInput in sharedContext.userData){
+    const handleAdd = (e) => {
+        e.preventDefault()
+        if (contactInput in sharedContext.userData) {
             sharedContext.userData[sharedContext.currentUser].contacts[contactInput] = [];
-        props.setter(true)
+            props.setter(true)
         }
-        else{
+        else {
             alert('User doesn\'t exist!')
         }
         handleClose();
@@ -40,7 +40,7 @@ const Utilsbuttons = (props) => {
     }
 
     const handleKey = (event) => {
-        if(event.key==='Enter'){
+        if (event.key === 'Enter') {
             handleAdd();
         }
     }
@@ -69,10 +69,10 @@ const Utilsbuttons = (props) => {
                     <Modal.Title>Add new contact here</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={e => { e.preventDefault(); }}>
                         <Form.Group className="mb-3" controlId="newContact">
                             <Form.Label>Contact</Form.Label>
-                            <Form.Control id='input' placeholder="Contact's name" onChange={handleChange} onKeyDown={handleKey} autoFocus/>
+                            <Form.Control id='input' placeholder="Contact's name" onChange={handleChange} onKeyDown={handleKey} autoFocus />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -80,7 +80,7 @@ const Utilsbuttons = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button id="butt" variant="success" onClick={handleAdd} disabled={disabled}>
+                    <Button id="butt" variant="success" onClick={(e) => { handleAdd(e) }} disabled={disabled}>
                         Add Contact
                     </Button>
                 </Modal.Footer>
