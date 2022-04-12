@@ -1,6 +1,6 @@
 {
   "currentUser": "none",
-  "ActiveContact" : "none",
+  "ActiveContact": "none",
   "credentialsDB": {
     "alice": "12345",
     "bob": "foo123",
@@ -11,8 +11,7 @@
     "none": {
       "photo": "./default.jpg",
       "nickname": "void",
-      "contacts": {
-      }
+      "contacts": {}
     },
     "alice": {
       "photo": "./alice.jpg",
@@ -26,10 +25,8 @@
       "photo": "./bobbyB.jpg",
       "nickname": "bobby B",
       "contacts": {
-        "alice": [
-        ],
-        "Tomer": [
-        ]
+        "alice": [],
+        "Tomer": []
       }
     },
     "tomer": {
@@ -63,7 +60,7 @@
             "time": "02:22"
           },
           {
-            "text": "Oh, you’re sure to do that,if you only walk long enough.",
+            "text": "Oh, you’re sure to do that, if you only walk long enough.",
             "isSelf": true,
             "time": "02:23"
           }
@@ -100,10 +97,8 @@
       "photo": "./daniel.jpg",
       "nickname": "danny BOI",
       "contacts": {
-        "alice": [
-        ],
-        "Tomer": [
-        ]
+        "alice": [],
+        "Tomer": []
       }
     }
   }

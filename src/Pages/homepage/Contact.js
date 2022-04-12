@@ -31,7 +31,7 @@ const Contact = ({ contactName, photo, lastMessage, isSelf }) => {
             <img src={photo.includes('blob') ? photo : require(`${photo}`)} alt={defaultImage}></img>
             <div className="font-name">
                 <div className='fw-bolder'>{contactName}</div>
-                <div className="fw-light"> {isSelf? "Me: ": ""}{message()}</div>
+                <div><small> {isSelf ? "Me: " : ""}{message()}</small></div>
             </div>
 
         </div>
