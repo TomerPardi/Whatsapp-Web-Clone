@@ -25,7 +25,7 @@ const Contactslist = (props) => {
                                     props.setter(true);
                                 }}>
                                 <Contact key={i} contactName={item} photo={sharedContext.userData[item].photo}
-                                    lastMessage={sharedContext.userData[currUser].contacts[item].at(-1).text}
+                                    lastMessage={sharedContext.userData[currUser].contacts[item].at(-1)}
                                     isSelf={sharedContext.userData[currUser].contacts[item].at(-1).isSelf}
                                 />
 
