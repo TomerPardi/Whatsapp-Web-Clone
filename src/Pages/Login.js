@@ -22,7 +22,7 @@ function Login() {
             event.stopPropagation()
             if (!form.checkValidity()) {
                 form.classList.add('was-validated')
-                return
+                return;
             }
 
             if (db[username.value]) {
@@ -34,6 +34,7 @@ function Login() {
                 } else {
                     alert("Wrong username or password!");
                     return;
+
                 }
             } else {
                 alert("Wrong username or password!")
@@ -90,6 +91,36 @@ function Login() {
                     </div>
                 </div>
             </section>
+        </>
+    );
+
+    const submitMessage = (
+        <>
+            <section className="h-100">
+                <div className="container h-100">
+                    <div className="row justify-content-sm-center h-100">
+                        <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                            <div className="card shadow-lg">
+                                <h1 className="text-center display-1">Woo-Hoo</h1>
+                                <p className='text-center'>You have just logged in successfully!</p>
+                                <p className='text-center'>You can either go <Link to="/register">home</Link> or go <Link to="/">back</Link>.</p>
+                                <div className="card-footer py-3 border-0">
+                                    <div className="text-center">
+                                        "WhatsApp Web Clone" team
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </>
+    )
+
+    return (
+        <>
+            {isSubmitted ? submitMessage : renderForm}
         </>
     );
 }

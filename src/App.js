@@ -13,7 +13,7 @@ import { AppContextProvider } from './AppContext';
 
 export const App = () => {
   const sharedContext = require("./sharedContext.json");
-  
+
   return (
     <AppContextProvider value={sharedContext}>
       <BrowserRouter>
