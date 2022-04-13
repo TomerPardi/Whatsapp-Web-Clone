@@ -64,8 +64,13 @@ export default function UploadModal(props) {
                     <Form>
                         <Form.Group className="mb-3 position-relative d-grid gap-3" controlId="newContact">
                             <Form.Label>Add file</Form.Label>
-                            <Form.Control id='input' type='file' placeholder="Upload" onChange={onSelectFile} autoFocus />
-                            <div>{selectedFile && <img src={preview} className="card-img" />}</div>
+                            <Form.Control id='input' type='file' accept={props.formats} placeholder="Upload" onChange={onSelectFile} autoFocus />
+                            <div>{selectedFile 
+                            &&
+                             (props.formats=='img/*'?
+                              <img src={preview} className="card-img"/>
+                              :
+                              <video className=" card-img" src={preview} controls/>)}</div>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

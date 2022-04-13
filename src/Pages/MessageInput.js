@@ -35,12 +35,20 @@ export default function MessageInput(props) {
                     </div>
                 )
                 break
-            case '3': handleRecord();
+            case '2':
+                render(
+                    <div>
+                        <UploadModal show={true} handler={handleVideo} formats={'video/*'} />
+                    </div>
+                )
+                break
+            case '3':
+                handleRecord();
                 break
             case '4':
                 render(
                     <div>
-                        <UploadModal show={true} handler={handlePhoto}/>
+                        <UploadModal show={true} handler={handlePhoto} formats={'image/*'} />
                     </div>
                 )
                 break
@@ -94,6 +102,12 @@ export default function MessageInput(props) {
         props.setter(true)
     }
 
+    function handleVideo(videoPath) {
+        messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'video': videoPath, type: 'video' })
+        console.log(messages)
+        props.setter(true)
+    }
+
     if (context.ActiveUser != 'none') {
         return (
 
@@ -114,6 +128,7 @@ export default function MessageInput(props) {
                             onSelect={handleSelect}
                             style={{ width: '0rem' }}
                         >
+                            {/* camera button*/}
                             <Dropdown.Item eventKey="1" className='d-flex'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-camera-fill" viewBox="0 0 16 16">
                                     <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
@@ -121,6 +136,7 @@ export default function MessageInput(props) {
                                 </svg>
 
                             </Dropdown.Item>
+                            {/* video button*/}
                             <Dropdown.Item eventKey="2" align="center" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-camera-video-fill" viewBox="0 0 16 16">
                                     <path fillRule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z" />
@@ -128,6 +144,7 @@ export default function MessageInput(props) {
 
 
                             </Dropdown.Item>
+                            {/* audio button*/}
                             <Dropdown.Item eventKey="3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-mic-fill" viewBox="0 0 16 16">
                                     <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
@@ -135,6 +152,7 @@ export default function MessageInput(props) {
                                 </svg>
 
                             </Dropdown.Item>
+                            {/* file button*/}
                             <Dropdown.Item eventKey="4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
                                     <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
