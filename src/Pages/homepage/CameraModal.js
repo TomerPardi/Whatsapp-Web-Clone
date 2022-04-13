@@ -16,6 +16,7 @@ export const CameraModal = (props) => {
         stream.getTracks().forEach(function (track) {
             track.stop();
         });
+        // clean the saved stream in the context
         context.stream = null;
     }
 
