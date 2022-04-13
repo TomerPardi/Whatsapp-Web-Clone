@@ -35,7 +35,7 @@ export default function ChatBubble(props) {
             <div
                 className={`chat-bubble ${isSelf ? "me" : "you"} `}>
                 <Button variant="link" className=' shadow-none' onClick={handleShow}>
-                    <video src={video} style={{ maxWidth: '200px' }} controls/>
+                    <video src={video} style={{ maxWidth: '200px' }} controls autoPlay/>
                 </Button>
 
                 <Modal show={show} onHide={handleClose}>
