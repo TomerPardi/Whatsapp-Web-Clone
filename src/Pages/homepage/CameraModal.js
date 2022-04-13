@@ -5,7 +5,6 @@ import { Button, Modal } from 'react-bootstrap';
 export default function CameraModal(props) {
     const [show, setShow] = useState(props.show);
     const [photo, setPhoto] = useState();
-    const [recording,setRecording] = useState(false);
 
     const handleClose = () => {
         setPhoto();
@@ -22,14 +21,12 @@ export default function CameraModal(props) {
         );
 
         navigator.getUserMedia({ video: true }, function (stream) {
-            setRecording(true)
             var canvas = document.getElementById("canv");
             var button = document.getElementById("butt");
             var button2 = document.getElementById("butt2");
             var button3 = document.getElementById("butt3");
             var video = document.querySelector("#videoElement");
             if(video == null){
-                setRecording(false)
                 stream.getTracks().forEach(function (track) {
                     track.stop();
                 });
@@ -37,7 +34,6 @@ export default function CameraModal(props) {
             }
             video.srcObject = stream;
             video.src = stream;
-
             var w = stream.videoWidth;
             var h = stream.videoHeight;
             video.addEventListener("loadedmetadata", function () {
@@ -57,6 +53,9 @@ export default function CameraModal(props) {
                 setPhoto(img);
                 console.log(img);
                 button3.disabled = false;
+                stream.getTracks().forEach(function (track) {
+                    track.stop();
+                });
             };
             button2.onclick = function () {
                 stream.getTracks().forEach(function (track) {
