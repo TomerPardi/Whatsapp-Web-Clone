@@ -28,7 +28,7 @@ export default function MessageInput(props) {
 
         switch (event) {
             case '1':
-                console.log(event);
+                // console.log(event);
                 render(
                     <div>
                         <CameraModal show={true} handler={handlePhoto} />
@@ -40,7 +40,7 @@ export default function MessageInput(props) {
             case '4':
                 render(
                     <div>
-                        <UploadModal show={true} />
+                        <UploadModal show={true} handler={handlePhoto}/>
                     </div>
                 )
                 break
@@ -56,15 +56,15 @@ export default function MessageInput(props) {
 
     function handleRecord() {
 
-        console.log("Recording pressed");
+        // console.log("Recording pressed");
         if (isRecording) {
             stopRecording();
-            console.log("recording stopped")
+            // console.log("recording stopped")
             setRecorded(true)
             setLive(false)
         }
         else {
-            console.log("started record")
+            // console.log("started record")
             startRecording();
             setLive(true)
         }

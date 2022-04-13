@@ -19,7 +19,7 @@ const Contactslist = (props) => {
                         {Object.keys(sharedContext.userData[currUser].contacts).map((item, i) => (
                             <ListGroup.Item active style={{ display: 'contents' }}
                                 onClick={() => {
-                                    console.log(item);
+                                    // console.log(item);
                                     props.setActive(item);
                                     sharedContext.ActiveContact = item;
                                     props.setter(true);

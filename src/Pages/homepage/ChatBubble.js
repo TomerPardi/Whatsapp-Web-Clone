@@ -17,7 +17,7 @@ export default function ChatBubble(props) {
         )
     }
     else if (type === 'audio') {
-        console.log(audio);
+        // console.log(audio);
         return (
             <div className={`chat-bubble ${isSelf ? "me" : "you"} player`}>
                 <audio controls src= {audio} id='player' style={{ maxHeight: '50px' }}></audio>

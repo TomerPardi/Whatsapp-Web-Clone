@@ -32,7 +32,7 @@ export default function Homepage(props) {
         }
     });
     function conditionalRight() {
-        console.log(active)
+        // console.log(active)
         if (active === 'none') {
             return (
                 <div style={{ height: '100%', background: '#99eda1' }}>
