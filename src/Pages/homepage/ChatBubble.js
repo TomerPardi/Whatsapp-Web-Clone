@@ -8,7 +8,7 @@ export default function ChatBubble(props) {
         return (
             <div
                 className={`chat-bubble ${isSelf ? "me" : "you"} `}>
-                <img src={photo.includes('64')? photo : require(`${photo}`)} style={{ maxWidth: '200px' }} />
+                <img src={(photo.includes('64') || photo.includes('blob'))? photo : require(`${photo}`)} style={{ maxWidth: '200px' }} />
                 <br>
                 </br>
                 {text}
