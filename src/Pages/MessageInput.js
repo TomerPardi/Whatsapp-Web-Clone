@@ -90,6 +90,7 @@ export default function MessageInput(props) {
 
     function handlePhoto(photoPath) {
         messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'photo': photoPath, type: 'photo' })
+        console.log(messages)
         props.setter(true)
     }
 
