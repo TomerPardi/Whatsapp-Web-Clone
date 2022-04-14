@@ -20,7 +20,7 @@
       "nickname": "alli",
       "contacts": {
         "bob": [],
-        "Tomer": []
+        "tomer": []
       }
     },
     "bob": {
@@ -28,7 +28,7 @@
       "nickname": "bobby B",
       "contacts": {
         "alice": [],
-        "Tomer": []
+        "tomer": []
       }
     },
     "tomer": {
@@ -100,7 +100,7 @@
       "nickname": "danny BOI",
       "contacts": {
         "alice": [],
-        "Tomer": []
+        "tomer": []
       }
     }
   }

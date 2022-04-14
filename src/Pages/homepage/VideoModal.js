@@ -77,17 +77,14 @@ export const CameraModal = (props) => {
           }
         // take video button
         button.onclick = function () {
-            //var stream = canvas.captureStream(25);
             if(isRecording){
                 mediaRecorder.stop()
                 button3.disabled = false;
-                
             }
             else{
                 mediaRecorder.start();
                 setRecording(true)
             }
-
             };
 
         // cancel button
@@ -101,7 +98,6 @@ export const CameraModal = (props) => {
             handleClose(stream);
         };
     }
-
     function cam() {
         navigator.getUserMedia = (
             navigator.getUserMedia ||
@@ -115,15 +111,10 @@ export const CameraModal = (props) => {
         else {
             helperForCam(context.stream)
         }
-
     }
 
     return (
         <>
-
-            {/* <Button variant="primary" onClick={handleShow} style={{ display: 'none' }}>
-            </Button> */}
-
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -145,7 +136,6 @@ export const CameraModal = (props) => {
                                 }}>
                             </video>
                         }
-
                         {
                             videoPath && <video src={videoPath} style={{ 'width': '100%' }} controls autoPlay></video>
                         }

@@ -22,7 +22,7 @@ const Utilsbuttons = (props) => {
 
     }
     const handleAdd = (e) => {
-        e.preventDefault()
+        //e.preventDefault()
         if (contactInput in sharedContext.userData) {
             sharedContext.userData[sharedContext.currentUser].contacts[contactInput] = [];
             props.setter(true)

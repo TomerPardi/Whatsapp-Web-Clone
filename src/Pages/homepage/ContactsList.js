@@ -26,7 +26,11 @@ const Contactslist = (props) => {
                                 }}>
                                 <Contact key={i} contactName={item} photo={sharedContext.userData[item].photo}
                                     lastMessage={sharedContext.userData[currUser].contacts[item].at(-1)}
-                                    isSelf={sharedContext.userData[currUser].contacts[item].at(-1).isSelf}
+                                    isSelf={
+                                        sharedContext.userData[currUser].contacts[item].length==0?
+                                        false:
+                                        sharedContext.userData[currUser].contacts[item].at(-1).isSelf
+                                    }
                                 />
 
                             </ListGroup.Item>

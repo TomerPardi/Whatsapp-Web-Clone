@@ -5,6 +5,8 @@ import defaultImage from './default.jpg';
 const Contact = ({ contactName, photo, lastMessage, isSelf }) => {
 
     const message = () => {
+        // TODO: check plaster
+        if(!lastMessage) return
         if (lastMessage.hasOwnProperty("text")) {
             return (lastMessage.text.length < 30 ? lastMessage.text : lastMessage.text.substring(0, 30) + "...")
         }
@@ -40,7 +42,7 @@ const Contact = ({ contactName, photo, lastMessage, isSelf }) => {
                     <div className='fw-bolder'>{contactName}</div>
                     <div><small> {isSelf ? "Me: " : ""}{message()}</small></div>
                 </div>
-                <p id="contact-time" className="text-muted align-self-start"><small>{lastMessage.time}</small></p>
+                <p id="contact-time" className="text-muted align-self-start"><small>{lastMessage?lastMessage.time:''}</small></p>
             </div>
 
         </>
