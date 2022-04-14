@@ -49,12 +49,9 @@ export const CameraModal = (props) => {
 
             // take photo button
             button.onclick = function () {
-                console.log("width:", w);
-                console.log("height:", h);
                 canvas.getContext("2d").drawImage(video, 0, 0, w, h, 0, 0, w, h);
                 var img = canvas.toDataURL("image/png");
                 setPhoto(img);
-                console.log(img);
                 button3.disabled = false;
 
             };

@@ -1,5 +1,6 @@
 {
   "stream" : null,
+  "mediaRecorder":null,
   "currentUser": "none",
   "ActiveContact": "none",
   "credentialsDB": {

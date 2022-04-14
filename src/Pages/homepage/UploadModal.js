@@ -12,7 +12,6 @@ export default function UploadModal(props) {
 
 
     const click = () => {
-        console.log("here")
         props.handler(preview);
         handleClose();
     }

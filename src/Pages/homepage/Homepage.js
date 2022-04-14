@@ -16,7 +16,6 @@ const handleTabClosing = () => {
 function compareContacts(a, b) {
     // get the last message in the list of messages, and gets its time field.
     let last1 = a[a.length - 1].time
-    console.log(last1)
     let last2 = b[b.length - 1].time
     if (last1 < last2) return 1;
     if (last1 > last2) return -1;

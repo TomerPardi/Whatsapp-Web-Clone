@@ -21,8 +21,6 @@ if (form) {
 
 
         if (map.has(username.value)) {
-            console.log(username.value)
-            console.log(map.get(username.value))
             if (map.get(username.value) == password.value) {
                 event.preventDefault()
                 event.stopPropagation()

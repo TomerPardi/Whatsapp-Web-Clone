@@ -50,7 +50,6 @@ function Register() {
                         "contacts": {
                         }
                     }
-                    console.log(data[username.value])
                     alert("Registration successful, proceeding to login page.");
                     sharedContext.userData = data;
                     navigate("../home", { replace: true });

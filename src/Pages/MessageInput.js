@@ -3,6 +3,7 @@ import { FormControl } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
+import VideoModal from './homepage/VideoModal';
 import Button from 'react-bootstrap/Button'
 import useRecorder from '../useRecorder'
 import { useContext } from 'react';
@@ -28,7 +29,6 @@ export default function MessageInput(props) {
 
         switch (event) {
             case '1':
-                // console.log(event);
                 render(
                     <div>
                         <CameraModal show={true} handler={handlePhoto} />
@@ -49,6 +49,13 @@ export default function MessageInput(props) {
                 render(
                     <div>
                         <UploadModal show={true} handler={handlePhoto} formats={'image/*'} />
+                    </div>
+                )
+                break
+            case '5':
+                render(
+                    <div>
+                        <VideoModal show={true} handler={handleVideo} />
                     </div>
                 )
                 break
@@ -98,13 +105,11 @@ export default function MessageInput(props) {
 
     function handlePhoto(photoPath) {
         messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'photo': photoPath, type: 'photo' })
-        console.log(messages)
         props.setter(true)
     }
 
     function handleVideo(videoPath) {
         messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'video': videoPath, type: 'video' })
-        console.log(messages)
         props.setter(true)
     }
 
@@ -143,6 +148,15 @@ export default function MessageInput(props) {
                                 </svg>
                             </Dropdown.Item>
 
+                            {/* video recorder button*/}
+                            <Dropdown.Item eventKey="5" className='d-flex'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-camera-reels-fill" viewBox="0 0 16 16">
+                                    <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                    <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                    <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7z" />
+                                </svg>
+                            </Dropdown.Item>
+
                             {/* image file button*/}
                             <Dropdown.Item eventKey="4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
@@ -150,7 +164,7 @@ export default function MessageInput(props) {
                                     <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z" />
                                 </svg>
                             </Dropdown.Item>
-                            {/* video button*/}
+                            {/* video file button*/}
                             <Dropdown.Item eventKey="2" align="center" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-file-earmark-play" viewBox="0 0 16 16">
                                     <path d="M6 6.883v4.234a.5.5 0 0 0 .757.429l3.528-2.117a.5.5 0 0 0 0-.858L6.757 6.454a.5.5 0 0 0-.757.43z" />
