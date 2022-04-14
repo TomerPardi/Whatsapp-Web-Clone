@@ -30,10 +30,10 @@ function compareContacts(a, b) {
 export default function Homepage(props) {
     let context = React.useContext(AppContext)
     const [user, setUser] = useState(context.currentUser)
-    const [messages, setMessages] = useState(context.userData[user].contacts[context.ActiveContact])
+    const [messages, setMessages] = useState(context.userData[user].contacts[context.activeContact])
     // a state change to trigger a re-render of the page
     const [changed, setChanged] = useState(false)
-    const [active, setActive] = useState(context.ActiveContact)
+    const [active, setActive] = useState(context.activeContact)
 
     function getKeyByValue(object, value) {
         return Object.keys(object).find(key => object[key] === value);
@@ -62,7 +62,7 @@ export default function Homepage(props) {
         setChanged(false);
         orderContacts();
         setUser(context.currentUser)
-        setMessages(context.userData[user].contacts[context.ActiveContact])
+        setMessages(context.userData[user].contacts[context.activeContact])
         window.addEventListener('unload', handleTabClosing)
         return () => {
             window.removeEventListener('unload', handleTabClosing)
@@ -82,8 +82,8 @@ export default function Homepage(props) {
         else {
             return (
                 <>
-                    <Chathead ActiveContact={active} />
-                    <Chatwindow messages={messages} setter={setMessages} ActiveContact={active} />
+                    <Chathead activeContact={active} />
+                    <Chatwindow messages={messages} setter={setMessages} activeContact={active} />
                     <MessageInput messages={messages} setter={setChanged} />
                 </>
             )

@@ -24,6 +24,8 @@ export default function MessageInput(props) {
     //TODO : dynamically get contact in question
     const user = context.currentUser;
     const messages = props.messages
+    const counterMessages = context.userData[context.activeContact].contacts[user]
+    console.log(counterMessages)
 
     function handleSelect(event) {
 
@@ -71,15 +73,12 @@ export default function MessageInput(props) {
 
     function handleRecord() {
 
-        // console.log("Recording pressed");
         if (isRecording) {
             stopRecording();
-            // console.log("recording stopped")
             setRecorded(true)
             setLive(false)
         }
         else {
-            // console.log("started record")
             startRecording();
             setLive(true)
         }
@@ -89,6 +88,7 @@ export default function MessageInput(props) {
         event.preventDefault();
         if (existingRecord) {
             messages.push({ 'audio': audioURL, 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'type': 'audio' })
+            counterMessages.push({ 'audio': audioURL, 'isSelf': false, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'type': 'audio' })
             setRecorded(false);
             props.setter(true);
             return;
@@ -97,19 +97,23 @@ export default function MessageInput(props) {
         if (message.value === '') {
             return;
         }
+
         // on each time the user submits the form
         messages.push({ 'text': message.value, 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3) })
+        counterMessages.push({ 'text': message.value, 'isSelf': false, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3) })
         props.setter(true)
         message.value = ''
     };
 
     function handlePhoto(photoPath) {
         messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'photo': photoPath, type: 'photo' })
+        counterMessages.push({ 'isSelf': false, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'photo': photoPath, type: 'photo' })
         props.setter(true)
     }
 
     function handleVideo(videoPath) {
         messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'video': videoPath, type: 'video' })
+        counterMessages.push({ 'isSelf': false, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'video': videoPath, type: 'video' })
         props.setter(true)
     }
 

@@ -2,10 +2,12 @@ import React from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useContext, useState } from 'react';
 import AppContext from '../../AppContext';
+import { Link, useNavigate } from "react-router-dom";
+import context from 'react-bootstrap/esm/AccordionContext';
 
 
 const Utilsbuttons = (props) => {
-
+    let navigate = useNavigate();
     const sharedContext = useContext(AppContext)
     const [show, setShow] = useState(false);
     const [contactInput, setContactInput] = useState("");
@@ -49,11 +51,13 @@ const Utilsbuttons = (props) => {
         <div className="wrap-search d-flex justify-content-around">
 
             <Button className='utilsBtn' variant='light' onClick={() => {
-                console.log("pressed button")
                 //console.log(sharedContext.userData.tomer.contacts)
                 sharedContext.currentUser = 'none'
                 // localStorage.removeItem("user");
-                window.location.replace("/");
+                navigate("/", { replace: true });
+                sharedContext.activeContact = 'none'
+                props.setter(true)
+                //window.location.replace("/");
             }}>
                 <i className="bi bi-box-arrow-left"></i>&nbsp;
                 Logout

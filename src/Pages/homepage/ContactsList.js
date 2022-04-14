@@ -21,7 +21,7 @@ const Contactslist = (props) => {
                                 onClick={() => {
                                     // console.log(item);
                                     props.setActive(item);
-                                    sharedContext.ActiveContact = item;
+                                    sharedContext.activeContact = item;
                                     props.setter(true);
                                 }}>
                                 <Contact key={i} contactName={item} photo={sharedContext.userData[item].photo}

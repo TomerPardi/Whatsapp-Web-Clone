@@ -1,8 +1,8 @@
 {
-  "stream" : null,
-  "mediaRecorder":null,
+  "stream": null,
+  "mediaRecorder": null,
   "currentUser": "none",
-  "ActiveContact": "none",
+  "activeContact": "none",
   "credentialsDB": {
     "alice": "12345",
     "bob": "foo123",
@@ -20,7 +20,38 @@
       "nickname": "alli",
       "contacts": {
         "bob": [],
-        "tomer": []
+        "tomer": [
+          {
+            "text": "Would you tell me, please, which way I ought to go from here?",
+            "isSelf": true,
+            "time": "02:15"
+          },
+          {
+            "text": "That depends a good deal on\n where you want to get to",
+            "isSelf": false,
+            "time": "02:16"
+          },
+          {
+            "text": "I don’t much care where—",
+            "isSelf": true,
+            "time": "02:16"
+          },
+          {
+            "text": "Then it doesn’t matter which way you go",
+            "isSelf": false,
+            "time": "02:20"
+          },
+          {
+            "text": "...so long as I get somewhere,",
+            "isSelf": true,
+            "time": "02:22"
+          },
+          {
+            "text": "Oh, you’re sure to do that, if you only walk long enough.",
+            "isSelf": false,
+            "time": "02:23"
+          }
+        ]
       }
     },
     "bob": {
@@ -28,7 +59,18 @@
       "nickname": "bobby B",
       "contacts": {
         "alice": [],
-        "tomer": []
+        "tomer": [
+          {
+            "text": "what does Bobby B think?",
+            "isSelf": false,
+            "time": "13:27"
+          },
+          {
+            "text": "DO YOU THINK IT'S HONOR THAT'S KEEPING THE PEACE?! IT'S FEAR! FEAR AND BLOOD!",
+            "isSelf": true,
+            "time": "13:29"
+          }
+        ]
       }
     },
     "tomer": {
@@ -100,7 +142,20 @@
       "nickname": "danny BOI",
       "contacts": {
         "alice": [],
-        "tomer": []
+        "tomer": [
+          {
+            "text": "Hi from bubble!",
+            "isSelf": true,
+            "time": "13:27"
+          },
+          {
+            "text": "look, a guitar!",
+            "isSelf": true,
+            "type": "photo",
+            "photo": "./gibson_500.bmp",
+            "time": "13:28"
+          }
+        ]
       }
     }
   }
