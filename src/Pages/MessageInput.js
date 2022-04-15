@@ -23,8 +23,19 @@ export default function MessageInput(props) {
     let context = useContext(AppContext)
     //TODO : dynamically get contact in question
     const user = context.currentUser;
-    const messages = props.messages
-    const counterMessages = context.userData[context.activeContact].contacts[user]
+    const messages = props.messages;
+    // ############
+    var counterMessages;
+    if (context.userData[context.activeContact].contacts[user] === undefined) {
+        context.userData[context.activeContact].contacts[user] = []
+        counterMessages = context.userData[context.activeContact].contacts[user]
+    } else {
+        counterMessages = context.userData[context.activeContact].contacts[user]
+    }
+    // const counterMessages = context.userData[context.activeContact].contacts[user]
+    // ###############
+    console.log("hereeeeeeeeeeeeeeeeeeee")
+    console.log(context.userData[context.activeContact].contacts[user])
     console.log(counterMessages)
 
     function handleSelect(event) {
@@ -119,7 +130,7 @@ export default function MessageInput(props) {
             navigator.geolocation.getCurrentPosition((position)=>{
             const lat = position.coords.latitude;
             const long = position.coords.longitude
-            const url = 
+            const url =
             `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff0000(${long},${lat})/${long},${lat},15.01,0/200x200@2x?access_token=pk.eyJ1IjoiZnVua2V5N2RhbiIsImEiOiJjbDIwNm13enMwN2tkM3BxNDZjNGRkNDF2In0.DOuTKK-wNrsod_08yK1LWA`;
             const linkGoogle = `https://www.google.com/maps/search/?api=1&query=${lat}%2C${long}`
             messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'loc': url, type: 'location','linkGoogle':linkGoogle });

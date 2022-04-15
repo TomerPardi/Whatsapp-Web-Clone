@@ -1,15 +1,20 @@
 
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../AppContext';
-import { Form } from 'react-bootstrap';
+import { Form, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 
 
 function Login() {
+
     let navigate = useNavigate();
     const sharedContext = useContext(AppContext)
     var db = sharedContext.credentialsDB
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
 
@@ -32,12 +37,14 @@ function Login() {
                     // localStorage.setItem("user", username.value);
                     navigate("../home", { replace: true });
                 } else {
-                    alert("Wrong username or password!");
+                    setShow(true);
+                    // alert("Wrong username or password!");
                     return;
 
                 }
             } else {
-                alert("Wrong username or password!")
+                setShow(true);
+                // alert("Wrong username or password!");
                 return
             }
 
@@ -47,6 +54,12 @@ function Login() {
 
     return (
         <>
+            <Modal show={show} onHide={handleClose}>
+                    <div class="alert alert-danger" role="alert" style={{marginBottom: "0rem" }}>
+                        Wrong username or password!
+                    </div>
+            </Modal>
+
             <img id="myimg" src="plane.png" alt=""></img>
             <section id='section' className="h-100">
                 <div className="container h-100">
@@ -91,6 +104,7 @@ function Login() {
                     </div>
                 </div>
             </section>
+
         </>
     );
 }

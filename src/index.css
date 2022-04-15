@@ -44,3 +44,7 @@ body {
 #section {
   padding-top: 10px;
 }
+
+.modal-in {
+  background-color: transparent;
+}

@@ -1,4 +1,4 @@
-import { Form } from 'react-bootstrap';
+import { Form, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../AppContext';
@@ -11,6 +11,11 @@ function Register() {
     let sharedContext = useContext(AppContext);
     let db = sharedContext.credentialsDB;
     let data = sharedContext.userData;
+    const [show, setShow] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("Default Error!")
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
     useEffect(() => {
@@ -33,11 +38,15 @@ function Register() {
             else {
 
                 if (password.value != password2.value) {
-                    alert("Passwords are not matching!");
+                    setErrorMessage("Passwords are not matching!")
+                    setShow(true)
+                    // alert("Passwords are not matching!");
                     return;
                 }
                 else if (db[username.value]) {
-                    alert("Selected username already exists!")
+                    setErrorMessage("Selected username already exists!")
+                    setShow(true)
+                    // alert("Selected username already exists!")
                     return;
                 }
                 else {
@@ -63,6 +72,11 @@ function Register() {
 
     return (
         <>
+            <Modal show={show} onHide={handleClose}>
+                <div class="alert alert-danger" role="alert" style={{ marginBottom: "0rem" }}>
+                    {errorMessage}
+                </div>
+            </Modal>
             <img id="myimg" src="plane.png" alt=""></img>
             <section id='section' className="h-100">
                 <div className="container h-100">
