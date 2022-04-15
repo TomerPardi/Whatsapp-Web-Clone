@@ -61,6 +61,9 @@ export default function MessageInput(props) {
                     </div>
                 )
                 break
+            case '6':
+                handleLoc();
+                break
             default: return
         }
     }
@@ -111,6 +114,27 @@ export default function MessageInput(props) {
         props.setter(true)
     }
 
+    function handleLoc() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position)=>{
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude
+            const url = 
+            `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s+ff0000(${long},${lat})/${long},${lat},15.01,0/200x200@2x?access_token=pk.eyJ1IjoiZnVua2V5N2RhbiIsImEiOiJjbDIwNm13enMwN2tkM3BxNDZjNGRkNDF2In0.DOuTKK-wNrsod_08yK1LWA`;
+            const linkGoogle = `https://www.google.com/maps/search/?api=1&query=${lat}%2C${long}`
+            messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'loc': url, type: 'location','linkGoogle':linkGoogle });
+            counterMessages.push({ 'isSelf': false, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'loc': url, type: 'location','linkGoogle':linkGoogle });
+            props.setter(true)
+            }
+            );
+            props.setter(true)
+        } else {
+            alert("Geolocation is not supported by this browser.") ;
+            return
+        }
+
+    }
+
     function handleVideo(videoPath) {
         messages.push({ 'isSelf': true, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'video': videoPath, type: 'video' })
         counterMessages.push({ 'isSelf': false, 'time': new Date().toTimeString().split(' ')[0].slice(0, -3), 'video': videoPath, type: 'video' })
@@ -136,6 +160,14 @@ export default function MessageInput(props) {
                             </svg>}
                             onSelect={handleSelect}
                             style={{ width: '0rem' }}>
+
+                            {/* geolocation button*/}
+                            <Dropdown.Item eventKey="6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                </svg>
+                            </Dropdown.Item>
+
                             {/* audio record button*/}
                             <Dropdown.Item eventKey="3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-mic-fill" viewBox="0 0 16 16">
