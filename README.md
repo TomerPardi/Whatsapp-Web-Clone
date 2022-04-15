@@ -16,6 +16,14 @@ We implemented **three main pages**:
 ![Screenshot](registerScreenshot.png)
 ![Screenshot](chatsScreenshot.png)
 
+## Input Support
+We support some types of messages:
+- **Text** messages.
+- **Audio** messages.
+- Current **location**.
+- **Images** & **Videos**:
+- - From file explorer.
+- - As camera input.
 ## Technologies Used
 In this part of the project we used multiple technologies, mainly **React, JavaScript, HTML & CSS**.
 For styling we used **Bootstrap & React-Bootstrap**.
