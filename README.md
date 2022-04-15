@@ -6,7 +6,7 @@
 - Authors: **Daniel Bronfman** (ID: 315901173) & **Tomer Pardilov** (ID: 316163922).
 
 ## Logic
-we implemented **three main pages**:
+We implemented **three main pages**:
 - **Login page**: The user is asked to insert username and password, both are required.
 - **Registration page**: The user is asked to insert username, nickname, password and image. All are required and only alphanumeric pattern is accepted.
 - **Chats page**: Here we can see user's contacts list and the conversations he has with them.
