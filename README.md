@@ -22,8 +22,8 @@ We support some types of messages:
 - **Audio** messages.
 - Current **location**.
 - **Images** & **Videos**:
-- - From file explorer.
-- - As camera input.
+  - From file explorer.
+  - As camera input.
 ## Technologies Used
 In this part of the project we used multiple technologies, mainly **React, JavaScript, HTML & CSS**.
 For styling we used **Bootstrap & React-Bootstrap**.
