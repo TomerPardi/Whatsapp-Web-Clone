@@ -2,7 +2,7 @@
 ## General
 - This is the **first part** of a four-part project.
 - This implementation is not suppurted by web server but by **"Hard-coded" arrays**.
-- It's written as part of an project we asked to make in _Advanced Programming_ course at Bar Ilan University.
+- It's written as part of an project we asked to make in _Advanced Programming 2_ course at Bar Ilan University.
 - Authors: **Daniel Bronfman** (ID: 315901173) & **Tomer Pardilov** (ID: 316163922).
 
 ## Logic
