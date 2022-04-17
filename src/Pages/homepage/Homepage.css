@@ -236,7 +236,7 @@ i {
 
 /* ------ RIGHT SIDE ------ */
 .right {
-    min-width: calc(100% - 400px);
+    width: calc(100% - 400px);
 }
 
 .chat-head {

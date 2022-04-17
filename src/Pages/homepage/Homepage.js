@@ -7,6 +7,7 @@ import "./Homepage.css"
 import Profile from './Profile'
 import AppContext from '../../AppContext'
 import planeGIF from './static-airplane.png'
+import OutsideAlerter from '../useOutside'
 
 const handleTabClosing = () => {
     AppContext.currentUser = 'none';
@@ -94,21 +95,21 @@ export default function Homepage(props) {
     return (
 
         <>
-            <div className="wrap">
+        <OutsideAlerter setter={setActive}>
                 <section className="left">
                     {/* nickname and user's image will be here */}
                     <Profile />
                     {/* contacts list and search bar for contacts will be here */}
                     <Contactslist setter={setChanged} setActive={setActive} />
                 </section>
-
+                
                 <section className="right">
                     {
                         conditionalRight()
                     }
 
                 </section>
-            </div>
+            </OutsideAlerter>
         </>
 
     )
