@@ -1,21 +1,39 @@
-import { Form, Modal } from 'react-bootstrap';
+import { Alert, Form, Modal,Button } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '../AppContext';
-
+import { render } from '@testing-library/react';
+import RegisterAlert from './RegisterAlert';
 
 
 function Register() {
+    
+    
     const [file, setFile] = useState()
     let navigate = useNavigate()
     let sharedContext = useContext(AppContext);
     let db = sharedContext.credentialsDB;
     let data = sharedContext.userData;
     const [show, setShow] = useState(false);
+    const [alertShow,setAlert] = useState(false);
     const [errorMessage, setErrorMessage] = useState("Default Error!")
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleAlertClose = () => {
+        setAlert(false);
+        navigate("../home", { replace: true });
+    }
+    const handleAlertShow = () => setAlert(true);
+
+    function handleSuccess(){
+        render ( 
+            <div>
+                <RegisterAlert show={true} navigate={navigate}/>
+            </div>
+      )
+
+    }
 
 
     useEffect(() => {
@@ -59,11 +77,11 @@ function Register() {
                         "contacts": {
                         }
                     }
-                    alert("Registration successful, proceeding to login page.");
+                    //alert("Registration successful, proceeding to login page.");
                     sharedContext.userData = data;
-                    navigate("../home", { replace: true });
-                    // TODO: we need also save nickname, picture, etc...
-                    return;
+                    handleSuccess();
+                    //navigate("../home", { replace: true });
+                    //return;
                 }
             }
 
