@@ -69,7 +69,7 @@ export default function UploadModal(props) {
               />
               <div>
                 {selectedFile &&
-                  (props.formats == "img/*" ? (
+                  (props.formats == "image/*" ? (
                     <img src={preview} className='card-img' alt='img' />
                   ) : (
                     <video className=' card-img' src={preview} controls />
