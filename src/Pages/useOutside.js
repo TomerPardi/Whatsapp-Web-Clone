@@ -1,26 +1,31 @@
 import React, { useRef, useEffect } from "react";
+import { Modal } from "react-bootstrap";
 
 
-function useAlerter(ref,props) {
+function useAlerter(ref, props) {
   useEffect(() => {
 
-    // if click on backroud, nullify current user
+    // if click on backgroud, nullify current user
     function handleBgClick(event) {
+      let modal = document.getElementsByClassName('modal-dialog')
+      console.log(modal)
+      // ugly patch to check if there is a modal in the foregfround
+      if (modal.length > 0 && modal[0].hidden == false) return
       if (ref.current && !ref.current.contains(event.target)) {
         props.setter('none')
       }
     }
     // add listener
-    document.addEventListener("mousedown", handleBgClick);
+    window.addEventListener("mousedown", handleBgClick);
     return () => {
       // remove listener during cleaning stage
-      document.removeEventListener("mousedown", handleBgClick);
+      window.removeEventListener("mousedown", handleBgClick);
     };
   }, [ref]);
 }
 
 export default function OutsideAlerter(props) {
   const wrapperRef = useRef(null);
-  useAlerter(wrapperRef,props);
+  useAlerter(wrapperRef, props);
   return <div ref={wrapperRef} className='wrap'>{props.children}</div>;
 }

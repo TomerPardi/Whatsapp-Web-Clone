@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
-import context from "react-bootstrap/esm/AccordionContext";
 import AppContext from "../../AppContext";
 
 export const CameraModal = (props) => {

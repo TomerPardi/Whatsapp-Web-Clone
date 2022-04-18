@@ -34,7 +34,6 @@ export default function MessageInput(props) {
     }
     // const counterMessages = context.userData[context.activeContact].contacts[user]
     // ###############
-    console.log("hereeeeeeeeeeeeeeeeeeee")
     console.log(context.userData[context.activeContact].contacts[user])
     console.log(counterMessages)
 
