@@ -10,7 +10,6 @@ function Login() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const form = document.getElementById("form");
@@ -52,7 +51,7 @@ function Login() {
     <>
       <Modal show={show} onHide={handleClose}>
         <div
-          class='alert alert-danger'
+          className='alert alert-danger'
           role='alert'
           style={{ marginBottom: "0rem" }}
         >

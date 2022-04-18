@@ -6,10 +6,10 @@ import AppContext from "../../AppContext";
 export const CameraModal = (props) => {
   const context = useContext(AppContext);
   const [show, setShow] = useState(props.show);
-  const [photo, setPhoto] = useState();
+  const [photo, setPhoto] = useState(null);
 
   const handleClose = (stream) => {
-    setPhoto();
+    setPhoto(null);
     setShow(false);
     stream.getTracks().forEach(function (track) {
       track.stop();

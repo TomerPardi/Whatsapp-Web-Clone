@@ -7,11 +7,11 @@ import AppContext from "../../AppContext";
 export const CameraModal = (props) => {
   const context = useContext(AppContext);
   const [show, setShow] = useState(props.show);
-  const [videoPath, setVideo] = useState();
+  const [videoPath, setVideo] = useState(null);
   const [isRecording, setRecording] = useState(false);
 
   const handleClose = (stream) => {
-    setVideo();
+    setVideo(null);
     setShow(false);
     stream.getTracks().forEach(function (track) {
       track.stop();
@@ -20,8 +20,6 @@ export const CameraModal = (props) => {
     context.stream = null;
     context.mediaRecorder = null;
   };
-
-  const handleShow = () => setShow(true);
 
   function helperForCam(stream) {
     var canvas = document.getElementById("canv");

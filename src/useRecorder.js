@@ -22,12 +22,12 @@ const useRecorder = () => {
     }
 
     // Obtain the audio when ready.
-    const handleData = e => {
+    const handleData = (e) => {
       setAudioURL(URL.createObjectURL(e.data));
       recorder.stream.getTracks().forEach((track) => {
         track.stop();
       });
-      setRecorder(null)
+      setRecorder(null);
     };
 
     recorder.addEventListener("dataavailable", handleData);

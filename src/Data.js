@@ -1,3 +1,3 @@
-const db = require('./data.json');
+const db = require("./data.json");
 
 export default db;
