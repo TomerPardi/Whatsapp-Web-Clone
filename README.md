@@ -16,6 +16,13 @@ We implemented **three main pages**:
 ![Screenshot](registerScreenshot.png)
 ![Screenshot](chatsScreenshot.png)
 
+## Credentials 
+- alice: 12345
+- bob: foo123
+- tomer: 12345
+- daniel: 12345
+- peter: familyguy
+
 ## Input Support
 We support some types of messages:
 - **Text** messages.
