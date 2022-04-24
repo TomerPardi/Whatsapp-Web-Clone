@@ -23,7 +23,7 @@ We implemented **three main pages**:
 
 ## Instructions for using the app
 Use "npm start" script in node js to launch the code.
-First,the user needs to input a valid username and password in the Login page. In case the user doesn't has an account he can register using the link provided at the bottom of the Login page.
+First, the user needs to input a valid username and password in the Login page. In case the user doesn't has an account he can register using the link provided at the bottom of the Login page.
 ### Valid, hard-coded credentials for logging in:
 - alice: 12345
 - bob: foo123
