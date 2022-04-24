@@ -27,7 +27,7 @@ first, user need to input valid username and password in Login page. In case the
 ### Register
 Here the user need to input his username, nickname, password and an Image. These fields are required, valid text input is alphanumeric only!
 ### Chats page
-To test our app, it's recommended to login with "tomer" (password 12345). After successful login, you will see welcome page (you can return back to login by clicking Logout button). Now, by clicking any chat in left side of the window - you will see the messages with your friends.
+To test our app, it's recommended to login with "tomer" (password 12345). After successful login, you will see welcome page (you can return back to login by clicking Logout button). Now, by clicking any chat in left side of the window - you will see the messages with your friends. Additionally, you can add contact by clicking the "Add Contact" button (from the current users that are registered to the application).
 
 ### Input Support
 We support some types of messages:
