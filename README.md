@@ -16,14 +16,20 @@ We implemented **three main pages**:
 ![Screenshot](registerScreenshot.png)
 ![Screenshot](chatsScreenshot.png)
 
-## Credentials 
+## Instructions for using the app
+first, user need to input valid username and password in Login page. In case the user doesn't has an account he can register by link he has in Login page.
+### Valid credentials for login
 - alice: 12345
 - bob: foo123
 - tomer: 12345
 - daniel: 12345
 - peter: familyguy
+### Register
+Here the user need to input his username, nickname, password and an Image. These fields are required, valid text input is alphanumeric only!
+### Chats page
+To test our app, it's recommended to login with "tomer" (password 12345). After successful login, you will see welcome page (you can return back to login by clicking Logout button). Now, by clicking any chat in left side of the window - you will see the messages with your friends.
 
-## Input Support
+### Input Support
 We support some types of messages:
 - **Text** messages.
 - **Audio** messages.
