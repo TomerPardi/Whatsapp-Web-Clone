@@ -78,7 +78,7 @@ export default function Homepage(props) {
           style={{ height: "100%", background: "#99eda1" }}
           className='d-flex align-items-center flex-column'
         >
-          <img style={{ height: "75%" }} src={planeGIF} alt='img'></img>
+          <img style={{ height: "75%", maxWidth:"100%" }} src={planeGIF} alt='img'></img>
           <div className='fs-5'>
             <em>A new way to communicate with your friends!</em>
           </div>
