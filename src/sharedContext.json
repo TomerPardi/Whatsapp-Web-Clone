@@ -153,6 +153,12 @@
             "type": "photo",
             "photo": "./peter-selfie.jpg",
             "time": "11:26"
+          },
+          {
+            "isSelf": false,
+            "type": "audio",
+            "audio": "./Hehe_Song.mp3",
+            "time": "11:26"
           }
         ]
       }

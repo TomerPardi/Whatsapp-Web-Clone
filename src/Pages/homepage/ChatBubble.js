@@ -70,10 +70,15 @@ export default function ChatBubble(props) {
       <div className={`chat-bubble ${isSelf ? "me" : "you"} player`}>
         <audio
           controls
-          src={audio}
+          src={
+            audio.includes("blob")
+              ? audio
+              : require(`${audio}`)
+          }
           id='player'
           style={{ maxHeight: "50px" }}
         ></audio>
+        {console.log(audio)}
         {text}
         <h6 className='text-muted' style={{ justifySelf: "right" }}>
           {time}
