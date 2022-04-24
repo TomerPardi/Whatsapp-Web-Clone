@@ -22,9 +22,19 @@ const Utilsbuttons = (props) => {
   const handleAdd = (e) => {
     //e.preventDefault()
     if (contactInput in sharedContext.userData) {
-      sharedContext.userData[sharedContext.currentUser].contacts[contactInput] =
-        [];
-      props.setter(true);
+      if (
+        sharedContext.userData[sharedContext.currentUser].contacts[contactInput]
+      ) {
+        alert("User already exist in your contacts list!");
+      }
+      else if (contactInput == sharedContext.currentUser) {
+        alert("unfortunately you cannot add yourself to your contacts list");
+      } else {
+        sharedContext.userData[sharedContext.currentUser].contacts[
+          contactInput
+        ] = [];
+        props.setter(true);
+      }
     } else {
       alert("User doesn't exist!");
     }
