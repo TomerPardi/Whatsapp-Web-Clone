@@ -1,7 +1,7 @@
 # Web Client Implementation - Chats App
 
 ## Requirments
-- As provided in package.json:
+As provided in package.json:
 - React
 - react-bootstrap
 - react-router-dom
