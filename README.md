@@ -7,7 +7,7 @@ As provided in package.json:
 - react-router-dom
 ## General
 - This is the first part out of four in the project for _Advanced Programming 2_ course at Bar Ilan University.
-- This implementation has no data base at the present state, but instead uses **"Hard-coded" arrays**(Implemented using React contexts, and json objects).
+- This implementation has no data base at the present state, but instead uses **"Hard-coded" arrays** (Implemented using React contexts, and JSON objects).
 - Authors: **Daniel Bronfman** (ID: 315901173) & **Tomer Pardilov** (ID: 316163922).
 
 ## Logic
