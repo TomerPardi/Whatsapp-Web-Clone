@@ -20,7 +20,6 @@ export default function MessageInput(props) {
   const [isShown, setIsShown] = useState(false);
 
   let context = useContext(AppContext);
-  //TODO : dynamically get contact in question
   const user = context.currentUser;
   const messages = props.messages;
   // ############
@@ -31,10 +30,7 @@ export default function MessageInput(props) {
   } else {
     counterMessages = context.userData[context.activeContact].contacts[user];
   }
-  // const counterMessages = context.userData[context.activeContact].contacts[user]
-  // ###############
-  console.log(context.userData[context.activeContact].contacts[user]);
-  console.log(counterMessages);
+
 
   function handleSelect(event) {
     switch (event) {

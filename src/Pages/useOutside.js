@@ -5,7 +5,6 @@ function useAlerter(ref, props) {
     // if click on backgroud, nullify current user
     function handleBgClick(event) {
       let modal = document.getElementsByClassName("modal-dialog");
-      console.log(modal);
       // ugly patch to check if there is a modal in the foregfround
       if (modal.length > 0 && modal[0].hidden == false) return;
       if (ref.current && !ref.current.contains(event.target)) {

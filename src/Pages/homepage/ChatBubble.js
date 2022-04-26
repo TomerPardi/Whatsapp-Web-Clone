@@ -50,7 +50,7 @@ export default function ChatBubble(props) {
     return (
       <div className={`chat-bubble ${isSelf ? "me" : "you"} `}>
         <Button variant='link' className=' shadow-none' onClick={handleShow}>
-          <video src={video} style={{ maxWidth: "200px" }} controls autoPlay />
+          <video src={video} style={{ maxWidth: "200px" }} controls />
         </Button>
 
         <Modal show={show} onHide={handleClose}>
@@ -78,7 +78,6 @@ export default function ChatBubble(props) {
           id='player'
           style={{ maxHeight: "50px" }}
         ></audio>
-        {console.log(audio)}
         {text}
         <h6 className='text-muted' style={{ justifySelf: "right" }}>
           {time}
@@ -89,7 +88,6 @@ export default function ChatBubble(props) {
     return (
       <div className={`chat-bubble ${isSelf ? "me" : "you"} player`}>
         <a href={linkGoogle} target='_blank' rel='noreferrer'>
-          {console.log(linkGoogle)}
           <img src={loc} style={{ maxWidth: "200px" }} alt='img'></img>
         </a>
 

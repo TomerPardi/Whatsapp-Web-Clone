@@ -67,11 +67,19 @@
             "isSelf": false,
             "time": "13:27"
           },
+          
           {
             "text": "DO YOU THINK IT'S HONOR THAT'S KEEPING THE PEACE?! IT'S FEAR! FEAR AND BLOOD!",
             "isSelf": true,
             "time": "13:29"
+          },
+          {
+            "video":"/Resources/fear.mp4",
+            "type": "video",
+            "isSelf": false,
+            "time": "13:29"
           }
+          
         ]
       }
     },
@@ -119,6 +127,12 @@
           },
           {
             "text": "DO YOU THINK IT'S HONOR THAT'S KEEPING THE PEACE?! IT'S FEAR! FEAR AND BLOOD!",
+            "isSelf": false,
+            "time": "13:29"
+          },
+          {
+            "video":"/Resources/fear.mp4",
+            "type": "video",
             "isSelf": false,
             "time": "13:29"
           }

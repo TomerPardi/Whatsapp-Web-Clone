@@ -56,17 +56,13 @@ export const CameraModal = (props) => {
     mediaRecorder.ondataavailable = handleDataAvailable;
 
     function handleDataAvailable(event) {
-      console.log("data-available");
       if (event.data.size > 0) {
         recordedChunks.push(event.data);
-        console.log(recordedChunks);
       }
       var blob = new Blob(recordedChunks, {
         type: "video/webm;codecs=vp8",
       });
-      console.log(blob);
       var url = URL.createObjectURL(blob);
-      console.log(url);
       setRecording(false);
       setVideo(url);
     }
