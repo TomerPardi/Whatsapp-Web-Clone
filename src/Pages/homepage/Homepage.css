@@ -64,7 +64,6 @@ i {
 }
 
 .green-background {
-    background: url('pattern.png');
     opacity: 0.06;
     background: #009688;
     height: 130px;
