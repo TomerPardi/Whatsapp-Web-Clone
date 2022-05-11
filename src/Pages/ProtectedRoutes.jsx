@@ -1,5 +1,4 @@
 import React from "react";
-import context from "react-bootstrap/esm/AccordionContext";
 import { Navigate, Outlet } from "react-router-dom";
 
 async function IsAuth() {
@@ -11,5 +10,5 @@ async function IsAuth() {
 }
 
 export const ProtectedRoutes = () => {
-  return IsAuth() ? <Outlet user={context.currentUser} /> : <Navigate to='/' />;
+  return IsAuth() ? <Outlet /> : <Navigate to='/' />;
 };
