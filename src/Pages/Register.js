@@ -34,7 +34,6 @@ function Register() {
     if (password.value != password2.value) {
       setErrorMessage("Passwords are not matching!");
       setShow(true);
-      // alert("Passwords are not matching!");
       return;
     }
     try {
@@ -44,7 +43,6 @@ function Register() {
           username: username,
           password: password,
           nickname: nickname,
-          password2: password2,
           image: image,
         }),
       });
@@ -58,9 +56,9 @@ function Register() {
         setMessage("User registerd successfully");
         handleSuccess();
       } else {
-        // diffrentiate between erros??????
+        // TODO: diffrentiate between erros??????
         setMessage("Some error occured");
-        // change MessageError!!!!!
+        // TODO: change MessageError!!!!!
         setShow(true);
         return;
       }
