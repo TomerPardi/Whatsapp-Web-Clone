@@ -56,10 +56,11 @@ function Register() {
         setMessage("User registerd successfully");
         handleSuccess();
       } else {
-        // TODO: diffrentiate between erros??????
+        // @TODO: diffrentiate between erros??????
         setMessage("Some error occured");
-        // TODO: change MessageError!!!!!
+        // @TODO: change MessageError!!!!!
         setShow(true);
+        
         return;
       }
     } catch (err) {
