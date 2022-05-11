@@ -15,6 +15,61 @@ function Register() {
 
   const handleClose = () => setShow(false);
 
+  // ********************************************************
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [image, setImage] = useState("");
+  const [message, setMessage] = useState("");
+
+  let handleSubmit = async (e) => {
+    const form = document.getElementById("form");
+    e.preventDefault();
+    e.stopPropagation();
+    if (!form.checkValidity()) {
+      form.classList.add("was-validated");
+      return;
+    }
+    if (password.value != password2.value) {
+      setErrorMessage("Passwords are not matching!");
+      setShow(true);
+      // alert("Passwords are not matching!");
+      return;
+    }
+    try {
+      let res = await fetch("url_of_server", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          nickname: nickname,
+          password2: password2,
+          image: image,
+        }),
+      });
+      let resJson = await res.json();
+      if (res.status === 200) {
+        setUsername("");
+        setPassword("");
+        setNickname("");
+        setPassword2("");
+        setImage("");
+        setMessage("User registerd successfully");
+        handleSuccess();
+      } else {
+        // diffrentiate between erros??????
+        setMessage("Some error occured");
+        // change MessageError!!!!!
+        setShow(true);
+        return;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // ******************************************************
+
   function handleSuccess() {
     render(
       <div>
@@ -22,54 +77,6 @@ function Register() {
       </div>
     );
   }
-
-  useEffect(() => {
-    const form = document.getElementById("form");
-    const username = document.getElementById("uname");
-    const password = document.getElementById("password");
-    const nickname = document.getElementById("nick");
-    const password2 = document.getElementById("password2");
-    const image = document.getElementById("img");
-
-    // each time the user submits the form
-    form.addEventListener(
-      "submit",
-      function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        } else {
-          if (password.value != password2.value) {
-            setErrorMessage("Passwords are not matching!");
-            setShow(true);
-            // alert("Passwords are not matching!");
-            return;
-          } else if (db[username.value]) {
-            setErrorMessage("Selected username already exists!");
-            setShow(true);
-            // alert("Selected username already exists!")
-            return;
-          } else {
-            db[username.value] = password.value;
-            sharedContext.credentialsDB = db;
-            data[username.value] = {
-              photo: window.webkitURL.createObjectURL(image.files[0]),
-              nickname: nickname.value,
-              contacts: {},
-            };
-            //alert("Registration successful, proceeding to login page.");
-            sharedContext.userData = data;
-            handleSuccess();
-            //navigate("../home", { replace: true });
-            //return;
-          }
-        }
-      },
-      false
-    );
-  }, []);
 
   return (
     <>
@@ -96,6 +103,7 @@ function Register() {
                     noValidate
                     validated=''
                     autoComplete='off'
+                    onSubmit={handleSubmit}
                   >
                     <div className='mb-3'>
                       <label className='mb-2 text-muted' htmlFor='uname'>
@@ -104,12 +112,14 @@ function Register() {
                       <Form.Control
                         id='uname'
                         type='text'
+                        value={username}
                         className='form-control'
                         placeholder='Username'
                         name='uname'
                         pattern='^[a-zA-Z0-9]+$'
                         required
                         autoFocus
+                        onChange={(e) => setUsername(e.target.value)}
                       ></Form.Control>
                       <Form.Control.Feedback type='invalid'>
                         Username is required and should contain alphanumeric
@@ -123,12 +133,14 @@ function Register() {
                       <Form.Control
                         id='nick'
                         type='text'
+                        value={nickname}
                         className='form-control'
                         placeholder='Nickname'
                         name='nick'
                         pattern='^[a-zA-Z0-9]+$'
                         required
                         autoFocus
+                        onChange={(e) => setNickname(e.target.value)}
                       ></Form.Control>
                       <Form.Control.Feedback type='invalid'>
                         Nickname is required and should contain alphanumeric
@@ -144,11 +156,13 @@ function Register() {
                       <Form.Control
                         id='password'
                         type='password'
+                        value={password}
                         className='form-control'
                         placeholder='Password'
                         name='password'
                         pattern='^[a-zA-Z0-9]+$'
                         required
+                        onChange={(e) => setPassword(e.target.value)}
                       ></Form.Control>
                       <Form.Control.Feedback type='invalid'>
                         Password is required and should contain alphanumeric
@@ -164,10 +178,12 @@ function Register() {
                       <Form.Control
                         id='password2'
                         type='password'
+                        value={password2}
                         className='form-control'
                         placeholder='Confirm password'
                         name='password'
                         required
+                        onChange={(e) => setPassword2(e.target.value)}
                       ></Form.Control>
                       <Form.Control.Feedback type='invalid'>
                         Password confirmation is required!
@@ -182,11 +198,13 @@ function Register() {
                       <Form.Control
                         id='img'
                         type='file'
+                        value={image}
                         accept='image/*'
                         className='form-control'
                         placeholder='Select image'
                         name='img'
                         required
+                        onChange={(e) => setImage(e.target.value)}
                       ></Form.Control>
                       <Form.Control.Feedback type='invalid'>
                         Profile picture is required!
