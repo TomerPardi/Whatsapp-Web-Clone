@@ -29,12 +29,15 @@ function compareContacts(a, b) {
 export default function Homepage(props) {
   let context = React.useContext(AppContext);
   const [user, setUser] = useState(context.currentUser);
-  const [messages, setMessages] = useState(
-    context.userData[user].contacts[context.activeContact]
-  );
+  // change to fetch from /api/contacts/alice/messages
+  // const [messages, setMessages] = useState(
+  //   context.userData[user].contacts[context.activeContact] 
+  // );
+  const [messages, setMessages] = useState([{}])
+
   // a state change to trigger a re-render of the page
   const [changed, setChanged] = useState(false);
-  const [active, setActive] = useState(context.activeContact);
+  const [active, setActive] = useState(context.activeContact); //so maybe the context is needed?
 
   function getKeyByValue(object, value) {
     return Object.keys(object).find((key) => object[key] === value);
@@ -71,6 +74,7 @@ export default function Homepage(props) {
       window.removeEventListener("unload", handleTabClosing);
     };
   });
+
   function conditionalRight() {
     if (active === "none") {
       return (
@@ -99,7 +103,9 @@ export default function Homepage(props) {
     }
   }
 
-  orderContacts();
+  orderContacts(); // order by lastdate from api?
+  let data = await fetch("url_ofserver/api/contacts/<contacts name goes here>/messages/") //maybe add function in server API to return ALL messages (for each loop) 
+  setMessages(data.json); // it should be a list..
   return (
     <>
       <OutsideAlerter setter={setActive}>
