@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import { Form, Modal } from "react-bootstrap";
@@ -10,42 +11,44 @@ function Login() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
+// ********************************************************
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  useEffect(() => {
+  let handleSubmit = async (e) => {
     const form = document.getElementById("form");
-    const username = document.getElementById("uname");
-    const password = document.getElementById("password");
-    // on each time the user submits the form
-    form.addEventListener(
-      "submit",
-      function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!form.checkValidity()) {
-          form.classList.add("was-validated");
-          return;
-        }
-
-        if (db[username.value]) {
-          if (db[username.value] === password.value) {
-            // TODO: remove local storage access
-            sharedContext.currentUser = username.value;
-            // localStorage.setItem("user", username.value);
-            navigate("../home", { replace: true });
-          } else {
-            setShow(true);
+    e.preventDefault();
+    e.stopPropagation();
+    if (!form.checkValidity()) {
+      form.classList.add("was-validated");
+      return;
+    }
+    try {
+      let res = await fetch("url_of_server", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+      let resJson = await res.json();
+      if (res.status === 200) {
+        setUsername("");
+        setPassword("");
+        setMessage("User logged in successfully");
+        navigate("../home", { replace: true });
+      } else {
+        setMessage("Some error occured");
+        setShow(true);
             // alert("Wrong username or password!");
             return;
-          }
-        } else {
-          setShow(true);
-          // alert("Wrong username or password!");
-          return;
-        }
-      },
-      false
-    );
-  }, []);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // ******************************************************
 
   return (
     <>
@@ -72,6 +75,7 @@ function Login() {
                     className='needs-validation'
                     noValidate
                     autoComplete='off'
+                    onSubmit={handleSubmit}
                   >
                     <div className='mb-3'>
                       <label className='mb-2 text-muted' htmlFor='uname'>
@@ -79,12 +83,14 @@ function Login() {
                       </label>
                       <Form.Control
                         id='uname'
+                        value={username}
                         type='text'
                         className='form-control'
                         placeholder='Username'
                         name='uname'
                         required
                         autoFocus
+                        onChange={(e) => setUsername(e.target.value)}
                       ></Form.Control>
                       <Form.Control.Feedback type='invalid'>
                         Username is required!
@@ -99,11 +105,13 @@ function Login() {
                       </div>
                       <Form.Control
                         id='password'
+                        value={password}
                         type='password'
                         className='form-control'
                         placeholder='Password'
                         name='password'
                         required
+                        onChange={(e) => setPassword(e.target.value)}
                       ></Form.Control>
                       <Form.Control.Feedback type='invalid'>
                         Password is required!
