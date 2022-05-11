@@ -3,13 +3,6 @@
   "mediaRecorder": null,
   "currentUser": "none",
   "activeContact": "none",
-  "credentialsDB": {
-    "alice": "12345",
-    "bob": "foo123",
-    "tomer": "12345",
-    "daniel": "12345",
-    "peter": "familyguy"
-  },
   "userData": {
     "none": {
       "photo": "./default.jpg",

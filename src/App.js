@@ -5,11 +5,13 @@ import Register from "./Pages/Register";
 import NotFound from "./Pages/NotFound";
 import Homepage from "./Pages/homepage/Homepage";
 import { ProtectedRoutes } from "./Pages/ProtectedRoutes";
+import { AppContextProvider } from "./AppContext";
 
 export const App = () => {
 
   return (
     // TODO check if we can cache chats locally
+    <AppContextProvider value={sharedContext}>
       <BrowserRouter>
         <Routes>
           <Route path='*' element={<NotFound />} />
@@ -20,5 +22,6 @@ export const App = () => {
           <Route path='register' element={<Register />} />
         </Routes>
       </BrowserRouter>
+      </AppContextProvider>
   );
 };

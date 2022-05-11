@@ -3,10 +3,9 @@ import { useContext } from "react";
 import AppContext from "../../AppContext";
 import defaultImage from "./default.jpg";
 
-const Profile = () => {
-  const userData = useContext(AppContext).userData;
-  const user = useContext(AppContext).currentUser;
-  const photo = userData[user].photo;
+const Profile = (props) => {
+  const userData = props.userData;
+  const photo = userData.photo;
 
   return (
     <>
@@ -15,7 +14,7 @@ const Profile = () => {
           src={photo.includes("blob") ? photo : require(`${photo}`)}
           alt={defaultImage}
         ></img>
-        <h1 className='font-name'> {userData[user].nickname}</h1>
+        <h1 className='font-name'> {userData.nickname}</h1>
       </div>
     </>
   );

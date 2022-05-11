@@ -34,6 +34,7 @@ function Login() {
       });
       let resJson = await res.json();
       if (res.status === 200) {
+        //sharedContext.activeUser = username;
         setUsername("");
         setPassword("");
         setMessage("User logged in successfully");

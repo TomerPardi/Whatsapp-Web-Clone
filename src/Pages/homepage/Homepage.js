@@ -9,11 +9,12 @@ import AppContext from "../../AppContext";
 import planeGIF from "./static-airplane.png";
 import OutsideAlerter from "../useOutside";
 
-const handleTabClosing = () => {
-  AppContext.currentUser = "none";
-};
+// const handleTabClosing = () => {
+//   AppContext.currentUser = "none";
+// };
 
 // compare 2 arrays of messages by the value of time in the last of them
+// TODO: convert to the api form
 function compareContacts(a, b) {
   // get the last message in the list of messages, and gets its time field.
   if (a.length == 0 && b.length != 0) return 1;
@@ -28,16 +29,17 @@ function compareContacts(a, b) {
 
 export default function Homepage(props) {
   let context = React.useContext(AppContext);
-  const [user, setUser] = useState(context.currentUser);
+  const [user, setUser] = useState("");
   // change to fetch from /api/contacts/alice/messages
   // const [messages, setMessages] = useState(
   //   context.userData[user].contacts[context.activeContact] 
   // );
   const [messages, setMessages] = useState([{}])
+  const [contacts,setContacts] = useState([{}])
 
   // a state change to trigger a re-render of the page
   const [changed, setChanged] = useState(false);
-  const [active, setActive] = useState(context.activeContact); //so maybe the context is needed?
+  const [active, setActive] = useState(false); //whether we have chosen a contact
 
   function getKeyByValue(object, value) {
     return Object.keys(object).find((key) => object[key] === value);
@@ -45,9 +47,8 @@ export default function Homepage(props) {
 
   // function to order the contacts in the contact list and apply the value to the context
   function orderContacts() {
-    let unordered = context.userData[user].contacts; // contacts unordered
-    let ordered = Object.values(unordered)
-      .sort(compareContacts)
+   // contacts unordered
+    let ordered = Object.values(contacts).sort(compareContacts)
       .reduce(
         // obj is the object reduce works on - reduce iterates over the sorted array of values (the values are contacts)
         // each time reduce adds a contact to the obj, using the value from the previous unsorted array.
@@ -66,13 +67,16 @@ export default function Homepage(props) {
 
   useEffect(() => {
     setChanged(false);
-    orderContacts();
-    setUser(context.currentUser);
-    setMessages(context.userData[user].contacts[context.activeContact]);
-    window.addEventListener("unload", handleTabClosing);
-    return () => {
-      window.removeEventListener("unload", handleTabClosing);
-    };
+    //orderContacts();
+    // setUser(context.currentUser);
+    let data = await fetch(`url_of_server/api/contacts/${active}/messages/`);
+    setMessages(data);
+    //setMessages(context.userData[user].contacts[context.activeContact]);
+
+/*     // window.addEventListener("unload", handleTabClosing);
+    // return () => {
+    //   window.removeEventListener("unload", handleTabClosing);
+    // }; */
   });
 
   function conditionalRight() {
@@ -89,6 +93,8 @@ export default function Homepage(props) {
         </div>
       );
     } else {
+      let data = await fetch(`url_of_server/api/contacts/${active}/messages/`);
+      setMessages(data);
       return (
         <>
           <Chathead activeContact={active} />
@@ -103,15 +109,19 @@ export default function Homepage(props) {
     }
   }
 
-  orderContacts(); // order by lastdate from api?
-  let data = await fetch("url_ofserver/api/contacts/<contacts name goes here>/messages/") //maybe add function in server API to return ALL messages (for each loop) 
-  setMessages(data.json); // it should be a list..
+  setContacts(await fetch("url_of_server/api/contacts/")) // we receive json from server via api
+  //orderContacts(); // TODO: order by lastdate from api?
+  setMessages(data); // it should be a list.
+  // User = json of {userName:"",userData:{"photo": "./default.jpg","nickname": ""}}
+  setUser(await fetch("url_of_server/api/self")) //TODO: create a controller in the api to return data about self by token \ cookie
+
+
   return (
     <>
       <OutsideAlerter setter={setActive}>
         <section className='left'>
           {/* nickname and user's image will be here */}
-          <Profile />
+          <Profile userData = {user.userData}/>
           {/* contacts list and search bar for contacts will be here */}
           <Contactslist setter={setChanged} setActive={setActive} />
         </section>
