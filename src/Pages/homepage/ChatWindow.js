@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 
 const Chatwindow = (props) => {
   // create an array with the messages, push the default messages
+  // TODO: do we really need to insert it to array?
   let arr = [];
   if (props.messages) {
     arr = props.messages;

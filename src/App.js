@@ -8,7 +8,7 @@ import { ProtectedRoutes } from "./Pages/ProtectedRoutes";
 import { AppContextProvider } from "./AppContext";
 
 export const App = () => {
-
+  const sharedContext = require("./sharedContext.json");
   return (
     // TODO check if we can cache chats locally
     <AppContextProvider value={sharedContext}>

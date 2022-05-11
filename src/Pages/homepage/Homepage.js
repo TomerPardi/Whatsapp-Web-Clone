@@ -39,8 +39,10 @@ export default function Homepage(props) {
 
   // a state change to trigger a re-render of the page
   const [changed, setChanged] = useState(false);
-  const [active, setActive] = useState(false); //whether we have chosen a contact
+  const [active, setActive] = useState(context.activeContact); //whether we have chosen a contact
+  const [activeInfo, setActiveInfo] = useState("none");
 
+  // function that used by orderContacts()
   function getKeyByValue(object, value) {
     return Object.keys(object).find((key) => object[key] === value);
   }
@@ -65,12 +67,16 @@ export default function Homepage(props) {
     context.userData[user].contacts = ordered;
   }
 
+// TODO: discuss again if this function is really needed
   useEffect(() => {
     setChanged(false);
     //orderContacts();
     // setUser(context.currentUser);
-    let data = await fetch(`url_of_server/api/contacts/${active}/messages/`);
-    setMessages(data);
+
+    if (active !== "none") {
+      let data = await fetch(`url_of_server/api/contacts/${active}/messages/`);
+      setMessages(data);
+    }
     //setMessages(context.userData[user].contacts[context.activeContact]);
 
 /*     // window.addEventListener("unload", handleTabClosing);
@@ -86,6 +92,7 @@ export default function Homepage(props) {
           style={{ height: "100%", background: "#99eda1" }}
           className='d-flex align-items-center flex-column'
         >
+        // TODO: discuss from where do we need to get the images
           <img style={{ height: "75%", maxWidth:"100%" }} src={planeGIF} alt='img'></img>
           <div className='fs-5'>
             <em>A new way to communicate with your friends!</em>
@@ -93,11 +100,15 @@ export default function Homepage(props) {
         </div>
       );
     } else {
-      let data = await fetch(`url_of_server/api/contacts/${active}/messages/`);
-      setMessages(data);
+      // the user clicked on contact to talk with, active changes to this contact
+      // TODO: are we getting data as JSON or as a list?
+      setMessages(await fetch(`url_of_server/api/contacts/${active}/messages/`));
+      // we are getting it as JSON - {id, name, server, last, lastdate }
+      setActiveInfo(await fetch(`url_of_server/api/contacts/${active}/`))
+
       return (
         <>
-          <Chathead activeContact={active} />
+          <Chathead activeContact={activeInfo} />
           <Chatwindow
             messages={messages}
             setter={setMessages}

@@ -4,20 +4,22 @@ import defaultImage from "./default.jpg";
 
 const Chathead = (props) => {
   const context = useContext(AppContext);
-  const contactData = context.userData;
-  const photo = contactData[props.activeContact].photo;
+  // TODO: discuss how to take care of photo? it is not specefied in API
+  // const contactData = context.userData; ??????
+  // const photo = contactData[props.activeContact].photo; ??????
   if (props.activeContact === "none") {
     return <div>placeholder</div>;
   } else {
     return (
       <div className='chat-head'>
-        <img
+      {/* TODO: again, what to do with photos? */}
+        {/* <img
           src={photo.includes("blob") ? photo : require(`${photo}`)}
           alt={defaultImage}
-        ></img>
+        ></img> */}
         <div className='chat-name'>
           <h1 className='font-name'>
-            {contactData[props.activeContact].nickname}
+            {props.activeContact.name}
           </h1>
           {/* <p className="font-online"></p> */}
         </div>
