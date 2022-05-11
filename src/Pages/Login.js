@@ -6,8 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   let navigate = useNavigate();
-  const sharedContext = useContext(AppContext);
-  var db = sharedContext.credentialsDB;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

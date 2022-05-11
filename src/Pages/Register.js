@@ -7,9 +7,6 @@ import RegisterAlert from "./RegisterAlert";
 
 function Register() {
   let navigate = useNavigate();
-  let sharedContext = useContext(AppContext);
-  let db = sharedContext.credentialsDB;
-  let data = sharedContext.userData;
   const [show, setShow] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Default Error!");
 
