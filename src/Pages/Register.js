@@ -17,7 +17,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [password2, setPassword2] = useState("");
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
 
   let handleSubmit = async (e) => {
@@ -40,7 +40,7 @@ function Register() {
           username: username,
           password: password,
           nickname: nickname,
-          image: image,
+          // image: image,
         }),
       });
       let resJson = await res.json();
@@ -49,7 +49,7 @@ function Register() {
         setPassword("");
         setNickname("");
         setPassword2("");
-        setImage("");
+        // setImage("");
         setMessage("User registerd successfully");
         handleSuccess();
       } else {
@@ -191,7 +191,7 @@ function Register() {
                           Profile picture
                         </label>
                       </div>
-                      <Form.Control
+                      {/* <Form.Control
                         id='img'
                         type='file'
                         value={image}
@@ -201,10 +201,10 @@ function Register() {
                         name='img'
                         required
                         onChange={(e) => setImage(e.target.value)}
-                      ></Form.Control>
-                      <Form.Control.Feedback type='invalid'>
+                      ></Form.Control> */}
+                      {/* <Form.Control.Feedback type='invalid'>
                         Profile picture is required!
-                      </Form.Control.Feedback>
+                      </Form.Control.Feedback> */}
                     </div>
 
                     <div className='d-flex align-items-center'>
