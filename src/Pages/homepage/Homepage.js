@@ -102,6 +102,7 @@ export default function Homepage(props) {
     } else {
       // the user clicked on contact to talk with, active changes to this contact
       // TODO: are we getting data as JSON or as a list?
+      // list of JSON objects - {id, content, created, sent}
       setMessages(await fetch(`url_of_server/api/contacts/${active}/messages/`));
       // we are getting it as JSON - {id, name, server, last, lastdate }
       setActiveInfo(await fetch(`url_of_server/api/contacts/${active}/`))

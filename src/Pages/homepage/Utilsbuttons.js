@@ -19,26 +19,36 @@ const Utilsbuttons = (props) => {
   const handleShow = () => {
     setShow(true);
   };
-  const handleAdd = (e) => {
-    //e.preventDefault()
-    if (contactInput in sharedContext.userData) {
-      if (
-        sharedContext.userData[sharedContext.currentUser].contacts[contactInput]
-      ) {
-        alert("User already exist in your contacts list!");
-      }
-      else if (contactInput == sharedContext.currentUser) {
-        alert("unfortunately you cannot add yourself to your contacts list");
-      } else {
-        sharedContext.userData[sharedContext.currentUser].contacts[
-          contactInput
-        ] = [];
+  const handleAdd = async (e) => {
+    // TODO: for some reason this line was commented...
+    e.preventDefault()
+
+    try {
+      let res = await fetch("url_of_server", {
+        method: "POST",
+        body: JSON.stringify({
+          contact: contactInput,
+        }),
+      });
+      // TODO: return token from server
+      
+      if (res.status === 200) {
+        // contact exists, server added it to contacts list
+        // server generated empty messages list
         props.setter(true);
+      } else {
+        // TODO: need to differentiate between server respone
+        // 1) the contact that client wish to add is already in his list
+        alert("User already exist in your contacts list!");
+        // 2) the contact that client wish to add is himself
+        alert("unfortunately you cannot add yourself to your contacts list");
+        // 3) the contact that client wish to add is not exist in the system
+        alert("User doesn't exist!");
       }
-    } else {
-      alert("User doesn't exist!");
+      handleClose();
+    } catch (err) {
+      console.log(err);
     }
-    handleClose();
   };
   const handleChange = (event) => {
     setContactInput(event.target.value);
@@ -59,13 +69,12 @@ const Utilsbuttons = (props) => {
         className='utilsBtn'
         variant='light'
         onClick={() => {
-          //console.log(sharedContext.userData.tomer.contacts)
-          sharedContext.currentUser = "none";
+          // TODO: fetch request to logout from server!
+          fetch("url_of_server");
           // localStorage.removeItem("user");
           navigate("/", { replace: true });
           sharedContext.activeContact = "none";
           props.setter(true);
-          //window.location.replace("/");
         }}
       >
         <i className='bi bi-box-arrow-left'></i>&nbsp; Logout

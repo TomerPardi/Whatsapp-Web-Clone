@@ -5,6 +5,7 @@ import { Form, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const sharedContext = useContext(AppContext);
   let navigate = useNavigate();
   const [show, setShow] = useState(false);
 
@@ -30,9 +31,12 @@ function Login() {
           password: password,
         }),
       });
-      let resJson = await res.json();
+      // TODO: return token from server
+      
       if (res.status === 200) {
         //sharedContext.activeUser = username;
+        // TODO: what happens in server side? session opened?
+        // assume that yes: client gets cookie
         setUsername("");
         setPassword("");
         setMessage("User logged in successfully");
