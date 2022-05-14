@@ -29,7 +29,7 @@ function compareContacts(a, b) {
 
 export default function Homepage(props) {
   let context = React.useContext(AppContext);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(context.currentUser);
   // change to fetch from /api/contacts/alice/messages
   // const [messages, setMessages] = useState(
   //   context.userData[user].contacts[context.activeContact] 
@@ -105,7 +105,7 @@ export default function Homepage(props) {
       // list of JSON objects - {id, content, created, sent}
       setMessages(await fetch(`url_of_server/api/contacts/${active}/messages/`));
       // we are getting it as JSON - {id, name, server, last, lastdate }
-      setActiveInfo(await fetch(`url_of_server/api/contacts/${active}/`))
+      setActiveInfo(await fetch(`url_of_server/api/contacts/${active}/`));
 
       return (
         <>
@@ -125,7 +125,7 @@ export default function Homepage(props) {
   //orderContacts(); // TODO: order by lastdate from api?
   setMessages(data); // it should be a list.
   // User = json of {userName:"",userData:{"photo": "./default.jpg","nickname": ""}}
-  setUser(await fetch("url_of_server/api/self")) //TODO: create a controller in the api to return data about self by token \ cookie
+  context.currentUser = await fetch("url_of_server/api/Self") //TODO: create a controller in the api to return data about self by token \ cookie
 
 
   return (

@@ -3,17 +3,21 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { useContext, useState } from "react";
 import AppContext from "../../AppContext";
 import { useNavigate } from "react-router-dom";
+import { getByDisplayValue } from "@testing-library/react";
+import context from "react-bootstrap/esm/AccordionContext";
 
 const Utilsbuttons = (props) => {
   let navigate = useNavigate();
   const sharedContext = useContext(AppContext);
   const [show, setShow] = useState(false);
-  const [contactInput, setContactInput] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [contactNick, setContactNick] = useState("");
+  const [contactServer, setContactServer] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   const handleClose = () => {
     setShow(false);
-    setContactInput("");
+    setContactName("");
     setDisabled(true);
   };
   const handleShow = () => {
@@ -24,10 +28,12 @@ const Utilsbuttons = (props) => {
     e.preventDefault()
 
     try {
-      let res = await fetch("url_of_server", {
+      let res = await fetch("url_of_server/api/contacts/", {
         method: "POST",
         body: JSON.stringify({
-          contact: contactInput,
+          id: contactName,
+          name: contactNick,
+          server: contactServer,
         }),
       });
       // TODO: return token from server
@@ -49,16 +55,45 @@ const Utilsbuttons = (props) => {
     } catch (err) {
       console.log(err);
     }
+
+    try {
+      let res = await fetch("url_of_contact_server/api/invitations/", {
+        method: "POST",
+        body: JSON.stringify({
+          from: context.currentUser,
+          to: contactName,
+          server: contactServer,
+        }),
+      });
+      
+    } catch (err) {
+      console.log(err);
+    }
+
   };
-  const handleChange = (event) => {
-    setContactInput(event.target.value);
-    if (contactInput) {
+  const handleChangeName = (event) => {
+    setContactName(event.target.value);
+    if (contactName && contactNick && contactServer) {
+      setDisabled(false);
+    }
+  };
+
+  const handleChangeNick = (event) => {
+    setContactNick(event.target.value);
+    if (contactName && contactNick && contactServer) {
+      setDisabled(false);
+    }
+  };
+
+  const handleChangeServer = (event) => {
+    setContactServer(event.target.value);
+    if (contactName && contactNick && contactServer) {
       setDisabled(false);
     }
   };
 
   const handleKey = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !disabled) {
       handleAdd();
     }
   };
@@ -94,11 +129,27 @@ const Utilsbuttons = (props) => {
             }}
           >
             <Form.Group className='mb-3' controlId='newContact'>
-              <Form.Label>Contact</Form.Label>
+              <Form.Label>Contact's ID (Username)</Form.Label>
               <Form.Control
                 id='input'
-                placeholder="Contact's name"
-                onChange={handleChange}
+                placeholder="Contact's ID"
+                onChange={handleChangeName}
+                onKeyDown={handleKey}
+                autoFocus
+              />
+              <Form.Label>Contact's Nickname</Form.Label>
+              <Form.Control
+                id='input'
+                placeholder="Contact's nickname"
+                onChange={handleChangeNick}
+                onKeyDown={handleKey}
+                autoFocus
+              />
+              <Form.Label>Contact's Server</Form.Label>
+              <Form.Control
+                id='input'
+                placeholder="Contact's server"
+                onChange={handleChangeServer}
                 onKeyDown={handleKey}
                 autoFocus
               />
