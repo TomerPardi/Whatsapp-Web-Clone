@@ -1,12 +1,19 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useContext } from "react";
+import AppContext from "../../AppContext";
+
+
 
 async function IsAuth() {
-
-  // Assume that the server will have a dedicated controller to return
-  // whether the user is authorized (JWT \ session cookie)
-  // for example localhost:3000/api/auth -> true of false
-  return await fetch("url_of_server");
+  const sharedContext = useContext(AppContext);
+  // TODO: check if i can connect to server without "http://blabla"
+  let res = await fetch("https://localhost:7066/Self")
+  if (res.status === 200) {
+    sharedContext.currentUser = res;
+    return true;
+  }
+  return false;
 }
 
 export const ProtectedRoutes = () => {

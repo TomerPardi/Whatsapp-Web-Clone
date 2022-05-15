@@ -27,15 +27,15 @@ function compareContacts(a, b) {
   else return 0;
 }
 
-export default function Homepage(props) {
+export default async function Homepage(props) {
   let context = React.useContext(AppContext);
   const [user, setUser] = useState(context.currentUser);
   // change to fetch from /api/contacts/alice/messages
   // const [messages, setMessages] = useState(
-  //   context.userData[user].contacts[context.activeContact] 
+  //   context.userData[user].contacts[context.activeContact]
   // );
-  const [messages, setMessages] = useState([{}])
-  const [contacts,setContacts] = useState([{}])
+  const [messages, setMessages] = useState([{}]);
+  const [contacts, setContacts] = useState([{}]);
 
   // a state change to trigger a re-render of the page
   const [changed, setChanged] = useState(false);
@@ -49,8 +49,9 @@ export default function Homepage(props) {
 
   // function to order the contacts in the contact list and apply the value to the context
   function orderContacts() {
-   // contacts unordered
-    let ordered = Object.values(contacts).sort(compareContacts)
+    // contacts unordered
+    let ordered = Object.values(contacts)
+      .sort(compareContacts)
       .reduce(
         // obj is the object reduce works on - reduce iterates over the sorted array of values (the values are contacts)
         // each time reduce adds a contact to the obj, using the value from the previous unsorted array.
@@ -67,33 +68,34 @@ export default function Homepage(props) {
     context.userData[user].contacts = ordered;
   }
 
-// TODO: discuss again if this function is really needed
+  // TODO: discuss again if this function is really needed
   useEffect(() => {
-    setChanged(false);
-    //orderContacts();
-    // setUser(context.currentUser);
+    async function fetchData() {
+      setChanged(false);
+      if (active !== "none") {
+        let data = await fetch(
+          `https://localhost:7066/api/Contacts/${active}/messages/`
+        );
 
-    if (active !== "none") {
-      let data = await fetch(`url_of_server/api/contacts/${active}/messages/`);
-      setMessages(data);
+        setMessages(data);
+      }
     }
-    //setMessages(context.userData[user].contacts[context.activeContact]);
+    fetchData();
+  }, []);
 
-/*     // window.addEventListener("unload", handleTabClosing);
-    // return () => {
-    //   window.removeEventListener("unload", handleTabClosing);
-    // }; */
-  });
-
-  function conditionalRight() {
+  async function conditionalRight() {
     if (active === "none") {
       return (
         <div
           style={{ height: "100%", background: "#99eda1" }}
           className='d-flex align-items-center flex-column'
         >
-        // TODO: discuss from where do we need to get the images
-          <img style={{ height: "75%", maxWidth:"100%" }} src={planeGIF} alt='img'></img>
+          // TODO: discuss from where do we need to get the images
+          <img
+            style={{ height: "75%", maxWidth: "100%" }}
+            src={planeGIF}
+            alt='img'
+          ></img>
           <div className='fs-5'>
             <em>A new way to communicate with your friends!</em>
           </div>
@@ -103,9 +105,13 @@ export default function Homepage(props) {
       // the user clicked on contact to talk with, active changes to this contact
       // TODO: are we getting data as JSON or as a list?
       // list of JSON objects - {id, content, created, sent}
-      setMessages(await fetch(`url_of_server/api/contacts/${active}/messages/`));
+      setMessages(
+        await fetch(`https://localhost:7066/api/Contacts/${active}/messages`)
+      );
       // we are getting it as JSON - {id, name, server, last, lastdate }
-      setActiveInfo(await fetch(`url_of_server/api/contacts/${active}/`));
+      setActiveInfo(
+        await fetch(`https://localhost:7066/api/Contacts/${active}`)
+      );
 
       return (
         <>
@@ -120,22 +126,18 @@ export default function Homepage(props) {
       );
     }
   }
-
-  setContacts(await fetch("url_of_server/api/contacts/")) // we receive json from server via api
+  // we receive json from server via api
+  setContacts(await fetch("https://localhost:7066/api/Contacts"));
   //orderContacts(); // TODO: order by lastdate from api?
-  setMessages(data); // it should be a list.
-  // User = json of {userName:"",userData:{"photo": "./default.jpg","nickname": ""}}
-  context.currentUser = await fetch("url_of_server/api/Self") //TODO: create a controller in the api to return data about self by token \ cookie
-
 
   return (
     <>
       <OutsideAlerter setter={setActive}>
         <section className='left'>
           {/* nickname and user's image will be here */}
-          <Profile userData = {user.userData}/>
+          <Profile userData={user.userData} />
           {/* contacts list and search bar for contacts will be here */}
-          <Contactslist setter={setChanged} setActive={setActive} />
+          <Contactslist setter={setChanged} setActive={setActive} contactsList={contacts} />
         </section>
 
         <section className='right'>{conditionalRight()}</section>

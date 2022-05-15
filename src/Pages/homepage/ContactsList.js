@@ -11,16 +11,16 @@ const Contactslist = (props) => {
   const sharedContext = useContext(AppContext);
   const [currUser, setCurrUser] = useState(sharedContext.currentUser);
 
-  // TODO: fetch contacts from server - list of JSON objects
+  // we are fetching contacts list in Homepage
   // {id, name, server, last, lastdate}
-  var data = fetch("url_of_server");
+
   return (
     <>
       <Utilsbuttons setter={props.setter} />
       <div className='contact-list'>
         <div className='list-group'>
           <ListGroup>
-            {Object.keys(data).map(
+            {Object.keys(props.contactsList).map(
               // each item is JSON object - {id, name, server, last, lastdate}
               (item, i) => (
                 <ListGroup.Item
