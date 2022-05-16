@@ -15,7 +15,7 @@ const Contact = ({ contactName, photo, lastMessage, lastMessageTime }) => {
       <div className='contact d-flex justify-content-start align-items-center position-relative'>
         {/* TODO: what to do with images??? */}
         <img
-          src={photo.includes("blob") ? photo : require(`${photo}`)}
+          src={photo}
           alt={defaultImage}
         ></img>
         <div className='font-name'>

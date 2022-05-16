@@ -24,7 +24,7 @@ function Login() {
       return;
     }
     try {
-      let res = await fetch("url_of_server", {
+      let res = await fetch(`https://localhost:7066/api/Login`, {
         method: "POST",
         body: JSON.stringify({
           username: username,
@@ -32,7 +32,7 @@ function Login() {
         }),
       });
       // TODO: return token from server
-      
+      console.log("blaaaaaaaa" + res.status)
       if (res.status === 200) {
         //sharedContext.activeUser = username;
         // TODO: what happens in server side? session opened?

@@ -13,10 +13,10 @@ const Chathead = (props) => {
     return (
       <div className='chat-head'>
       {/* TODO: again, what to do with photos? */}
-        {/* <img
-          src={photo.includes("blob") ? photo : require(`${photo}`)}
+        <img
+          src="default.jpg"
           alt={defaultImage}
-        ></img> */}
+        ></img>
         <div className='chat-name'>
           <h1 className='font-name'>
             {props.activeContact.name}

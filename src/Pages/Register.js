@@ -34,7 +34,7 @@ function Register() {
       return;
     }
     try {
-      let res = await fetch("url_of_server", {
+      let res = await fetch(`https://localhost:7066/Login`, {
         method: "POST",
         body: JSON.stringify({
           username: username,

@@ -38,7 +38,7 @@ const Contactslist = (props) => {
                     key={i}
                     contactName={item.name}
                     // TODO: change to default photo???
-                    // photo={sharedContext.userData[item].photo}
+                    photo="default.jpg"
                     
                     lastMessage={item.last}
                     lastMessageTime={item.lastdate}

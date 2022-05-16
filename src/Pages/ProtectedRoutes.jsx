@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
-import AppContext from "../../AppContext";
+import AppContext from "../AppContext";
 
 
 

@@ -28,7 +28,7 @@ const Utilsbuttons = (props) => {
     e.preventDefault()
 
     try {
-      let res = await fetch("url_of_server/api/contacts/", {
+      let res = await fetch(`https://localhost:7066/api/contact`, {
         method: "POST",
         body: JSON.stringify({
           id: contactName,
@@ -57,12 +57,12 @@ const Utilsbuttons = (props) => {
     }
 
     try {
-      let res = await fetch("url_of_contact_server/api/invitations/", {
+      let res = await fetch(`https://${contactServer}/api/invitations/`, {
         method: "POST",
         body: JSON.stringify({
           from: context.currentUser,
           to: contactName,
-          server: contactServer,
+          server: "localhost:7066",
         }),
       });
       
@@ -105,7 +105,7 @@ const Utilsbuttons = (props) => {
         variant='light'
         onClick={() => {
           // TODO: fetch request to logout from server!
-          fetch("url_of_server");
+          fetch(`https://localhost:7066/Logout`);
           // localStorage.removeItem("user");
           navigate("/", { replace: true });
           sharedContext.activeContact = "none";

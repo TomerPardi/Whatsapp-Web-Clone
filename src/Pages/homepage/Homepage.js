@@ -42,39 +42,13 @@ export default async function Homepage(props) {
   const [active, setActive] = useState(context.activeContact); //whether we have chosen a contact
   const [activeInfo, setActiveInfo] = useState("none");
 
-  // function that used by orderContacts()
-  function getKeyByValue(object, value) {
-    return Object.keys(object).find((key) => object[key] === value);
-  }
-
-  // function to order the contacts in the contact list and apply the value to the context
-  function orderContacts() {
-    // contacts unordered
-    let ordered = Object.values(contacts)
-      .sort(compareContacts)
-      .reduce(
-        // obj is the object reduce works on - reduce iterates over the sorted array of values (the values are contacts)
-        // each time reduce adds a contact to the obj, using the value from the previous unsorted array.
-        (obj, value) => {
-          // get the key for the value in new order from unordered object
-          let key = getKeyByValue(unordered, value);
-          // set the value(array of messages) to be the value from the unsorted array, for the key, the key being the contacts name
-          obj[key] = value;
-          return obj;
-        },
-        {} //initial value passed to reduce - empty object
-      );
-    // save the new ordered by last message time contact list to context
-    context.userData[user].contacts = ordered;
-  }
-
   // TODO: discuss again if this function is really needed
   useEffect(() => {
     async function fetchData() {
       setChanged(false);
       if (active !== "none") {
         let data = await fetch(
-          `https://localhost:7066/api/Contacts/${active}/messages/`
+          `https://localhost:7066/api/contacts/${active}/messages/`
         );
 
         setMessages(data);
@@ -106,11 +80,11 @@ export default async function Homepage(props) {
       // TODO: are we getting data as JSON or as a list?
       // list of JSON objects - {id, content, created, sent}
       setMessages(
-        await fetch(`https://localhost:7066/api/Contacts/${active}/messages`)
+        await fetch(`https://localhost:7066/api/contacts/${active}/messages`)
       );
       // we are getting it as JSON - {id, name, server, last, lastdate }
       setActiveInfo(
-        await fetch(`https://localhost:7066/api/Contacts/${active}`)
+        await fetch(`https://localhost:7066/api/contacts/${active}`)
       );
 
       return (
@@ -126,8 +100,9 @@ export default async function Homepage(props) {
       );
     }
   }
+  
   // we receive json from server via api
-  setContacts(await fetch("https://localhost:7066/api/Contacts"));
+  setContacts(await fetch("https://localhost:7066/api/contacts"));
   //orderContacts(); // TODO: order by lastdate from api?
 
   return (
@@ -135,7 +110,7 @@ export default async function Homepage(props) {
       <OutsideAlerter setter={setActive}>
         <section className='left'>
           {/* nickname and user's image will be here */}
-          <Profile userData={user.userData} />
+          <Profile userData={user} />
           {/* contacts list and search bar for contacts will be here */}
           <Contactslist setter={setChanged} setActive={setActive} contactsList={contacts} />
         </section>
