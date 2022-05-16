@@ -27,7 +27,8 @@ export default async function Homepage(props) {
 
   // a state change to trigger a re-render of the page
   const [changed, setChanged] = useState(false);
-  const [active, setActive] = useState(context.activeContact); //whether we have chosen a contact
+  //const [active, setActive] = useState(context.activeContact); //whether we have chosen a contact
+  const [active, setActive] = useState(null);
   const [activeInfo, setActiveInfo] = useState("none");
 
   // TODO: discuss again if this function is really needed
@@ -36,7 +37,10 @@ export default async function Homepage(props) {
       setChanged(false);
       if (active !== "none") {
         let data = await fetch(
-          `https://localhost:7066/api/contacts/${active}/messages/`
+          `https://localhost:7066/api/contacts/${active}/messages/`,
+          {
+            credentials: "include",
+          }
         );
 
         setMessages(data);
@@ -68,11 +72,17 @@ export default async function Homepage(props) {
       // TODO: are we getting data as JSON or as a list?
       // list of JSON objects - {id, content, created, sent}
       setMessages(
-        await fetch(`https://localhost:7066/api/contacts/${active}/messages`)
+        await fetch(`https://localhost:7066/api/contacts/${active}/messages`,
+        {
+          credentials: "include",
+        })
       );
       // we are getting it as JSON - {id, name, server, last, lastdate }
       setActiveInfo(
-        await fetch(`https://localhost:7066/api/contacts/${active}`)
+        await fetch(`https://localhost:7066/api/contacts/${active}`,
+        {
+          credentials: "include",
+        })
       );
 
       return (
@@ -90,7 +100,10 @@ export default async function Homepage(props) {
   }
   
   // we receive json from server via api
-  setContacts(await fetch("https://localhost:7066/api/contacts"));
+  setContacts(await fetch("https://localhost:7066/api/contacts"),
+  {
+    credentials: "include",
+  });
   //orderContacts(); // TODO: order by lastdate from api?
 
   return (

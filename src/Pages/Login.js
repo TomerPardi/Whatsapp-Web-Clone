@@ -24,11 +24,7 @@ function Login() {
       return;
     }
     try {
-      console.log(JSON.stringify({
-        username: username,
-        password: password,
-      }))
-      let res = await fetch(`https://localhost:7066/api/Login`, {
+      let res = await fetch(`http://localhost:7066/api/Login`, {
         headers: {
           'accept': 'application/json',
           'Content-Type': 'application/json'
@@ -43,7 +39,6 @@ function Login() {
       
       // TODO: return token from server
       if (res.status === 200) {
-        console.log(res);
         //sharedContext.activeUser = username;
         // TODO: what happens in server side? session opened?
         // assume that yes: client gets cookie
