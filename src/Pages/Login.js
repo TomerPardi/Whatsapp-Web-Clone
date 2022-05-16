@@ -45,7 +45,8 @@ function Login() {
         setUsername("");
         setPassword("");
         setMessage("User logged in successfully");
-        navigate("../home", { replace: true });
+        // navigate("../home", { replace: true });
+        navigate("home", {replace: true})
       } else {
         setMessage("Some error occured");
         setShow(true);

@@ -13,7 +13,9 @@ import OutsideAlerter from "../useOutside";
 //   AppContext.currentUser = "none";
 // };
 
+
 export default async function Homepage(props) {
+  
   let context = React.useContext(AppContext);
   console.log(context.currentUser)
   console.log(context.activeContact)
@@ -33,11 +35,12 @@ export default async function Homepage(props) {
 
   // TODO: discuss again if this function is really needed
   useEffect(() => {
+    
     async function fetchData() {
       setChanged(false);
       if (active !== "none") {
         let data = await fetch(
-          `https://localhost:7066/api/contacts/${active}/messages/`,
+          `http://localhost:7066/api/contacts/${active}/messages/`,
           {
             credentials: "include",
           }
@@ -51,6 +54,7 @@ export default async function Homepage(props) {
 
   async function conditionalRight() {
     if (active === "none") {
+      
       return (
         <div
           style={{ height: "100%", background: "#99eda1" }}
@@ -72,14 +76,14 @@ export default async function Homepage(props) {
       // TODO: are we getting data as JSON or as a list?
       // list of JSON objects - {id, content, created, sent}
       setMessages(
-        await fetch(`https://localhost:7066/api/contacts/${active}/messages`,
+        await fetch(`http://localhost:7066/api/contacts/${active}/messages`,
         {
           credentials: "include",
         })
       );
       // we are getting it as JSON - {id, name, server, last, lastdate }
       setActiveInfo(
-        await fetch(`https://localhost:7066/api/contacts/${active}`,
+        await fetch(`http://localhost:7066/api/contacts/${active}`,
         {
           credentials: "include",
         })
@@ -100,8 +104,12 @@ export default async function Homepage(props) {
   }
   
   // we receive json from server via api
-  setContacts(await fetch("https://localhost:7066/api/contacts"),
+  setContacts(await fetch("http://localhost:7066/api/contacts"),
   {
+    method: "GET",
+    headers: {
+      accept: "text/plain",
+    },
     credentials: "include",
   });
   //orderContacts(); // TODO: order by lastdate from api?
