@@ -29,6 +29,8 @@ function compareContacts(a, b) {
 
 export default async function Homepage(props) {
   let context = React.useContext(AppContext);
+  console.log(context.currentUser)
+  console.log(context.activeContact)
   const [user, setUser] = useState(context.currentUser);
   // change to fetch from /api/contacts/alice/messages
   // const [messages, setMessages] = useState(
