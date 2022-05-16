@@ -31,9 +31,9 @@ const Utilsbuttons = (props) => {
       let res = await fetch(`https://localhost:7066/api/contact`, {
         method: "POST",
         body: JSON.stringify({
-          id: contactName,
-          name: contactNick,
-          server: contactServer,
+          UserId: contactName,
+          Name: contactNick,
+          Server: contactServer,
         }),
       });
       // TODO: return token from server
@@ -60,9 +60,9 @@ const Utilsbuttons = (props) => {
       let res = await fetch(`https://${contactServer}/api/invitations/`, {
         method: "POST",
         body: JSON.stringify({
-          from: context.currentUser,
-          to: contactName,
-          server: "localhost:7066",
+          From: context.currentUser,
+          To: contactName,
+          Server: "localhost:7066",
         }),
       });
       

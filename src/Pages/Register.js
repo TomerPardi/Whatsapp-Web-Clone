@@ -39,7 +39,7 @@ function Register() {
         body: JSON.stringify({
           username: username,
           password: password,
-          nickname: nickname,
+          //nickname: nickname,
           // image: image,
         }),
       });

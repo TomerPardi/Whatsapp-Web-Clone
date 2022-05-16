@@ -52,7 +52,8 @@ export default function MessageInput(props) {
       await fetch(`https://localhost:7066/api/contacts/${active}/messages`, {
         method: "POST",
         body: JSON.stringify({
-          content: message,
+          Message: message,
+          ContactID : active,
         }),
       });
     } catch (err) {
@@ -64,9 +65,9 @@ export default function MessageInput(props) {
       await fetch(`https://${res1.server}/api/transfer`, {
         method: "POST",
         body: JSON.stringify({
-          from: user,
-          to: active,
-          content: message,
+          From: user,
+          To: active,
+          Content: message,
         }),
       });
       
