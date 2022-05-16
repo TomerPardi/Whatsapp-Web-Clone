@@ -36,14 +36,15 @@ function Register() {
     try {
       let res = await fetch(`https://localhost:7066/Login`, {
         method: "POST",
+        credentials: "include",
         body: JSON.stringify({
           username: username,
-          password: password,
+          password: password
           //nickname: nickname,
           // image: image,
         }),
-      });
-      let resJson = await res.json();
+      })
+      //let resJson = await res.json();
       if (res.status === 200) {
         setUsername("");
         setPassword("");
