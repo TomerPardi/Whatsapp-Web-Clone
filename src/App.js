@@ -16,9 +16,7 @@ export const App = () => {
         <Routes>
           <Route path='*' element={<NotFound />} />
           {/* <Route element={<ProtectedRoutes />}>
-          
             <Route path='home' element={<Homepage />} />
-            
           </Route> */}
           <Route path='home' element={<Homepage />} />
           <Route path='/' element={<Login />} />

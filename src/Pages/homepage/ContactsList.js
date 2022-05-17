@@ -9,6 +9,7 @@ import { ListGroup } from "react-bootstrap";
 // and setActive to set current active user i talk with
 const Contactslist = (props) => {
   const sharedContext = useContext(AppContext);
+  //console.log(props.contactsList)
   const [currUser, setCurrUser] = useState(sharedContext.currentUser);
 
   // we are fetching contacts list in Homepage
@@ -20,9 +21,10 @@ const Contactslist = (props) => {
       <div className='contact-list'>
         <div className='list-group'>
           <ListGroup>
-            {Object.keys(props.contactsList).map(
+            {console.log(typeof(sharedContext.contacts))}
+            {(Array.from(sharedContext.contacts)).map(
               // each item is JSON object - {id, name, server, last, lastdate}
-              (item, i) => (
+              item => (
                 <ListGroup.Item
                   active
                   style={{ display: "contents" }}
@@ -34,11 +36,9 @@ const Contactslist = (props) => {
                   }}
                 >
                   <Contact
-                    key={i}
                     contactName={item.name}
                     // TODO: change to default photo???
-                    photo="default.jpg"
-                    
+                    photo='default.jpg'
                     lastMessage={item.last}
                     lastMessageTime={item.lastdate}
 

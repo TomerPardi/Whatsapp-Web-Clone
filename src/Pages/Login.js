@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import { Form, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const sharedContext = useContext(AppContext);
@@ -10,7 +11,7 @@ function Login() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-// ********************************************************
+  // ********************************************************
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -24,35 +25,31 @@ function Login() {
       return;
     }
     try {
-      let res = await fetch(`http://localhost:7066/api/Login`, {
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
-      
-      // TODO: return token from server
-      if (res.status === 200) {
-        //sharedContext.activeUser = username;
-        // TODO: what happens in server side? session opened?
-        // assume that yes: client gets cookie
-        setUsername("");
-        setPassword("");
-        setMessage("User logged in successfully");
-        // navigate("../home", { replace: true });
-        navigate("home", {replace: true})
-      } else {
-        setMessage("Some error occured");
-        setShow(true);
+      await axios
+        .post(
+          `https://localhost:7066/api/Login`,
+          { username: username, password: password },
+          {
+            withCredentials: true,
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            setUsername("");
+            setPassword("");
+            setMessage("User logged in successfully");
+            navigate("home", { replace: true });
+          } else {
+            setMessage("Some error occured");
+            setShow(true);
             // alert("Wrong username or password!");
             return;
-      }
+          }
+        });
     } catch (err) {
       console.log(err);
     }
