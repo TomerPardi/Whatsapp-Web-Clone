@@ -33,6 +33,16 @@ export default function Homepage(props) {
   const [activeInfo, setActiveInfo] = useState("none");
 
 
+  useEffect(() => {
+    const getContacts = async () => {
+      // we receive json from server via api
+      const result = await axios
+        .get("https://localhost:7066/api/contacts", { withCredentials: true });
+      setContacts(result.data);
+    }
+    getContacts();
+  }, [changed, active, messages])
+
   function conditionalRight() {
     if (active === "none") {
       return (
@@ -93,17 +103,6 @@ export default function Homepage(props) {
       );
     }
   }
-
-  useEffect(() => {
-    const getContacts = async () => {
-      // we receive json from server via api
-      const result = await axios
-        .get("https://localhost:7066/api/contacts", { withCredentials: true });
-      setContacts(result.data);
-    }
-    getContacts();
-  }, [changed])
-
 
 
   return (

@@ -8,15 +8,16 @@ import Button from "react-bootstrap/Button";
 import useRecorder from "../useRecorder";
 import { useContext } from "react";
 import AppContext from "../AppContext";
+import axios from 'axios'
 
 export default function MessageInput(props) {
+  let context = useContext(AppContext);
   let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
   const [existingRecord, setRecorded] = useState(false);
   const [isLive, setLive] = useState(false);
   const [active, setActive] = useState(context.activeContact);
   const [isShown, setIsShown] = useState(false);
 
-  let context = useContext(AppContext);
   const user = context.currentUser;
   const messages = props.messages;
   // ############
@@ -28,7 +29,7 @@ export default function MessageInput(props) {
   //   counterMessages = context.userData[context.activeContact].contacts[user];
   // }
 
-  function handleSelect(event) {}
+  function handleSelect(event) { }
 
   function handleKeyPress(event) {
     if (event.key === "Enter") {
@@ -53,7 +54,7 @@ export default function MessageInput(props) {
         method: "POST",
         body: JSON.stringify({
           Message: message,
-          ContactID : active,
+          ContactID: active,
         }),
       });
     } catch (err) {
@@ -70,7 +71,7 @@ export default function MessageInput(props) {
           Content: message,
         }),
       });
-      
+
     } catch (err) {
       console.log(err);
     }

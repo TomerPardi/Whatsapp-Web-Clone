@@ -29,8 +29,8 @@ const Contactslist = (props) => {
                   style={{ display: "contents" }}
                   onClick={() => {
                     // @ts-ignore
-                    props.setActive(item.name);
-                    sharedContext.activeContact = item.name;
+                    props.setActive(item.id);
+                    sharedContext.activeContact = item.id;
                     props.setter(true);
                   }}
                 >
