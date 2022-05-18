@@ -15,7 +15,7 @@ export default function MessageInput(props) {
   let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
   const [existingRecord, setRecorded] = useState(false);
   const [isLive, setLive] = useState(false);
-  const [active, setActive] = useState(context.activeContact);
+  //const [active, setActive] = useState(context.activeContact);
   const [isShown, setIsShown] = useState(false);
 
   const user = context.currentUser;
@@ -40,8 +40,8 @@ export default function MessageInput(props) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const message = document.getElementById("messageIn");
-    if (message.value === "") {
+    const messageIn = document.getElementById("messageIn");
+    if (messageIn.value === "") {
       return;
     }
 
@@ -50,27 +50,31 @@ export default function MessageInput(props) {
 
     // the server insert the message to the messages list with active contact
     try {
-      await fetch(`https://localhost:7066/api/contacts/${active}/messages`, {
-        method: "POST",
-        body: JSON.stringify({
-          Message: message,
-          ContactID: active,
-        }),
-      });
+      // await fetch(`https://localhost:7066/api/contacts/${active}/messages`, {
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     Message: message,
+      //     ContactID: active,
+      //   }),
+      // });
+      await axios.post(`https://localhost:7066/api/contacts/${context.activeContact
+}/messages`,
+        {
+          content: messageIn.value,
+        },
+        { withCredentials: true });
     } catch (err) {
-      console.log(err);
+      console.log("error content" + err);
     }
 
     try {
-      let res1 = await fetch(`https://localhost:7066/api/contacts/${context.activeContact}`)
-      await fetch(`https://${res1.server}/api/transfer`, {
-        method: "POST",
-        body: JSON.stringify({
-          From: user,
-          To: active,
-          Content: message,
-        }),
-      });
+      await axios.post(`https://${props.activeInfo.server}/api/transfer`,
+        {
+          from: context.currentUser,
+          to: context.activeContact,
+          content: messageIn.value,
+        },
+        { withCredentials: true });
 
     } catch (err) {
       console.log(err);
@@ -88,7 +92,7 @@ export default function MessageInput(props) {
     //   time: new Date().toTimeString().split(" ")[0].slice(0, -3),
     // });
     props.setter(true);
-    message.value = "";
+    messageIn.value = "";
   }
   // TODO: discuss whether this condition test is needed
   // moreover, "ActiveUser" attribute is not even exists in context :)
@@ -100,7 +104,7 @@ export default function MessageInput(props) {
         onKeyPress={handleKeyPress}
       >
         {/* Set title as link to the icon (link from https://icons.getbootstrap.com/#usage) */}
-        {!existingRecord && !isLive && (
+        {/* {!existingRecord && !isLive && (
           <DropdownButton
             id={"dropdown-button-drop-up"}
             drop='up'
@@ -121,7 +125,7 @@ export default function MessageInput(props) {
             onSelect={handleSelect}
             style={{ width: "0rem" }}
           ></DropdownButton>
-        )}
+        )} */}
 
         {!existingRecord && !isLive && (
           <div className='messageForm'>

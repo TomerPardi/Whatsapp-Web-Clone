@@ -16,7 +16,7 @@ const Chatwindow = (props) => {
 
   useEffect(() => {
     executeScroll();
-  });
+  }, []);
 
   return (
     <div className='wrap-chat'>

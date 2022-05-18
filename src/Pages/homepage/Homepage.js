@@ -18,7 +18,6 @@ export default function Homepage(props) {
   let context = React.useContext(AppContext);
   // console.log(context.currentUser);
   // console.log(context.activeContact);
-  const [user, setUser] = useState(context.currentUser);
   // change to fetch from /api/contacts/alice/messages
   // const [messages, setMessages] = useState(
   //   context.userData[user].contacts[context.activeContact]
@@ -40,11 +39,26 @@ export default function Homepage(props) {
         .get("https://localhost:7066/api/contacts", { withCredentials: true });
       setContacts(result.data);
     }
+    const getMessages = async () => {
+      const result = await axios
+        .get(`https://localhost:7066/api/contacts/${active}/messages`, {
+          withCredentials: true,
+        });
+      setMessages(result.data);
+
+      const result2 = await axios
+        .get(`https://localhost:7066/api/contacts/${active}`, {
+          withCredentials: true,
+        });
+      setActiveInfo(result2.data)
+    }
     getContacts();
-  }, [changed, active, messages])
+    if (active !== 'none') getMessages();
+  }, [changed, active])
 
   function conditionalRight() {
     if (active === "none") {
+      console.log("Debug: right - none")
       return (
         <div
           style={{ height: "100%", background: "#99eda1" }}
@@ -60,7 +74,9 @@ export default function Homepage(props) {
           </div>
         </div>
       );
-    } else {
+    }
+    else {
+      console.log("DEBUG: right else")
       // the user clicked on contact to talk with, active changes to this contact
       // TODO: are we getting data as JSON or as a list?
       // list of JSON objects - {id, content, created, sent}
@@ -69,40 +85,23 @@ export default function Homepage(props) {
       //     credentials: "include",
       //   })
       // );
-      axios
-        .get(`https://localhost:7066/api/contacts/${active}/messages`, {
-          withCredentials: true,
-        })
-        .then((response) => {
-          setMessages(response.data);
-        });
-      // we are getting it as JSON - {id, name, server, last, lastdate }
-      // setActiveInfo(
-      //   await fetch(`http://localhost:7066/api/contacts/${active}`, {
-      //     credentials: "include",
-      //   })
-      // );
-      axios
-        .get(`https://localhost:7066/api/contacts/${active}`, {
-          withCredentials: true,
-        })
-        .then((response) => {
-          setActiveInfo(response.data);
-        });
-
-      return (
-        <>
-          <Chathead activeContact={activeInfo} />
-          <Chatwindow
-            messages={messages}
-            setter={setMessages}
-            activeContact={active}
-          />
-          <MessageInput messages={messages} setter={setChanged} />
-        </>
-      );
     }
+
+
+    return (
+      <>
+        <Chathead activeContact={activeInfo} />
+        <Chatwindow
+          messages={messages}
+          setter={setMessages}
+          activeContact={active}
+        />
+        <MessageInput messages={messages} setter={setChanged} activeInfo={activeInfo} />
+      </>
+    );
   }
+
+
 
 
   return (
@@ -110,7 +109,7 @@ export default function Homepage(props) {
       <OutsideAlerter setter={setActive}>
         <section className='left'>
           {/* nickname and user's image will be here */}
-          <Profile userData={user} />
+          <Profile userData={context.currentUser} />
           {/* contacts list and search bar for contacts will be here */}
           <Contactslist
             setter={setChanged}

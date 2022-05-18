@@ -10,10 +10,14 @@ import { ListGroup } from "react-bootstrap";
 const Contactslist = (props) => {
   const sharedContext = useContext(AppContext);
   //console.log(props.contactsList)
-  const [currUser, setCurrUser] = useState(sharedContext.currentUser);
-
   // we are fetching contacts list in Homepage
   // {id, name, server, last, lastdate}
+  const convertTime = (toConvert) => {
+    if (toConvert) {
+      const formatted = new Date(toConvert)
+      return (formatted.getHours() + ':' + formatted.getMinutes());
+    }
+  }
 
   return (
     <>
@@ -28,7 +32,7 @@ const Contactslist = (props) => {
                   active
                   style={{ display: "contents" }}
                   onClick={() => {
-                    // @ts-ignore
+                    // @ts-ignore/
                     props.setActive(item.id);
                     sharedContext.activeContact = item.id;
                     props.setter(true);
@@ -39,7 +43,7 @@ const Contactslist = (props) => {
                     // TODO: change to default photo???
                     photo='default.jpg'
                     lastMessage={item.last}
-                    lastMessageTime={item.lastdate}
+                    lastMessageTime={convertTime(item.lastdate)}
 
                   // TODO: the API doesnt support who sent last message
                   // isSelf={

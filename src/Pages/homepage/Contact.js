@@ -6,10 +6,11 @@ const Contact = ({ contactName, photo, lastMessage, lastMessageTime }) => {
     // TODO: check plaster
     if (!lastMessage) return;
 
-    return lastMessage.text.length < 30
+    return lastMessage.length < 30
       ? lastMessage
       : lastMessage.substring(0, 30) + "...";
   };
+  
   return (
     <>
       <div className='contact d-flex justify-content-start align-items-center position-relative'>

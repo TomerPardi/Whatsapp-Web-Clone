@@ -31,9 +31,9 @@ const Utilsbuttons = (props) => {
     try {
       const res = await axios.post("https://localhost:7066/api/contacts",
         {
-          UserId: contactName,
-          Name: contactNick,
-          Server: contactServer,
+          id: contactName,
+          name: contactNick,
+          server: contactServer,
         },
         { withCredentials: true });
       // let res = await fetch(`http://localhost:7066/api/contact`, {
@@ -77,9 +77,9 @@ const Utilsbuttons = (props) => {
       console.log(sharedContext.currentUser);
       const res = await axios.post(`https://${contactServer}/api/invitations/`,
         {
-          From: sharedContext.currentUser,
-          To: contactName,
-          Server: "localhost:7066",
+          from: sharedContext.currentUser,
+          to: contactName,
+          server: "localhost:7066",
         },
         { withCredentials: true });
 
