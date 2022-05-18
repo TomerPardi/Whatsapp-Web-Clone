@@ -5,7 +5,7 @@ import { Form, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Login() {
+function Login(props) {
   const sharedContext = useContext(AppContext);
   let navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -42,6 +42,8 @@ function Login() {
             setUsername("");
             setPassword("");
             setMessage("User logged in successfully");
+            sharedContext.currentUser = username;
+            props.setAuth(true);
             navigate("home", { replace: true });
           } else {
             setMessage("Some error occured");
@@ -50,8 +52,13 @@ function Login() {
             return;
           }
         });
-    } catch (err) {
+    }
+    catch (err) {
       console.log(err);
+      setMessage("Some error occured");
+      setShow(true);
+      // alert("Wrong username or password!");
+      return;
     }
   };
   // ******************************************************

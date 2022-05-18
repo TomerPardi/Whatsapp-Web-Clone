@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import { render } from "@testing-library/react";
 import RegisterAlert from "./RegisterAlert";
+import axios from "axios"
 
 function Register() {
   let navigate = useNavigate();
@@ -34,18 +35,11 @@ function Register() {
       return;
     }
     try {
-      let res = await fetch(`https://localhost:7066/Login`, {
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify({
-          username: username,
-          password: password
-          //nickname: nickname,
-          // image: image,
-        }),
-      })
+      const result = await axios.post("https://localhost:7066/api/Register",
+        { username: username, password: password },
+        { withCredentials: true });
       //let resJson = await res.json();
-      if (res.status === 200) {
+      if (result.status === 200) {
         setUsername("");
         setPassword("");
         setNickname("");
@@ -58,7 +52,7 @@ function Register() {
         setMessage("Some error occured");
         // @TODO: change MessageError!!!!!
         setShow(true);
-        
+
         return;
       }
     } catch (err) {
@@ -98,7 +92,6 @@ function Register() {
                     id='form'
                     className='needs-validation'
                     noValidate
-                    validated=''
                     autoComplete='off'
                     onSubmit={handleSubmit}
                   >
@@ -123,27 +116,7 @@ function Register() {
                         characters only!
                       </Form.Control.Feedback>
                     </div>
-                    <div className='mb-3'>
-                      <label className='mb-2 text-muted' htmlFor='nick'>
-                        Nickname
-                      </label>
-                      <Form.Control
-                        id='nick'
-                        type='text'
-                        value={nickname}
-                        className='form-control'
-                        placeholder='Nickname'
-                        name='nick'
-                        pattern='^[a-zA-Z0-9]+$'
-                        required
-                        autoFocus
-                        onChange={(e) => setNickname(e.target.value)}
-                      ></Form.Control>
-                      <Form.Control.Feedback type='invalid'>
-                        Nickname is required and should contain alphanumeric
-                        characters only!
-                      </Form.Control.Feedback>
-                    </div>
+
                     <div className='mb-3'>
                       <div className='mb-2 w-100'>
                         <label className='text-muted' htmlFor='password'>
@@ -186,13 +159,13 @@ function Register() {
                         Password confirmation is required!
                       </Form.Control.Feedback>
                     </div>
-                    <div className='mb-3'>
+                    {/* <div className='mb-3'>
                       <div className='mb-2 w-100'>
                         <label className='text-muted' htmlFor='img'>
                           Profile picture
                         </label>
                       </div>
-                      {/* <Form.Control
+                      <Form.Control
                         id='img'
                         type='file'
                         value={image}
@@ -202,11 +175,11 @@ function Register() {
                         name='img'
                         required
                         onChange={(e) => setImage(e.target.value)}
-                      ></Form.Control> */}
-                      {/* <Form.Control.Feedback type='invalid'>
+                      ></Form.Control> 
+                      <Form.Control.Feedback type='invalid'>
                         Profile picture is required!
-                      </Form.Control.Feedback> */}
-                    </div>
+                      </Form.Control.Feedback>
+                    </div> */}
 
                     <div className='d-flex align-items-center'>
                       <button type='submit' className='btn btn-primary ms-auto'>

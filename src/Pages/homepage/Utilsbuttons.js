@@ -5,6 +5,7 @@ import AppContext from "../../AppContext";
 import { useNavigate } from "react-router-dom";
 import { getByDisplayValue } from "@testing-library/react";
 import context from "react-bootstrap/esm/AccordionContext";
+import axios from "axios"
 
 const Utilsbuttons = (props) => {
   let navigate = useNavigate();
@@ -28,17 +29,25 @@ const Utilsbuttons = (props) => {
     e.preventDefault()
 
     try {
-      let res = await fetch(`http://localhost:7066/api/contact`, {
-        method: "POST",
-        body: JSON.stringify({
+      const res = await axios.post("https://localhost:7066/api/contacts",
+        {
           UserId: contactName,
           Name: contactNick,
           Server: contactServer,
-        }),
-      });
+        },
+        { withCredentials: true });
+      // let res = await fetch(`http://localhost:7066/api/contact`, {
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     UserId: contactName,
+      //     Name: contactNick,
+      //     Server: contactServer,
+      //   }),
+      // });
+
       // TODO: return token from server
-      
-      if (res.status === 200) {
+
+      if (res.status === 201) {
         // contact exists, server added it to contacts list
         // server generated empty messages list
         props.setter(true);
@@ -57,15 +66,23 @@ const Utilsbuttons = (props) => {
     }
 
     try {
-      let res = await fetch(`http://${contactServer}/api/invitations/`, {
-        method: "POST",
-        body: JSON.stringify({
-          From: context.currentUser,
+      // let res = await fetch(`https://${contactServer}/api/invitations/`, {
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     From: context.currentUser,
+      //     To: contactName,
+      //     Server: "localhost:7066",
+      //   }),
+      // });
+      console.log(sharedContext.currentUser);
+      const res = await axios.post(`https://${contactServer}/api/invitations/`,
+        {
+          From: sharedContext.currentUser,
           To: contactName,
           Server: "localhost:7066",
-        }),
-      });
-      
+        },
+        { withCredentials: true });
+
     } catch (err) {
       console.log(err);
     }

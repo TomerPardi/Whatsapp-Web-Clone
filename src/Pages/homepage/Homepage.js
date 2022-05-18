@@ -18,7 +18,7 @@ export default function Homepage(props) {
   let context = React.useContext(AppContext);
   // console.log(context.currentUser);
   // console.log(context.activeContact);
-  const [user, setUser] = useState("alice");
+  const [user, setUser] = useState(context.currentUser);
   // change to fetch from /api/contacts/alice/messages
   // const [messages, setMessages] = useState(
   //   context.userData[user].contacts[context.activeContact]
@@ -32,24 +32,6 @@ export default function Homepage(props) {
   const [active, setActive] = useState("none");
   const [activeInfo, setActiveInfo] = useState("none");
 
-  // TODO: discuss again if this function is really needed
-  useEffect(() => {
-    console.log("use effects");
-    // async function fetchData() {
-    //   setChanged(false);
-    //   if (active !== "none") {
-    //     let data = await fetch(
-    //       `http://localhost:7066/api/contacts/${active}/messages/`,
-    //       {
-    //         credentials: "include",
-    //       }
-    //     );
-
-    //     setMessages(data);
-    //   }
-    // }
-    // fetchData();
-  }, []);
 
   function conditionalRight() {
     if (active === "none") {
@@ -112,14 +94,17 @@ export default function Homepage(props) {
     }
   }
 
-  // we receive json from server via api
-  axios
-    .get("https://localhost:7066/api/contacts", { withCredentials: true })
-    .then((response) => {
-      context.contacts = response.data;
-      //setChanged(true);
-      // setContacts(response.data);
-    });
+  useEffect(() => {
+    const getContacts = async () => {
+      // we receive json from server via api
+      const result = await axios
+        .get("https://localhost:7066/api/contacts", { withCredentials: true });
+      setContacts(result.data);
+    }
+    getContacts();
+  }, [changed])
+
+
 
   return (
     <>
@@ -131,7 +116,7 @@ export default function Homepage(props) {
           <Contactslist
             setter={setChanged}
             setActive={setActive}
-            contactsList={context.contacts}
+            contactsList={contacts}
           />
         </section>
 

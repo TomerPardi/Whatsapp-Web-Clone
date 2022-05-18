@@ -21,8 +21,7 @@ const Contactslist = (props) => {
       <div className='contact-list'>
         <div className='list-group'>
           <ListGroup>
-            {console.log(typeof(sharedContext.contacts))}
-            {(Array.from(sharedContext.contacts)).map(
+            {(Array.from(props.contactsList)).map(
               // each item is JSON object - {id, name, server, last, lastdate}
               item => (
                 <ListGroup.Item
@@ -42,14 +41,14 @@ const Contactslist = (props) => {
                     lastMessage={item.last}
                     lastMessageTime={item.lastdate}
 
-                    // TODO: the API doesnt support who sent last message
-                    // isSelf={
-                    //   sharedContext.userData[currUser].contacts[item].length ==
-                    //   0
-                    //     ? false
-                    //     : sharedContext.userData[currUser].contacts[item].at(-1)
-                    //         .isSelf
-                    // }
+                  // TODO: the API doesnt support who sent last message
+                  // isSelf={
+                  //   sharedContext.userData[currUser].contacts[item].length ==
+                  //   0
+                  //     ? false
+                  //     : sharedContext.userData[currUser].contacts[item].at(-1)
+                  //         .isSelf
+                  // }
                   />
                 </ListGroup.Item>
               )
