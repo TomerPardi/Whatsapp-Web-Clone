@@ -11,14 +11,14 @@ import AppContext from "../AppContext";
 import axios from 'axios'
 
 export default function MessageInput(props) {
-  let context = useContext(AppContext);
+  let sharedContext = useContext(AppContext);
   let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
   const [existingRecord, setRecorded] = useState(false);
   const [isLive, setLive] = useState(false);
   //const [active, setActive] = useState(context.activeContact);
   const [isShown, setIsShown] = useState(false);
 
-  const user = context.currentUser;
+  const user = sharedContext.currentUser;
   const messages = props.messages;
   // ############
   var counterMessages;
@@ -57,7 +57,7 @@ export default function MessageInput(props) {
       //     ContactID: active,
       //   }),
       // });
-      await axios.post(`https://localhost:7066/api/contacts/${context.activeContact
+      await axios.post(`https://localhost:7066/api/contacts/${sharedContext.activeContact
 }/messages`,
         {
           content: messageIn.value,
@@ -70,8 +70,8 @@ export default function MessageInput(props) {
     try {
       await axios.post(`https://${props.activeInfo.server}/api/transfer`,
         {
-          from: context.currentUser,
-          to: context.activeContact,
+          from: sharedContext.currentUser,
+          to: sharedContext.activeContact,
           content: messageIn.value,
         },
         { withCredentials: true });

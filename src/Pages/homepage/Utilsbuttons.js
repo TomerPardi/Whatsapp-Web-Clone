@@ -124,9 +124,8 @@ const Utilsbuttons = (props) => {
         className='utilsBtn'
         variant='light'
         onClick={() => {
-          // TODO: fetch request to logout from server!
           fetch(`http://localhost:7066/Logout`);
-          // localStorage.removeItem("user");
+          sharedContext.connection.invoke("Unjoin", sharedContext.currentUser);
           navigate("/", { replace: true });
           sharedContext.activeContact = "none";
           props.setter(true);

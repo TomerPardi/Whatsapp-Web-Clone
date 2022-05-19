@@ -15,7 +15,7 @@ import axios from "axios";
 // };
 
 export default function Homepage(props) {
-  let context = React.useContext(AppContext);
+  let sharedContext = React.useContext(AppContext);
   // console.log(context.currentUser);
   // console.log(context.activeContact);
   // change to fetch from /api/contacts/alice/messages
@@ -25,7 +25,6 @@ export default function Homepage(props) {
   const [messages, setMessages] = useState([]);
   const [contacts, setContacts] = useState([]);
   // a state change to trigger a re-render of the page
-  const [changed, setChanged] = useState(false);
   //const [active, setActive] = useState(context.activeContact); //whether we have chosen a contact
   const [active, setActive] = useState("none");
   const [activeInfo, setActiveInfo] = useState("none");
@@ -34,31 +33,36 @@ export default function Homepage(props) {
   useEffect(() => {
     const getContacts = async () => {
       // we receive json from server via api
-      const result = await axios
-        .get("https://localhost:7066/api/contacts", { withCredentials: true });
+      const result = await axios.get("https://localhost:7066/api/contacts", {
+        withCredentials: true,
+      });
       setContacts(result.data);
-    }
+    };
     const getMessages = async () => {
-      const result = await axios
-        .get(`https://localhost:7066/api/contacts/${active}/messages`, {
+      const result = await axios.get(
+        `https://localhost:7066/api/contacts/${active}/messages`,
+        {
           withCredentials: true,
-        });
+        }
+      );
       setMessages(result.data);
 
-      const result2 = await axios
-        .get(`https://localhost:7066/api/contacts/${active}`, {
+      const result2 = await axios.get(
+        `https://localhost:7066/api/contacts/${active}`,
+        {
           withCredentials: true,
-        });
-      setActiveInfo(result2.data)
-    }
+        }
+      );
+      setActiveInfo(result2.data);
+    };
     getContacts();
-    if (active !== 'none') getMessages();
-    setChanged(false)
-  }, [changed, active])
+    if (active !== "none") getMessages();
+    props.setChanged(false);
+  }, [props.changed, active]);
 
   function conditionalRight() {
     if (active === "none") {
-      console.log("Debug: right - none")
+      console.log("Debug: right - none");
       return (
         <div
           style={{ height: "100%", background: "#99eda1" }}
@@ -74,9 +78,8 @@ export default function Homepage(props) {
           </div>
         </div>
       );
-    }
-    else {
-      console.log("DEBUG: right else")
+    } else {
+      console.log("DEBUG: right else");
       // the user clicked on contact to talk with, active changes to this contact
       // TODO: are we getting data as JSON or as a list?
       // list of JSON objects - {id, content, created, sent}
@@ -87,7 +90,6 @@ export default function Homepage(props) {
       // );
     }
 
-
     return (
       <>
         <Chathead activeContact={activeInfo} />
@@ -96,23 +98,27 @@ export default function Homepage(props) {
           setter={setMessages}
           activeContact={active}
         />
-        <MessageInput messages={messages} setter={setChanged} activeInfo={activeInfo} />
+        <MessageInput
+          messages={messages}
+          setter={props.setChanged}
+          activeInfo={activeInfo}
+        />
       </>
     );
   }
-
-
-
 
   return (
     <>
       <OutsideAlerter setter={setActive}>
         <section className='left'>
           {/* nickname and user's image will be here */}
-          <Profile userData={context.currentUser} server={context.server}/>
+          <Profile
+            userData={sharedContext.currentUser}
+            server={sharedContext.server}
+          />
           {/* contacts list and search bar for contacts will be here */}
           <Contactslist
-            setter={setChanged}
+            setter={props.setChanged}
             setActive={setActive}
             contactsList={contacts}
           />

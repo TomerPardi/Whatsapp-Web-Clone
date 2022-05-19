@@ -5,7 +5,7 @@ import context from "react-bootstrap/esm/AccordionContext";
 import AppContext from "../../AppContext";
 
 export const CameraModal = (props) => {
-  const context = useContext(AppContext);
+  const sharedContext = useContext(AppContext);
   const [show, setShow] = useState(props.show);
   const [videoPath, setVideo] = useState(null);
   const [isRecording, setRecording] = useState(false);
@@ -17,8 +17,8 @@ export const CameraModal = (props) => {
       track.stop();
     });
     // clean the saved stream in the context
-    context.stream = null;
-    context.mediaRecorder = null;
+    sharedContext.stream = null;
+    sharedContext.mediaRecorder = null;
   };
 
   function helperForCam(stream) {
@@ -31,7 +31,7 @@ export const CameraModal = (props) => {
     var recordedChunks = [];
     var options = { mimeType: "video/webm;codecs=vp8" };
 
-    context.stream = stream;
+    sharedContext.stream = stream;
     if (video == null) {
       stream.getTracks().forEach(function (track) {
         track.stop();
@@ -49,10 +49,10 @@ export const CameraModal = (props) => {
       canvas.width = w;
       canvas.height = h;
     });
-    if (context.mediaRecorder == null) {
-      context.mediaRecorder = new MediaRecorder(stream, options);
+    if (sharedContext.mediaRecorder == null) {
+      sharedContext.mediaRecorder = new MediaRecorder(stream, options);
     }
-    const mediaRecorder = context.mediaRecorder;
+    const mediaRecorder = sharedContext.mediaRecorder;
     mediaRecorder.ondataavailable = handleDataAvailable;
 
     function handleDataAvailable(event) {
@@ -94,7 +94,7 @@ export const CameraModal = (props) => {
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia ||
       navigator.msGetUserMedia;
-    if (context.stream == null) {
+    if (sharedContext.stream == null) {
       navigator.getUserMedia(
         { video: true },
         function (stream) {
@@ -105,7 +105,7 @@ export const CameraModal = (props) => {
         }
       );
     } else {
-      helperForCam(context.stream);
+      helperForCam(sharedContext.stream);
     }
   }
 

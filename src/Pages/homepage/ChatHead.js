@@ -3,7 +3,7 @@ import AppContext from "../../AppContext";
 import defaultImage from "./default.jpg";
 
 const Chathead = (props) => {
-  const context = useContext(AppContext);
+  const sharedContext = useContext(AppContext);
   // TODO: discuss how to take care of photo? it is not specefied in API
   // const contactData = context.userData; ??????
   // const photo = contactData[props.activeContact].photo; ??????

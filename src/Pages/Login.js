@@ -25,7 +25,7 @@ function Login(props) {
       return;
     }
     try {
-      await axios
+      axios
         .post(
           `https://localhost:7066/api/Login`,
           { username: username, password: password },
@@ -44,6 +44,8 @@ function Login(props) {
             setMessage("User logged in successfully");
             sharedContext.currentUser = username;
             props.setAuth(true);
+            // start signalR
+            props.connectionFunc(username);
             navigate("home", { replace: true });
           } else {
             setMessage("Some error occured");
@@ -52,8 +54,7 @@ function Login(props) {
             return;
           }
         });
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err);
       setMessage("Some error occured");
       setShow(true);

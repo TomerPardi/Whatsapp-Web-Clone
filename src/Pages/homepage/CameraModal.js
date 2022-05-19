@@ -4,7 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 import AppContext from "../../AppContext";
 
 export const CameraModal = (props) => {
-  const context = useContext(AppContext);
+  const sharedContext = useContext(AppContext);
   const [show, setShow] = useState(props.show);
   const [photo, setPhoto] = useState(null);
 
@@ -15,13 +15,13 @@ export const CameraModal = (props) => {
       track.stop();
     });
     // clean the saved stream in the context
-    context.stream = null;
+    sharedContext.stream = null;
   };
 
   const handleShow = () => setShow(true);
 
   function helperForCam(stream) {
-    context.stream = stream;
+    sharedContext.stream = stream;
     var canvas = document.getElementById("canv");
     var button = document.getElementById("photoButt");
     var button2 = document.getElementById("cancelButt");
@@ -71,7 +71,7 @@ export const CameraModal = (props) => {
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia ||
       navigator.msGetUserMedia;
-    if (context.stream == null) {
+    if (sharedContext.stream == null) {
       navigator.getUserMedia(
         { video: true },
         function (stream) {
@@ -82,7 +82,7 @@ export const CameraModal = (props) => {
         }
       );
     } else {
-      helperForCam(context.stream);
+      helperForCam(sharedContext.stream);
     }
   }
 
