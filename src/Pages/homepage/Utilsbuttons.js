@@ -5,7 +5,7 @@ import AppContext from "../../AppContext";
 import { useNavigate } from "react-router-dom";
 import { getByDisplayValue } from "@testing-library/react";
 import context from "react-bootstrap/esm/AccordionContext";
-import axios from "axios"
+import axios from "axios";
 
 const Utilsbuttons = (props) => {
   let navigate = useNavigate();
@@ -26,24 +26,18 @@ const Utilsbuttons = (props) => {
   };
   const handleAdd = async (e) => {
     // TODO: for some reason this line was commented...
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      const res = await axios.post("https://localhost:7066/api/contacts",
+      const res = await axios.post(
+        "https://localhost:7066/api/contacts",
         {
           id: contactName,
           name: contactNick,
           server: contactServer,
         },
-        { withCredentials: true });
-      // let res = await fetch(`http://localhost:7066/api/contact`, {
-      //   method: "POST",
-      //   body: JSON.stringify({
-      //     UserId: contactName,
-      //     Name: contactNick,
-      //     Server: contactServer,
-      //   }),
-      // });
+        { withCredentials: true }
+      );
 
       // TODO: return token from server
 
@@ -54,15 +48,24 @@ const Utilsbuttons = (props) => {
       } else {
         // TODO: need to differentiate between server respone
         // 1) the contact that client wish to add is already in his list
-        alert("User already exist in your contacts list!");
-        // 2) the contact that client wish to add is himself
-        alert("unfortunately you cannot add yourself to your contacts list");
-        // 3) the contact that client wish to add is not exist in the system
-        alert("User doesn't exist!");
+        // server returns 409 conflict
+        if (res.status === 409) {
+          alert("Cannot add yourself or existing user in your contacts list!");
+          return;
+        }
+        // 2) the contact that client wish to add is not exist in the system
+        // server returns 404
+        if (res.status === 404) {
+          alert("User doesn't exist!");
+          return;
+        }
       }
       handleClose();
     } catch (err) {
+      alert("Some error occured");
+      handleClose();
       console.log(err);
+      return;
     }
 
     try {
@@ -75,18 +78,18 @@ const Utilsbuttons = (props) => {
       //   }),
       // });
       console.log(sharedContext.currentUser);
-      const res = await axios.post(`https://${contactServer}/api/invitations/`,
+      const res = await axios.post(
+        `https://${contactServer}/api/invitations/`,
         {
           from: sharedContext.currentUser,
           to: contactName,
           server: "localhost:7066",
         },
-        { withCredentials: true });
-
+        { withCredentials: true }
+      );
     } catch (err) {
       console.log(err);
     }
-
   };
   const handleChangeName = (event) => {
     setContactName(event.target.value);
