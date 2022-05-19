@@ -20,11 +20,16 @@ export const App = () => {
         .get(`https://localhost:7066/Self`, {
           withCredentials: true,
         }).catch(e => console.error(e));
+      const serverRes = await axios
+        .get(`https://localhost:7066/Server`, {
+          withCredentials: true,
+        }).catch(e => console.error(e));
+
 
       setLoading(false);
       if (res !== undefined && res.status === 200) {
         setAuth(true);
-        //sharedContext.currentUser = res.data;
+        sharedContext.server = serverRes.data;
       }
     }
     authenticate();

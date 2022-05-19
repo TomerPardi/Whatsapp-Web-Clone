@@ -2,6 +2,7 @@
   "stream": null,
   "mediaRecorder": null,
   "currentUser": "none",
+  "server": "",
   "contacts": {},
   "activeContact": "none",
   "userData": {
@@ -50,9 +51,9 @@
           {
             "isSelf": true,
             "time": "02:25",
-            "type":"location",
-            "loc":"https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-1.2573,51.7466,16,0/300x200?access_token=pk.eyJ1IjoiZnVua2V5N2RhbiIsImEiOiJjbDIwNm13enMwN2tkM3BxNDZjNGRkNDF2In0.DOuTKK-wNrsod_08yK1LWA",
-            "linkGoogle":"https://www.google.com/maps/place/Abingdon+Rd,+Oxford+OX1+1SW,+UK/@51.7465727,-1.2572742,18.46z/data=!4m5!3m4!1s0x4876c6c9787a3a31:0xa28bd22bb0f905e3!8m2!3d51.7466859!4d-1.2563152"
+            "type": "location",
+            "loc": "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-1.2573,51.7466,16,0/300x200?access_token=pk.eyJ1IjoiZnVua2V5N2RhbiIsImEiOiJjbDIwNm13enMwN2tkM3BxNDZjNGRkNDF2In0.DOuTKK-wNrsod_08yK1LWA",
+            "linkGoogle": "https://www.google.com/maps/place/Abingdon+Rd,+Oxford+OX1+1SW,+UK/@51.7465727,-1.2572742,18.46z/data=!4m5!3m4!1s0x4876c6c9787a3a31:0xa28bd22bb0f905e3!8m2!3d51.7466859!4d-1.2563152"
           },
           {
             "text": "I think I arrived where I wanted...",
@@ -73,19 +74,17 @@
             "isSelf": false,
             "time": "13:27"
           },
-          
           {
             "text": "DO YOU THINK IT'S HONOR THAT'S KEEPING THE PEACE?! IT'S FEAR! FEAR AND BLOOD!",
             "isSelf": true,
             "time": "13:29"
           },
           {
-            "video":"/Resources/fear.mp4",
+            "video": "/Resources/fear.mp4",
             "type": "video",
             "isSelf": true,
             "time": "13:29"
           }
-          
         ]
       }
     },
@@ -127,9 +126,9 @@
           {
             "isSelf": false,
             "time": "02:25",
-            "type":"location",
-            "loc":"https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-1.2573,51.7466,16,0/300x200?access_token=pk.eyJ1IjoiZnVua2V5N2RhbiIsImEiOiJjbDIwNm13enMwN2tkM3BxNDZjNGRkNDF2In0.DOuTKK-wNrsod_08yK1LWA",
-            "linkGoogle":"https://www.google.com/maps/place/Abingdon+Rd,+Oxford+OX1+1SW,+UK/@51.7465727,-1.2572742,18.46z/data=!4m5!3m4!1s0x4876c6c9787a3a31:0xa28bd22bb0f905e3!8m2!3d51.7466859!4d-1.2563152"
+            "type": "location",
+            "loc": "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-1.2573,51.7466,16,0/300x200?access_token=pk.eyJ1IjoiZnVua2V5N2RhbiIsImEiOiJjbDIwNm13enMwN2tkM3BxNDZjNGRkNDF2In0.DOuTKK-wNrsod_08yK1LWA",
+            "linkGoogle": "https://www.google.com/maps/place/Abingdon+Rd,+Oxford+OX1+1SW,+UK/@51.7465727,-1.2572742,18.46z/data=!4m5!3m4!1s0x4876c6c9787a3a31:0xa28bd22bb0f905e3!8m2!3d51.7466859!4d-1.2563152"
           },
           {
             "text": "I think I arrived where I wanted...",
@@ -149,7 +148,7 @@
             "time": "13:29"
           },
           {
-            "video":"/Resources/fear.mp4",
+            "video": "/Resources/fear.mp4",
             "type": "video",
             "isSelf": false,
             "time": "13:29"

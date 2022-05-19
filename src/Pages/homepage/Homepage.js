@@ -23,7 +23,6 @@ export default function Homepage(props) {
   //   context.userData[user].contacts[context.activeContact]
   // );
   const [messages, setMessages] = useState([]);
-  console.log("homepage");
   const [contacts, setContacts] = useState([]);
   // a state change to trigger a re-render of the page
   const [changed, setChanged] = useState(false);
@@ -109,7 +108,7 @@ export default function Homepage(props) {
       <OutsideAlerter setter={setActive}>
         <section className='left'>
           {/* nickname and user's image will be here */}
-          <Profile userData={context.currentUser} />
+          <Profile userData={context.currentUser} server={context.server}/>
           {/* contacts list and search bar for contacts will be here */}
           <Contactslist
             setter={setChanged}
