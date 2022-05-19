@@ -53,6 +53,7 @@ export default function Homepage(props) {
     }
     getContacts();
     if (active !== 'none') getMessages();
+    setChanged(false)
   }, [changed, active])
 
   function conditionalRight() {
