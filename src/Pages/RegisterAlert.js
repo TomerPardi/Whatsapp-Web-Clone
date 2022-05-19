@@ -7,7 +7,7 @@ export default function RegisterAlert(props) {
 
   const handleClose = () => {
     setShow(false);
-    props.navigate("../home", { replace: true });
+    props.navigate("/", { replace: true });
   };
 
 
