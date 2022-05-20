@@ -28,8 +28,7 @@ export default function Homepage(props) {
   //const [active, setActive] = useState(context.activeContact); //whether we have chosen a contact
   const [active, setActive] = useState("none");
   const [activeInfo, setActiveInfo] = useState("none");
-
-
+  
   useEffect(() => {
     const getContacts = async () => {
       // we receive json from server via api
@@ -38,6 +37,13 @@ export default function Homepage(props) {
       });
       setContacts(result.data);
     };
+    getContacts();
+    props.setChanged(false);
+  }, [props.changed])
+
+
+  useEffect(() => {
+    
     const getMessages = async () => {
       const result = await axios.get(
         `https://localhost:7066/api/contacts/${active}/messages`,
@@ -55,7 +61,7 @@ export default function Homepage(props) {
       );
       setActiveInfo(result2.data);
     };
-    getContacts();
+    
     if (active !== "none") getMessages();
     props.setChanged(false);
   }, [props.changed, active]);
