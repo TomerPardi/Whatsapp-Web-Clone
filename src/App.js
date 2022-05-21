@@ -47,6 +47,7 @@ export const App = () => {
       connection.on("Changed", () => {
         // we need to define changed state in app js
         setChanged(true);
+        console.log("im inside changed")
       });
       await connection.start();
       await connection.invoke("Join", username);

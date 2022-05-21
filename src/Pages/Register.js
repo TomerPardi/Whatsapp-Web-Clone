@@ -34,7 +34,7 @@ function Register() {
         form.classList.add("was-validated");
         return;
       }
-      if (password.value != password2.value) {
+      if (password.value !== password2.value) {
         setErrorMessage("Passwords are not matching!");
         setShow(true);
         return;
