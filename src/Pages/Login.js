@@ -150,7 +150,13 @@ function Login(props) {
           </div>
         </div>
       </section>
+      <div className='d-flex align-items-center flex-column'>
+        <a href='http://localhost:5081'>
+          Rate us!
+        </a>
+      </div>
     </>
+    
   );
 }
 
