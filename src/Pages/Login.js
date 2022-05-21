@@ -143,6 +143,15 @@ function Login(props) {
                   <div className='text-center'>
                     Don't have an account?{" "}
                     <Link to='/register'>Register now!</Link>
+                    <br></br><br></br>
+                    <button
+                      type='button'
+                      href='http://localhost:5081'
+                      className='btn btn-outline-primary'
+                    >
+                      <i class='bi bi-star'></i>
+                      &nbsp; Rate us!
+                    </button>
                   </div>
                 </div>
               </div>
@@ -150,13 +159,10 @@ function Login(props) {
           </div>
         </div>
       </section>
-      <div className='d-flex align-items-center flex-column'>
-        <a href='http://localhost:5081'>
-          Rate us!
-        </a>
-      </div>
+      {/* <div className='d-flex align-items-center flex-column'>
+        <a href='http://localhost:5081'>Rate us!</a>
+      </div> */}
     </>
-    
   );
 }
 
