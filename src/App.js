@@ -42,16 +42,15 @@ export const App = () => {
       const connection = new HubConnectionBuilder()
         .withUrl("https://localhost:7066/messagesHub")
         .build();
-      
+
       sharedContext.connection = connection;
       connection.on("Changed", () => {
         // we need to define changed state in app js
         setChanged(true);
-        console.log("im inside changed")
       });
       await connection.start();
       await connection.invoke("Join", username);
-    } catch {}
+    } catch { }
   };
 
   return (

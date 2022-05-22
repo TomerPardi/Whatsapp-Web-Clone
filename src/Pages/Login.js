@@ -144,14 +144,14 @@ function Login(props) {
                     Don't have an account?{" "}
                     <Link to='/register'>Register now!</Link>
                     <br></br><br></br>
-                    <button
+                    <a
                       type='button'
                       href='http://localhost:5081'
                       className='btn btn-outline-primary'
                     >
                       <i class='bi bi-star'></i>
                       &nbsp; Rate us!
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
