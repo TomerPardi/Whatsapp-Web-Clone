@@ -53,6 +53,11 @@ function Login(props) {
             // alert("Wrong username or password!");
             return;
           }
+        }, (err) => {
+          console.log(err);
+          setMessage("Some error occured");
+          setShow(true);
+          return;
         });
     } catch (err) {
       console.log(err);
